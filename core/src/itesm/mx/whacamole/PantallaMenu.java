@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by user on 25/01/2016.
  */
-
+//update
 public class PantallaMenu extends Game implements Screen {
 
     private OrthographicCamera camara;
