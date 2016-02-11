@@ -25,7 +25,7 @@ public class Juego implements Screen {
     //Dibujar
     private SpriteBatch batch;
 
-
+    //Pruebaaaaa :3 de Elias
     @Override
     public void show() {
 
