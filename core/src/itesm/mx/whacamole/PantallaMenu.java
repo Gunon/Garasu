@@ -61,7 +61,7 @@ public class PantallaMenu extends Game implements Screen {
        // BotonPlay
         texturaBtnPlay = new Texture(Gdx.files.internal("M_Btn.png"));
         spriteBtnPlay = new Sprite(texturaBtnPlay);
-        
+
         spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth() / 2 - 10, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 114);
 
         //Boton Salir
