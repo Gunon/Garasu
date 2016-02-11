@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by user on 25/01/2016.
  */
-
+//update
 public class PantallaMenu extends Game implements Screen {
 
     private OrthographicCamera camara;
@@ -61,7 +61,7 @@ public class PantallaMenu extends Game implements Screen {
        // BotonPlay
         texturaBtnPlay = new Texture(Gdx.files.internal("M_Btn.png"));
         spriteBtnPlay = new Sprite(texturaBtnPlay);
-        
+
         spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth() / 2 - 10, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 114);
 
         //Boton Salir
