@@ -1,6 +1,5 @@
 package itesm.mx.whacamole;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,7 +15,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by user on 25/01/2016.
  */
 //update
-public class PantallaMenu extends Game implements Screen {
+public class PantallaMenu implements Screen {
+
+    private final Principal principal;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -33,18 +34,29 @@ public class PantallaMenu extends Game implements Screen {
     private Sprite spriteBtnPlay;
 
     //Boton Salir
-    private Texture texturaBtnSalir;
-    private Sprite spriteBtnSalir;
+    private Texture texturaBtnInstrucciones;
+    private Sprite spriteBtnInstrucciones;
+
+    //Boton Opciones
+    private Texture texturaBtnOpciones;
+    private Sprite spriteBtnOpciones;
+
+    //Titulo
+
 
     //Dibujar
     private SpriteBatch batch;
+
+    public PantallaMenu(Principal principal) {
+        this.principal = principal;
+    }
 
 
     @Override
     public void show() {
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO/2,Principal.ALTO_MUNDO/2,0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
@@ -58,16 +70,24 @@ public class PantallaMenu extends Game implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("M_Fondo.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-       // BotonPlay
+
+        // BotonPlay
         texturaBtnPlay = new Texture(Gdx.files.internal("M_Btn.png"));
         spriteBtnPlay = new Sprite(texturaBtnPlay);
 
-        spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth() / 2 - 10, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 114);
+        spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 140);
 
         //Boton Salir
- //       texturaBtnSalir = new Texture(Gdx.files.internal("exitBtn.png"));
-   //     spriteBtnSalir = new Sprite(texturaBtnSalir);
-     //   spriteBtnSalir.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth() / 2, Principal.ALTO_MUNDO / 4 - spriteBtnPlay.getRegionHeight() / 2);
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("M_Btn.png"));
+        spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
+        spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
+
+        //Boton Opciones
+        texturaBtnOpciones = new Texture(Gdx.files.internal("M_Btn.png"));
+        spriteBtnOpciones = new Sprite(texturaBtnInstrucciones);
+        spriteBtnOpciones.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
+
+        //texto
 
     }
 
@@ -75,21 +95,25 @@ public class PantallaMenu extends Game implements Screen {
     @Override
     public void render(float delta) {
         //Borrar la pantalla
-        leerEntrada();
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         batch.setProjectionMatrix(camara.combined);
+        leerEntrada();
+
+
         leerEntrada();
         batch.begin();
         spriteFondo.draw(batch);
         spriteBtnPlay.draw(batch);
-        //spriteBtnSalir.draw(batch);
+        spriteBtnInstrucciones.draw(batch);
+        spriteBtnOpciones.draw(batch);
+
         batch.end();
 
     }
 
-    @Override
+
     public void create() {
 
     }
@@ -131,7 +155,7 @@ public class PantallaMenu extends Game implements Screen {
                     touchX<spriteBtnPlay.getX()+spriteBtnPlay.getWidth()
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
-                Gdx.app.exit();
+                    principal.setScreen(new PantallaInstrucciones(principal));
             }
         }
 
