@@ -141,6 +141,9 @@ public class PantallaMenu implements Screen {
     public void dispose() {
         //Cuando lo que usamos sale de memoria
         texturaFondo.dispose();
+        texturaBtnPlay.dispose();
+        texturaBtnInstrucciones.dispose();
+        texturaBtnOpciones.dispose();
     }
 
     private  void leerEntrada(){
@@ -155,7 +158,19 @@ public class PantallaMenu implements Screen {
                     touchX<spriteBtnPlay.getX()+spriteBtnPlay.getWidth()
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
-                    principal.setScreen(new PantallaInstrucciones(principal));
+                principal.setScreen(new PantallaNivel1(principal));
+            }
+            if(touchX>=spriteBtnInstrucciones.getX()&&
+                    touchX<spriteBtnInstrucciones.getX()+spriteBtnInstrucciones.getWidth()
+                    && touchY>=spriteBtnInstrucciones.getY()
+                    && touchY<=spriteBtnInstrucciones.getY()+spriteBtnInstrucciones.getHeight()){
+                principal.setScreen(new PantallaInstrucciones(principal));
+            }
+            if(touchX>=spriteBtnOpciones.getX()&&
+                    touchX<spriteBtnOpciones.getX()+spriteBtnOpciones.getWidth()
+                    && touchY>=spriteBtnOpciones.getY()
+                    && touchY<=spriteBtnOpciones.getY()+spriteBtnOpciones.getHeight()){
+                principal.setScreen(new PantallaOpciones(principal));
             }
         }
 
