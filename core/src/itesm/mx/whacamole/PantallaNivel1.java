@@ -27,6 +27,10 @@ public class PantallaNivel1 implements Screen
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    //
+    private Texture texturaBtnPausa;
+    private Sprite spriteBtnPausa;
+
     // Dibujar
     private SpriteBatch batch;
 
@@ -60,6 +64,10 @@ public class PantallaNivel1 implements Screen
         // Fondo
         texturaFondo = new Texture(Gdx.files.internal("FondoF.png"));
         spriteFondo = new Sprite(texturaFondo);
+
+        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Pausa.png"));
+        spriteBtnPausa = new Sprite(texturaBtnPausa);
+        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
     }
 
     @Override
@@ -77,6 +85,7 @@ public class PantallaNivel1 implements Screen
         batch.begin();
 
         spriteFondo.draw(batch);
+        spriteBtnPausa.draw(batch);
 
         batch.end();
     }
@@ -102,7 +111,21 @@ public class PantallaNivel1 implements Screen
     }
 
     private void leerEntrada() {
+        if(Gdx.input.justTouched()==true){
+            Vector3 coordenadas = new Vector3();
+            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camara.unproject(coordenadas);//Transforma las coordenadas
+            float touchX = coordenadas.x;
+            float touchY = coordenadas.y;
 
+            if(touchX>=spriteBtnPausa.getX()&&
+                    touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
+                    && touchY>=spriteBtnPausa.getY()
+                    && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
+                principal.setScreen(new PantallaMenu(principal));
+            }
+
+        }
     }
 
     @Override
