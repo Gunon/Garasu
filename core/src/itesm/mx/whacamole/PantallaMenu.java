@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
+//Añadí botones --Lalo
 /**
  * Created by user on 25/01/2016.
  */
@@ -89,13 +89,13 @@ public class PantallaMenu implements Screen {
         spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 140);
 
         //Boton Instrucciones
-        texturaBtnInstrucciones = new Texture(Gdx.files.internal("M_Btn.png"));
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("BTN_Instrucciones.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
 
         //Boton Opciones
-        texturaBtnOpciones = new Texture(Gdx.files.internal("M_Btn.png"));
-        spriteBtnOpciones = new Sprite(texturaBtnInstrucciones);
+        texturaBtnOpciones = new Texture(Gdx.files.internal("BTN_Opciones.png"));
+        spriteBtnOpciones = new Sprite(texturaBtnOpciones);
         spriteBtnOpciones.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
 
         //TextoOpciones
