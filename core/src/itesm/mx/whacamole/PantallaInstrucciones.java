@@ -132,6 +132,7 @@ public class PantallaInstrucciones implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
+        texturaBtnInicio.dispose();
       //  texturaBtnInicio.dispose();
 
     }

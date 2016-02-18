@@ -25,8 +25,8 @@ public class PantallaCreditos implements Screen
     private Sprite spriteFondo;
 
     //Boton Play
-    private Texture texturaBtnPausa;
-    private Sprite spriteBtnPausa;
+    private Texture texturaBtnInicioP;
+    private Sprite spriteBtnInicioP;
 
 
     // Dibujar
@@ -63,9 +63,9 @@ public class PantallaCreditos implements Screen
         spriteFondo = new Sprite(texturaFondo);
 
         //BtnInicio
-        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Pausa.png"));
-        spriteBtnPausa = new Sprite(texturaBtnPausa);
-        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
+        texturaBtnInicioP = new Texture(Gdx.files.internal("Btn_InicioP.png"));
+        spriteBtnInicioP = new Sprite(texturaBtnInicioP);
+        spriteBtnInicioP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicioP.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnInicioP.getRegionHeight() / 2 +300);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class PantallaCreditos implements Screen
 
 
         spriteFondo.draw(batch);
-        spriteBtnPausa.draw(batch);
+        spriteBtnInicioP.draw(batch);
 
         batch.end();
     }
@@ -117,10 +117,10 @@ public class PantallaCreditos implements Screen
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if(touchX>=spriteBtnPausa.getX()&&
-                    touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
-                    && touchY>=spriteBtnPausa.getY()
-                    && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
+            if(touchX>=spriteBtnInicioP.getX()&&
+                    touchX<spriteBtnInicioP.getX()+spriteBtnInicioP.getWidth()
+                    && touchY>=spriteBtnInicioP.getY()
+                    && touchY<=spriteBtnInicioP.getY()+spriteBtnInicioP.getHeight()){
                 principal.setScreen(new PantallaMenu(principal));
             }
 
@@ -132,6 +132,8 @@ public class PantallaCreditos implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
+        texturaBtnInicioP.dispose();
+
         //  texturaBtnInicio.dispose();
 
     }

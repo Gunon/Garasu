@@ -78,7 +78,7 @@ public class PantallaMenu implements Screen {
         spriteFondo = new Sprite(texturaFondo);
 
         //Creditos
-        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Pausa.png"));
+        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Creditos.png"));
         spriteBtnPausa = new Sprite(texturaBtnPausa);
         spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
 
@@ -165,6 +165,7 @@ public class PantallaMenu implements Screen {
         texturaBtnInstrucciones.dispose();
         texturaBtnOpciones.dispose();
         texturaTitulo.dispose();
+        texturaBtnPausa.dispose();
     }
 
     private  void leerEntrada(){

@@ -133,6 +133,7 @@ public class PantallaNivel1 implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
+        texturaBtnPausa.dispose();
 
     }
 }
