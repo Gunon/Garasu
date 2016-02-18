@@ -42,6 +42,11 @@ public class PantallaMenu implements Screen {
     private Sprite spriteBtnOpciones;
 
     //Titulo
+    private Texture texturaTitulo;
+    private Sprite spriteTitulo;
+
+
+
 
 
     //Dibujar
@@ -67,17 +72,23 @@ public class PantallaMenu implements Screen {
 
     private void cargarTeturasSprites() {
         //Fondos
-        texturaFondo = new Texture(Gdx.files.internal("M_Fondo.png"));
+        texturaFondo = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
 
         // BotonPlay
-        texturaBtnPlay = new Texture(Gdx.files.internal("M_Btn.png"));
+        texturaBtnPlay = new Texture(Gdx.files.internal("Btn_Jugar.png"));
         spriteBtnPlay = new Sprite(texturaBtnPlay);
+
+        //Titulo
+        texturaTitulo = new Texture(Gdx.files.internal("T_Garasu.png"));
+        spriteTitulo = new Sprite(texturaTitulo);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 +240);
+
 
         spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 140);
 
-        //Boton Salir
+        //Boton Instrucciones
         texturaBtnInstrucciones = new Texture(Gdx.files.internal("M_Btn.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
@@ -87,7 +98,8 @@ public class PantallaMenu implements Screen {
         spriteBtnOpciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnOpciones.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
 
-        //texto
+        //TextoOpciones
+
 
     }
 
@@ -108,6 +120,7 @@ public class PantallaMenu implements Screen {
         spriteBtnPlay.draw(batch);
         spriteBtnInstrucciones.draw(batch);
         spriteBtnOpciones.draw(batch);
+        spriteTitulo.draw(batch);
 
         batch.end();
 
@@ -144,6 +157,7 @@ public class PantallaMenu implements Screen {
         texturaBtnPlay.dispose();
         texturaBtnInstrucciones.dispose();
         texturaBtnOpciones.dispose();
+        texturaTitulo.dispose();
     }
 
     private  void leerEntrada(){

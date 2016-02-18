@@ -58,7 +58,7 @@ public class PantallaInstrucciones implements Screen
 
     private void cargarTexturasSprites() {
         // Fondo
-        texturaFondo = new Texture(Gdx.files.internal("M_Fondo.png"));
+        texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
         spriteFondo = new Sprite(texturaFondo);
     }
 
