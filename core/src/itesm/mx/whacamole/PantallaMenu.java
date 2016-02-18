@@ -33,7 +33,7 @@ public class PantallaMenu implements Screen {
     private Texture texturaBtnPlay;
     private Sprite spriteBtnPlay;
 
-    //Boton Salir
+    //Boton Instrucciones
     private Texture texturaBtnInstrucciones;
     private Sprite spriteBtnInstrucciones;
 
@@ -45,7 +45,9 @@ public class PantallaMenu implements Screen {
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
 
-
+    //Creditos
+    private Texture texturaBtnPausa;
+    private Sprite spriteBtnPausa;
 
 
 
@@ -75,6 +77,11 @@ public class PantallaMenu implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
+        //Creditos
+        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Pausa.png"));
+        spriteBtnPausa = new Sprite(texturaBtnPausa);
+        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
+
 
         // BotonPlay
         texturaBtnPlay = new Texture(Gdx.files.internal("Btn_Jugar.png"));
@@ -89,13 +96,13 @@ public class PantallaMenu implements Screen {
         spriteBtnPlay.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 - 140);
 
         //Boton Instrucciones
-        texturaBtnInstrucciones = new Texture(Gdx.files.internal("M_Btn.png"));
+        texturaBtnInstrucciones = new Texture(Gdx.files.internal("Btn_Instrucciones.png"));
         spriteBtnInstrucciones = new Sprite(texturaBtnInstrucciones);
         spriteBtnInstrucciones.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
 
         //Boton Opciones
-        texturaBtnOpciones = new Texture(Gdx.files.internal("M_Btn.png"));
-        spriteBtnOpciones = new Sprite(texturaBtnInstrucciones);
+        texturaBtnOpciones = new Texture(Gdx.files.internal("Btn_Opciones.png"));
+        spriteBtnOpciones = new Sprite(texturaBtnOpciones);
         spriteBtnOpciones.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
 
         //TextoOpciones
@@ -121,7 +128,7 @@ public class PantallaMenu implements Screen {
         spriteBtnInstrucciones.draw(batch);
         spriteBtnOpciones.draw(batch);
         spriteTitulo.draw(batch);
-
+        spriteBtnPausa.draw(batch);
         batch.end();
 
     }
@@ -185,6 +192,12 @@ public class PantallaMenu implements Screen {
                     && touchY>=spriteBtnOpciones.getY()
                     && touchY<=spriteBtnOpciones.getY()+spriteBtnOpciones.getHeight()){
                 principal.setScreen(new PantallaOpciones(principal));
+            }
+            if(touchX>=spriteBtnPausa.getX()&&
+                    touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
+                    && touchY>=spriteBtnPausa.getY()
+                    && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
+                principal.setScreen(new PantallaCreditos(principal));
             }
         }
 

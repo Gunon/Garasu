@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by rmroman on 04/02/16.
  */
-public class PantallaInstrucciones implements Screen
+public class PantallaCreditos implements Screen
 {
     private final Principal principal;
     private OrthographicCamera camara;
@@ -25,18 +25,18 @@ public class PantallaInstrucciones implements Screen
     private Sprite spriteFondo;
 
     //Boton Play
-    private Texture texturaBtnInicio;
-    private Sprite spriteBtnInicio;
+    private Texture texturaBtnPausa;
+    private Sprite spriteBtnPausa;
+
 
     // Dibujar
     private SpriteBatch batch;
 
 
-
     //Sonids
 
 
-    public PantallaInstrucciones(Principal principal) {
+    public PantallaCreditos(Principal principal) {
         this.principal = principal;
     }
 
@@ -59,13 +59,13 @@ public class PantallaInstrucciones implements Screen
 
     private void cargarTexturasSprites() {
         // Fondo
-        texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
+        texturaFondo = new Texture(Gdx.files.internal("creditos.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         //BtnInicio
-        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
-        spriteBtnInicio = new Sprite(texturaBtnInicio);
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
+        texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Pausa.png"));
+        spriteBtnPausa = new Sprite(texturaBtnPausa);
+        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class PantallaInstrucciones implements Screen
 
 
         spriteFondo.draw(batch);
-        spriteBtnInicio.draw(batch);
+        spriteBtnPausa.draw(batch);
 
         batch.end();
     }
@@ -117,10 +117,10 @@ public class PantallaInstrucciones implements Screen
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if(touchX>=spriteBtnInicio.getX()&&
-                    touchX<spriteBtnInicio.getX()+spriteBtnInicio.getWidth()
-                    && touchY>=spriteBtnInicio.getY()
-                    && touchY<=spriteBtnInicio.getY()+spriteBtnInicio.getHeight()){
+            if(touchX>=spriteBtnPausa.getX()&&
+                    touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
+                    && touchY>=spriteBtnPausa.getY()
+                    && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
                 principal.setScreen(new PantallaMenu(principal));
             }
 
@@ -132,7 +132,7 @@ public class PantallaInstrucciones implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
-      //  texturaBtnInicio.dispose();
+        //  texturaBtnInicio.dispose();
 
     }
 }
