@@ -45,6 +45,9 @@ public class PantallaOpciones implements Screen {
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
 
+    //Fondo Juego
+    private Texture texturaFondoJuego;
+    private Sprite spriteFondoJuego;
 
 
 
@@ -75,6 +78,9 @@ public class PantallaOpciones implements Screen {
         texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
         spriteFondo = new Sprite(texturaFondo);
 
+        //Fondo Juego
+        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
+        spriteFondoJuego = new Sprite(texturaFondoJuego);
 
         // BotonPlay
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
@@ -83,7 +89,7 @@ public class PantallaOpciones implements Screen {
         //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Opciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
-        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-35, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
 
 
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
@@ -116,6 +122,7 @@ public class PantallaOpciones implements Screen {
 
         leerEntrada();
         batch.begin();
+        spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
         spriteBtnInicio.draw(batch);
         spriteBtnMusica.draw(batch);
@@ -158,6 +165,7 @@ public class PantallaOpciones implements Screen {
         texturaBtnMusica.dispose();
         texturaBtnSonidos.dispose();
         texturaTitulo.dispose();
+        texturaFondoJuego.dispose();
 
     }
 
