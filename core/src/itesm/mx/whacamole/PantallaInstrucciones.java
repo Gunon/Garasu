@@ -40,7 +40,17 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
 
+    //Gema Amarilla
+    private Texture texturaGemaAmarilla;
+    private Sprite spriteGemaAmarilla;
 
+    //Gema Azul
+    private Texture texturaGemaAzul;
+    private Sprite spriteGemaAzul;
+
+    //Gema Morada
+    private Texture texturaGemaMorada;
+    private Sprite spriteGemaMorada;
 
     // Dibujar
     private SpriteBatch batch;
@@ -80,6 +90,21 @@ public class PantallaInstrucciones implements Screen
         spriteBtnInicio = new Sprite(texturaBtnInicio);
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
 
+        //BtnInicio
+        texturaGemaAmarilla = new Texture(Gdx.files.internal("G_Amarilla.png"));
+        spriteGemaAmarilla = new Sprite(texturaGemaAmarilla);
+        spriteGemaAmarilla.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaAmarilla.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-200);
+
+        //BtnInicio
+        texturaGemaAzul = new Texture(Gdx.files.internal("G_Azul.png"));
+        spriteGemaAzul = new Sprite(texturaGemaAzul);
+        spriteGemaAzul.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaAzul.getWidth() / 2, Principal.ALTO_MUNDO/2-200);
+
+        //BtnInicio
+        texturaGemaMorada = new Texture(Gdx.files.internal("G_Morado.png"));
+        spriteGemaMorada = new Sprite(texturaGemaMorada);
+        spriteGemaMorada.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaMorada.getWidth()+300 / 2, Principal.ALTO_MUNDO/2-200);
+
         texturaBtnAyuda = new Texture(Gdx.files.internal("Btn_Ayuda.png"));
         spriteBtnAyuda = new Sprite(texturaBtnAyuda);
         spriteBtnAyuda.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
@@ -110,6 +135,9 @@ public class PantallaInstrucciones implements Screen
         spriteBtnInicio.draw(batch);
         spriteBtnAyuda.draw(batch);
         spriteTitulo.draw(batch);
+        spriteGemaAmarilla.draw(batch);
+        spriteGemaAzul.draw(batch);
+        spriteGemaMorada.draw(batch);
         batch.end();
     }
 
