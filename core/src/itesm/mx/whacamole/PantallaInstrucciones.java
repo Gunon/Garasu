@@ -28,12 +28,22 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
 
+    //Boton Ayuda
+    private Texture texturaBtnAyuda;
+    private Sprite spriteBtnAyuda;
+
+    //Fondo Juego
+    private Texture texturaFondoJuego;
+    private Sprite spriteFondoJuego;
+
+    //Titulo
+    private Texture texturaTitulo;
+    private Sprite spriteTitulo;
+
+
+
     // Dibujar
     private SpriteBatch batch;
-
-
-
-    //Sonids
 
 
     public PantallaInstrucciones(Principal principal) {
@@ -62,10 +72,23 @@ public class PantallaInstrucciones implements Screen
         texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
         spriteFondo = new Sprite(texturaFondo);
 
+        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
+        spriteFondoJuego = new Sprite(texturaFondoJuego);
+
         //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
+        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
+
+        texturaBtnAyuda = new Texture(Gdx.files.internal("Btn_Ayuda.png"));
+        spriteBtnAyuda = new Sprite(texturaBtnAyuda);
+        spriteBtnAyuda.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
+
+        //Titulo
+        texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
+        spriteTitulo = new Sprite(texturaTitulo);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-165, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
+
     }
 
     @Override
@@ -82,10 +105,11 @@ public class PantallaInstrucciones implements Screen
         // Dibujamos
         batch.begin();
 
-
+        spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
         spriteBtnInicio.draw(batch);
-
+        spriteBtnAyuda.draw(batch);
+        spriteTitulo.draw(batch);
         batch.end();
     }
 
@@ -133,7 +157,8 @@ public class PantallaInstrucciones implements Screen
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
         texturaBtnInicio.dispose();
-      //  texturaBtnInicio.dispose();
+        texturaBtnAyuda.dispose();
+        texturaFondoJuego.dispose();
 
     }
 }
