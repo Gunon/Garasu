@@ -158,6 +158,7 @@ public class PantallaOpciones implements Screen {
         texturaBtnMusica.dispose();
         texturaBtnSonidos.dispose();
         texturaTitulo.dispose();
+
     }
 
     private  void leerEntrada(){
