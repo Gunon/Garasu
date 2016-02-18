@@ -27,6 +27,10 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    //Boton Play
+    private Texture texturaBtnInicio;
+    private Sprite spriteBtnInicio;
+
     // Dibujar
     private SpriteBatch batch;
 
@@ -60,6 +64,11 @@ public class PantallaInstrucciones implements Screen
         // Fondo
         texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
         spriteFondo = new Sprite(texturaFondo);
+
+        //BtnInicio
+        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
+        spriteBtnInicio = new Sprite(texturaBtnInicio);
+        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
     }
 
     @Override
@@ -76,7 +85,9 @@ public class PantallaInstrucciones implements Screen
         // Dibujamos
         batch.begin();
 
+
         spriteFondo.draw(batch);
+        spriteBtnInicio.draw(batch);
 
         batch.end();
     }
@@ -102,7 +113,21 @@ public class PantallaInstrucciones implements Screen
     }
 
     private void leerEntrada() {
+        if(Gdx.input.justTouched()==true){
+            Vector3 coordenadas = new Vector3();
+            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camara.unproject(coordenadas);//Transforma las coordenadas
+            float touchX = coordenadas.x;
+            float touchY = coordenadas.y;
 
+            if(touchX>=spriteBtnInicio.getX()&&
+                    touchX<spriteBtnInicio.getX()+spriteBtnInicio.getWidth()
+                    && touchY>=spriteBtnInicio.getY()
+                    && touchY<=spriteBtnInicio.getY()+spriteBtnInicio.getHeight()){
+                principal.setScreen(new PantallaMenu(principal));
+            }
+
+        }
     }
 
     @Override
@@ -110,6 +135,7 @@ public class PantallaInstrucciones implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
+      //  texturaBtnInicio.dispose();
 
     }
 }
