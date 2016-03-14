@@ -41,6 +41,8 @@ public class PantallaMenu implements Screen {
     private Texture texturaBtnOpciones;
     private Sprite spriteBtnOpciones;
 
+
+
     //Titulo
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
@@ -166,6 +168,7 @@ public class PantallaMenu implements Screen {
         texturaBtnOpciones.dispose();
         texturaTitulo.dispose();
         texturaBtnPausa.dispose();
+
     }
 
     private  void leerEntrada(){
