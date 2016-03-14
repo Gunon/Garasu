@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
+//a ver si se deja
+
 /**
  * Created by rmroman on 04/02/16.
  */
