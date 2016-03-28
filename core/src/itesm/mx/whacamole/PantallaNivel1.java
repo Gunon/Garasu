@@ -3,17 +3,19 @@ package itesm.mx.whacamole;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-
-//a ver ddsdsd
 
 /**
  * Created by rmroman on 04/02/16.
@@ -25,8 +27,15 @@ public class PantallaNivel1 implements Screen
     private Viewport vista;
     private OrthographicCamera camaraHUD;
 
+    //MAPA
+    private TiledMap mapa;
+    private OrthogonalTiledMapRenderer rendererMapa;
+
     //Personaje
     private Personaje personaje;
+    private Texture texturaPersonaje;
+    public static final int TAM_CELDA = 16;
+
 
     // Fondo
     private Texture texturaFondo;
@@ -56,7 +65,7 @@ public class PantallaNivel1 implements Screen
 
 
     //Personaje
-    private Texture texturaPersonaje;
+
 
 
     //
@@ -93,41 +102,55 @@ public class PantallaNivel1 implements Screen
         camaraHUD = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camaraHUD.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camaraHUD.update();
-
+        assetManager.setLoader(TiledMap.class,
+                new TmxMapLoader(new InternalFileHandleResolver()));
         batch = new SpriteBatch();
 
         cargarRecursos();
 
+        crearObjetos();
+
+
+
     }
 
+    private void crearObjetos() {
+         // Referencia al assetManager
+        // Carga el mapa en memoria
+        mapa = assetManager.get("Nivel_1_LargeMap.tmx");
+        //mapa.getLayers().get(0).setVisible(false);    // Pueden ocultar una capa así
+        // Crear el objeto que dibujará el mapa
+        rendererMapa = new OrthogonalTiledMapRenderer(mapa,batch);
+        rendererMapa.setView(camara);
+        // Cargar frames
+        texturaPersonaje = assetManager.get("garasu.png");
+        // Crear el personaje
+        personaje = new Personaje(texturaPersonaje);
+        // Posición inicial del personaje
+        personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 10, principal.ALTO_MUNDO * 0.90f);
 
+        // Crear los botones
+        texturaBtnIzquierda = assetManager.get("izquierda.png");
+        btnIzquierda = new Boton(texturaBtnIzquierda);
+        btnIzquierda.setPosicion(TAM_CELDA, 5 * TAM_CELDA);
+        btnIzquierda.setAlfa(0.7f); // Un poco de transparencia
+        texturaBtnDerecha = assetManager.get("derecha.png");
+        btnDerecha = new Boton(texturaBtnDerecha);
+        btnDerecha.setPosicion(6 * TAM_CELDA, 5 * TAM_CELDA);
+        btnDerecha.setAlfa(0.7f); // Un poco de transparencia
+
+    }
 
     private void cargarRecursos() {
 
-
-
-        assetManager.load("FondoF.png",Texture.class);
+        assetManager.load("Nivel_1_LargeMap.tmx",TiledMap.class);
+        assetManager.load("izquierda.png",Texture.class);
+        assetManager.load("derecha.png",Texture.class);
         assetManager.load("garasu.png",Texture.class);
-        assetManager.load("Nubes.png",Texture.class);
-        assetManager.load("Plantas.png",Texture.class);
-        assetManager.load("Estrellas.png",Texture.class);
-        assetManager.load("Pasto.png", Texture.class);
-        assetManager.load("Arboles.png", Texture.class);
-        assetManager.load("Suelo.png", Texture.class);
         assetManager.load("Btn_Pausa.png", Texture.class);
         assetManager.finishLoading();
 
-        texturaFondo = assetManager.get("FondoF.png");
-        texturaPersonaje = assetManager.get("garasu.png");
-        texturaNubes = assetManager.get("Nubes.png");
-        texturaPlantas = assetManager.get("Plantas.png");
-        texturaEstrellas = assetManager.get("Estrellas.png");
-        texturaPasto = assetManager.get("Pasto.png");
-        texturaArboles = assetManager.get("Arboles.png");
-        texturaSuelo = assetManager.get("Suelo.png");
 
-        //Personaje
-        personaje = new Personaje(texturaPersonaje);
 
 
 
@@ -152,19 +175,13 @@ public class PantallaNivel1 implements Screen
         // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
         batch.setProjectionMatrix(camaraHUD.combined);
-
-
+        rendererMapa.setView(camara);
+        rendererMapa.render();
         // Dibujamos
 
         batch.begin();
-        //batch.draw(texturaFondo, 0, 0);
-        //batch.draw(texturaEstrellas,0,0);
-        batch.draw(texturaNubes,0,0);
-        //batch.draw(texturaArboles,0,0);
-        //batch.draw(texturaPasto,0,0);
-        //batch.draw(texturaPlantas,0,0);
-        //batch.draw(texturaSuelo,0,0);
-        //batch.draw(texturaPersonaje,0,0);
+       btnIzquierda.render(batch);
+        btnDerecha.render(batch);
         spriteBtnPausa.draw(batch);
         batch.end();
     }
@@ -227,7 +244,7 @@ public class PantallaNivel1 implements Screen
         texturaFondo.dispose(); // regresamos la memoria
         texturaPasto.dispose();
         texturaArboles.dispose();
-        texturaNubes.dispose();
+       // texturaNubes.dispose();
         texturaSuelo.dispose();
         texturaBtnPausa.dispose();
         texturaEstrellas.dispose();
