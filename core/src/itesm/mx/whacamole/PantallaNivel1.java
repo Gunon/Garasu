@@ -302,23 +302,7 @@ public class PantallaNivel1 implements Screen
 
     }
 
-    /*private void leerEntrada() {
-        if(Gdx.input.justTouched()==true){
-            Vector3 coordenadas = new Vector3();
-            coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camara.unproject(coordenadas);//Transforma las coordenadas
-            float touchX = coordenadas.x;
-            float touchY = coordenadas.y;
 
-            if(touchX>=btnPausa.getX()&&
-                    touchX<btnPausa.getX()+btnPausa.getWidth()
-                    && touchY>=btnPausa.getY()
-                    && touchY<=btnPausa.getY()+btnPausa.getHeight()){
-                principal.setScreen(new PantallaMenu(principal));
-            }
-
-        }
-    }*/
 
     @Override
     public void dispose() {

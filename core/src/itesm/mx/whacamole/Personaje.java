@@ -45,7 +45,7 @@ public class Personaje
         // Lee la textura como región
         TextureRegion texturaCompleta = new TextureRegion(textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(279,255);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(219,200);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
         animacion = new Animation(0.25f,texturaPersonaje[0][3],
                 texturaPersonaje[0][2], texturaPersonaje[0][1] );
