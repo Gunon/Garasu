@@ -1,5 +1,8 @@
 package itesm.mx.whacamole;
 
+
+
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -42,7 +45,7 @@ public class Personaje
         // Lee la textura como región
         TextureRegion texturaCompleta = new TextureRegion(textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(16,32);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(279,255);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
         animacion = new Animation(0.25f,texturaPersonaje[0][3],
                 texturaPersonaje[0][2], texturaPersonaje[0][1] );
@@ -67,7 +70,7 @@ public class Personaje
                 // Obtiene el frame que se debe mostrar (de acuerdo al timer)
                 TextureRegion region = animacion.getKeyFrame(timerAnimacion);
                 // Dirección correcta
-                if (estadoMovimiento== EstadoMovimiento.MOV_IZQUIERDA) {
+                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
                     if (!region.isFlipX()) {
                         region.flip(true,false);
                     }
@@ -95,9 +98,10 @@ public class Personaje
             case MOV_DERECHA:
                 // Prueba que no salga del mundo
                 nuevaX += VELOCIDAD_X;
-                if (nuevaX<=Principal.ANCHO_MUNDO-sprite.getWidth()) {
-                    sprite.setX(nuevaX);
-                }
+                sprite.setX(nuevaX);
+                /*if (nuevaX<=Principal.ANCHO_MUNDO-sprite.getWidth()) {
+
+                }*/
                 break;
             case MOV_IZQUIERDA:
                 // Prueba que no salga del mundo
@@ -165,7 +169,7 @@ public class Personaje
 
     // Inicia el salto
     public void saltar() {
-        if (estadoSalto== EstadoSalto.EN_PISO) {
+        if (estadoSalto==EstadoSalto.EN_PISO) {
             tiempoSalto = 0;
             yInicial = sprite.getY();
             estadoSalto = EstadoSalto.SUBIENDO;

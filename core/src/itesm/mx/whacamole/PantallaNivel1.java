@@ -40,14 +40,11 @@ public class PantallaNivel1 implements Screen
     public static final int TAM_CELDA = 16;
 
 
-    // Fondo
-    private Texture texturaFondo;
-
 
 
     //
     private Texture texturaBtnPausa;
-    private Sprite spriteBtnPausa;
+    private Boton btnPausa;
 
     // Botones izquierda/derecha
     private Texture texturaBtnIzquierda;
@@ -92,8 +89,9 @@ public class PantallaNivel1 implements Screen
         cargarRecursos();
 
         crearObjetos();
+        Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
-
+        estadoJuego=EstadosJuego.JUGANDO;
 
     }
 
@@ -106,7 +104,7 @@ public class PantallaNivel1 implements Screen
         rendererMapa = new OrthogonalTiledMapRenderer(mapa,batch);
         rendererMapa.setView(camara);
         // Cargar frames
-        texturaPersonaje = assetManager.get("marioSprite.png");
+        texturaPersonaje = assetManager.get("TiraGarasu_caminado.png");
         // Crear el personaje
         personaje = new Personaje(texturaPersonaje);
         // Posición inicial del personaje
@@ -127,6 +125,12 @@ public class PantallaNivel1 implements Screen
         btnSalto.setPosicion(2 * TAM_CELDA, 8 * TAM_CELDA);
         btnSalto.setAlfa(0.7f); // Un poco de transparencia
 
+        texturaBtnPausa = assetManager.get("Btn_Pausa.png");
+        btnPausa = new Boton(texturaBtnPausa);
+        btnPausa.setPosicion(70*TAM_CELDA,38*TAM_CELDA);
+        btnPausa.setAlfa(0.7f);
+
+
     }
 
     private void cargarRecursos() {
@@ -134,7 +138,7 @@ public class PantallaNivel1 implements Screen
         assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
         assetManager.load("izquierda.png", Texture.class);
         assetManager.load("derecha.png", Texture.class);
-        assetManager.load("marioSprite.png", Texture.class);
+        assetManager.load("TiraGarasu_caminado.png", Texture.class);
         assetManager.load("Btn_Pausa.png", Texture.class);
         assetManager.load("salto.png", Texture.class);
         assetManager.finishLoading();
@@ -143,9 +147,6 @@ public class PantallaNivel1 implements Screen
 
 
 
-        texturaBtnPausa = assetManager.get("Btn_Pausa.png");
-        spriteBtnPausa = new Sprite(texturaBtnPausa);
-        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth() / 2 + 550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 + 300);
 
     }
 
@@ -157,7 +158,7 @@ public class PantallaNivel1 implements Screen
         moverPersonaje();
         actualizarCamara();
 
-        leerEntrada();
+        /*leerEntrada();*/
         assetManager.update();
         // Actualizar objetos
         // Borrar la pantalla
@@ -165,7 +166,7 @@ public class PantallaNivel1 implements Screen
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
-        batch.setProjectionMatrix(camaraHUD.combined);
+
         rendererMapa.setView(camara);
         rendererMapa.render();
         // Dibujamos
@@ -174,11 +175,13 @@ public class PantallaNivel1 implements Screen
         personaje.render(batch);
         batch.end();
 
+
+        batch.setProjectionMatrix(camaraHUD.combined);
         batch.begin();
         btnDerecha.render(batch);
         btnIzquierda.render(batch);
         btnSalto.render(batch);
-        spriteBtnPausa.draw(batch);
+        btnPausa.render(batch);
         batch.end();
     }
 
@@ -195,7 +198,7 @@ public class PantallaNivel1 implements Screen
     private void actualizarCamara() {
        float posX = personaje.getX();
         // Si está en la parte 'media'
-        if (posX>=Principal.ANCHO_MUNDO/2 && posX<=Principal.ANCHO_MUNDO/2) {
+        if (posX>=Principal.ANCHO_MUNDO/2 /*&& posX<=Principal.ANCHO_MUNDO/2*/) {
             // El personaje define el centro de la cámara
             camara.position.set((int)posX, camara.position.y, 0);
         } else if (posX>Principal.ANCHO_MUNDO/2) {    // Si está en la última mitad
@@ -229,6 +232,13 @@ public class PantallaNivel1 implements Screen
                 probarChoqueParedes();      // Prueba si debe moverse
                 break;
         }
+            switch (personaje.getEstadoSalto()) {
+                case SUBIENDO:
+                case BAJANDO:
+                    personaje.actualizarSalto();    // Actualizar posición en 'y'
+                    break;
+            }
+
 
         // Prueba si debe caer por llegar a un espacio vacío
         if (personaje.getEstadoMovimiento() != Personaje.EstadoMovimiento.INICIANDO
@@ -292,7 +302,7 @@ public class PantallaNivel1 implements Screen
 
     }
 
-    private void leerEntrada() {
+    /*private void leerEntrada() {
         if(Gdx.input.justTouched()==true){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -300,21 +310,21 @@ public class PantallaNivel1 implements Screen
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if(touchX>=spriteBtnPausa.getX()&&
-                    touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
-                    && touchY>=spriteBtnPausa.getY()
-                    && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
+            if(touchX>=btnPausa.getX()&&
+                    touchX<btnPausa.getX()+btnPausa.getWidth()
+                    && touchY>=btnPausa.getY()
+                    && touchY<=btnPausa.getY()+btnPausa.getHeight()){
                 principal.setScreen(new PantallaMenu(principal));
             }
 
         }
-    }
+    }*/
 
     @Override
     public void dispose() {
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
-        texturaFondo.dispose(); // regresamos la memoria
+      // regresamos la memoria
         texturaBtnPausa.dispose();
 
         texturaPersonaje.dispose();
@@ -348,6 +358,9 @@ public class PantallaNivel1 implements Screen
                 } else if (btnSalto.contiene(x, y)) {
                     // Tocó el botón saltar
                     personaje.saltar();
+                }else
+                if(btnPausa.contiene(x,y)){
+                    principal.setScreen(new PantallaOpciones(principal));
                 }
             }
             return true;    // Indica que ya procesó el evento
