@@ -75,15 +75,15 @@ public class PantallaOpciones implements Screen {
 
     private void cargarTeturasSprites() {
         //Fondos
-        texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
+        texturaFondo = new Texture(Gdx.files.internal("marco_menus_copy.png"));
         spriteFondo = new Sprite(texturaFondo);
 
         //Fondo Juego
-        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
+        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
         // BotonPlay
-        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
+        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
 
         //Titulo

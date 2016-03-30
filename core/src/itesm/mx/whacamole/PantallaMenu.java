@@ -76,7 +76,7 @@ public class PantallaMenu implements Screen {
 
     private void cargarTeturasSprites() {
         //Fondos
-        texturaFondo = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
+        texturaFondo = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
         //Creditos
@@ -90,7 +90,7 @@ public class PantallaMenu implements Screen {
         spriteBtnPlay = new Sprite(texturaBtnPlay);
 
         //Titulo
-        texturaTitulo = new Texture(Gdx.files.internal("T_Garasu.png"));
+        texturaTitulo = new Texture(Gdx.files.internal("T_Garasu_copy.png"));
         spriteTitulo = new Sprite(texturaTitulo);
         spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPlay.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnPlay.getRegionHeight() / 2 +240);
 

@@ -79,14 +79,14 @@ public class PantallaInstrucciones implements Screen
 
     private void cargarTexturasSprites() {
         // Fondo
-        texturaFondo = new Texture(Gdx.files.internal("Marco_Menus.png"));
+        texturaFondo = new Texture(Gdx.files.internal("marco_menus_copy.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio.jpg"));
+        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
         //BtnInicio
-        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_Inicio.png"));
+        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
 
