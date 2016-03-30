@@ -102,7 +102,7 @@ public class PantallaNivel1 implements Screen
         //mapa.getLayers().get(0).setVisible(false);    // Pueden ocultar una capa así
         // Crear el objeto que dibujará el mapa
         rendererMapa = new OrthogonalTiledMapRenderer(mapa,batch);
-        rendererMapa.setView(camara);
+       // rendererMapa.setView(camara);
         // Cargar frames
         texturaPersonaje = assetManager.get("TiraGarasu_caminado.png");
         // Crear el personaje
@@ -219,7 +219,7 @@ public class PantallaNivel1 implements Screen
                 int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
-                TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Piso");
+                TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
                 // probar si la celda está ocupada
                 if (celda == null) {
@@ -248,7 +248,7 @@ public class PantallaNivel1 implements Screen
             int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición
             // La capa 0 es el fondo
-            TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Piso");
+            TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
             TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 1, celdaY);
             // probar si la celda está ocupada
@@ -281,7 +281,7 @@ public class PantallaNivel1 implements Screen
             celdaX++;   // Casilla del lado derecho
         }
         int celdaY = (int)(personaje.getY()/TAM_CELDA); // Casilla del personaje en Y
-        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Piso");
+        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
         if ( capaprincipal.getCell(celdaX,celdaY) != null || capaprincipal.getCell(celdaX,celdaY+1) != null ) {
             // Colisionará, dejamos de moverlo
 
