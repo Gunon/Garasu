@@ -121,7 +121,7 @@ public class PantallaNivel1 implements Screen
         btnDerecha.setAlfa(0.7f); // Un poco de transparencia
 
         texturaBtnSalto = assetManager.get("salto.png");
-        btnSalto= new Boton(texturaBtnDerecha);
+        btnSalto= new Boton(texturaBtnSalto);
         btnSalto.setPosicion(2 * TAM_CELDA, 8 * TAM_CELDA);
         btnSalto.setAlfa(0.7f); // Un poco de transparencia
 
