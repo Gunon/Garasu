@@ -28,6 +28,7 @@ public class PantallaOpciones implements Screen {
 
     //Musica
     private Music musicaMenu;
+    public static boolean musicaT = true;
 
     private Texture texturaFondo;
     private Sprite spriteFondo;
@@ -203,6 +204,7 @@ public class PantallaOpciones implements Screen {
                     && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight()
                     && estado == EstadoOpciones.MUSICOFF){
                 estado = EstadoOpciones.MUSICON;
+                musicaT=true;
             }
             if(touchX>=spriteBtnMP.getX()&&
                     touchX<spriteBtnMP.getX()+spriteBtnMP.getWidth()
@@ -210,6 +212,7 @@ public class PantallaOpciones implements Screen {
                     && touchY<=spriteBtnMP.getY()+spriteBtnMP.getHeight()
                     && estado == EstadoOpciones.MUSICON){
                 estado = EstadoOpciones.MUSICOFF;
+                musicaT=false;
             }
 
         }

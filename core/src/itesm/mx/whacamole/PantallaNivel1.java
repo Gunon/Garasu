@@ -457,9 +457,11 @@ public class PantallaNivel1 implements Screen
                     personaje.caer();
                 }else {  // Las estrellas no lo detienen :)
                     // Dejarlo sobre la celda que lo detiene
-                    personaje.setPosicion((personaje.getX()+(float)0.5), (celdaY + 1) * TAM_CELDA);
+                    personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
-                    musicaNivel1.play();
+                    if(PantallaOpciones.musicaT==true) {
+                        musicaNivel1.play();
+                    }
                     probarChoqueParedes();
                 }
                 break;
