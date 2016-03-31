@@ -61,6 +61,13 @@ public class PantallaNivel1 implements Screen
     private Texture texturaBtnPausa;
     private Boton btnPausa;
 
+    //Boton Play
+    private Texture texturaBtnInicio;
+    private Boton btnInicio;
+
+    private Texture texturaBtnReanudar;
+    private Boton btnReanudar;
+
     // Botones izquierda/derecha
     private Texture texturaBtnIzquierda;
     private Boton btnIzquierda;
@@ -159,6 +166,14 @@ public class PantallaNivel1 implements Screen
         btnAtaque= new Boton(texturaBtnAtaque);
         btnAtaque.setPosicion(56 * TAM_CELDA, 0);
 
+        texturaBtnInicio = assetManager.get("Btn_InicioP.png");
+        btnInicio = new Boton(texturaBtnInicio);
+        btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-350,Principal.ALTO_MUNDO/2-300);
+
+        texturaBtnReanudar=assetManager.get("Btn_InicioP.png");
+        btnReanudar = new Boton(texturaBtnReanudar);
+        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2-100,Principal.ALTO_MUNDO/2-300);
+
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
         btnPausa.setPosicion(70 * TAM_CELDA, 38 * TAM_CELDA);
@@ -177,6 +192,7 @@ public class PantallaNivel1 implements Screen
 
         TexturaPausa = assetManager.get("MarcoPausa.png");
         spritePausa = new Sprite(TexturaPausa);
+        spritePausa.setPosition(0, 0);
 
 
     }
@@ -195,6 +211,8 @@ public class PantallaNivel1 implements Screen
         assetManager.load("Corazon_lleno.png", Texture.class);
         assetManager.load("Corazon_medio.png", Texture.class);
         assetManager.load("Corazon_vacio.png",Texture.class);
+        assetManager.load("MarcoPausa.png",Texture.class);
+        assetManager.load("Btn_InicioP.png",Texture.class);
         assetManager.finishLoading();
 
 
@@ -236,6 +254,13 @@ public class PantallaNivel1 implements Screen
 
         batch.setProjectionMatrix(camaraHUD.combined);
         batch.begin();
+        if(estadoJuego==EstadosJuego.PAUSADO){
+            spritePausa.draw(batch);
+            btnInicio.render(batch);
+            btnReanudar.render(batch);
+            enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo.first = true;
+        }
         btnDerecha.render(batch);
         btnIzquierda.render(batch);
         btnSalto.render(batch);
@@ -245,11 +270,7 @@ public class PantallaNivel1 implements Screen
         vida3Sprite.draw(batch);
         vida2Sprite.draw(batch);
         texto.mostrarMensaje(batch, "Puntaje : " + gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
-        if(estadoJuego==EstadosJuego.PAUSADO){
-            texto.mostrarMensaje(batch, "JUEGO PAUSADO", Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO /2);
-            enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
-            enemigo.first = true;
-        }
+
         batch.end();
     }
 
@@ -534,6 +555,16 @@ public class PantallaNivel1 implements Screen
                 }
                 if(btnAtaque.contiene(x,y)){
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.ATAQUE);
+                }
+                if(btnInicio.contiene(x,y)&&estadoJuego==EstadosJuego.PAUSADO){
+                    principal.setScreen(new PantallaMenu(principal));
+                }
+            }else if(estadoJuego==EstadosJuego.PAUSADO){
+                if(btnInicio.contiene(x,y)){
+                    principal.setScreen(new PantallaMenu(principal));
+                }
+                if(btnReanudar.contiene(x,y)){
+                    estadoJuego = EstadosJuego.JUGANDO;
                 }
             }
             return true;    // Indica que ya procesó el evento
