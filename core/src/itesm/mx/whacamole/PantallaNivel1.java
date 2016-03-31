@@ -44,6 +44,9 @@ public class PantallaNivel1 implements Screen
     private Enemigo enemigo;
     private Texture texturaEnemigo;
 
+    private Texture texturaPregunta;
+    private Sprite spritePregunta;
+
     private Texture TexturaCorazonLleno;
 
     private Texture TexturaCorazonMedio;
@@ -66,6 +69,9 @@ public class PantallaNivel1 implements Screen
 
     private Texture TexturaPerdio;
     private Sprite spritePerdio;
+
+    private Texture texturaGano;
+    private Sprite spriteGano;
 
     //puntaje
     private Texto texto;
@@ -93,6 +99,10 @@ public class PantallaNivel1 implements Screen
 
     private Texture texturaBtnAtaque;
     private Boton btnAtaque;
+
+    private Texture texturaBtnDes;
+    private Boton btnDesB;
+    private Boton btnDesM;
     //Estados
     private EstadosJuego estadoJuego;
 
@@ -182,16 +192,23 @@ public class PantallaNivel1 implements Screen
 
         texturaBtnInicio = assetManager.get("Btn_InicioP.png");
         btnInicio = new Boton(texturaBtnInicio);
-        btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-350,Principal.ALTO_MUNDO/2-200);
+        btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-450,Principal.ALTO_MUNDO/2-200);
 
         texturaBtnReanudar=assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
-        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+100,Principal.ALTO_MUNDO/2-200);
+        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
         btnPausa.setPosicion(70 * TAM_CELDA, 38 * TAM_CELDA);
         btnPausa.setAlfa(0.7f);
+
+        texturaBtnDes = assetManager.get("boton_decisiones.png");
+        btnDesB = new Boton(texturaBtnDes);
+        btnDesB.setPosicion(2*TAM_CELDA , 3 * TAM_CELDA);
+
+        btnDesM = new Boton(texturaBtnDes);
+        btnDesM.setPosicion(40 * TAM_CELDA, 3 * TAM_CELDA);
 
 
 
@@ -223,9 +240,15 @@ public class PantallaNivel1 implements Screen
         TexturaPausa = assetManager.get("MarcoPausa.png");
         spritePausa = new Sprite(TexturaPausa);
 
+        texturaPregunta = assetManager.get("pregunta.png");
+        spritePregunta = new Sprite(texturaPregunta);
+
 
         TexturaPerdio = assetManager.get("GameOver.png");
         spritePerdio = new Sprite(TexturaPerdio);
+
+        texturaGano = assetManager.get("NivelCompletado.png");
+        spriteGano = new Sprite(texturaGano);
 
     }
 
@@ -246,7 +269,10 @@ public class PantallaNivel1 implements Screen
         assetManager.load("MarcoPausa.png", Texture.class);
         assetManager.load("Btn_InicioP.png", Texture.class);
         assetManager.load("Btn_continuar.png", Texture.class);
-        assetManager.load("GameOver.png",Texture.class);
+        assetManager.load("GameOver.png", Texture.class);
+        assetManager.load("pregunta.png", Texture.class);
+        assetManager.load("boton_decisiones.png",Texture.class);
+        assetManager.load("NivelCompletado.png",Texture.class);
         assetManager.finishLoading();
 
 
@@ -298,13 +324,32 @@ public class PantallaNivel1 implements Screen
             btnInicio.render(batch);
             btnReanudar.render(batch);
             enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
-            enemigo.first = true;
+            enemigo.first=true;
+
         }
-        btnDerecha.render(batch);
-        btnIzquierda.render(batch);
-        btnSalto.render(batch);
-        btnPausa.render(batch);
-        btnAtaque.render(batch);
+        if(estadoJuego==EstadosJuego.FINAL){
+            spritePregunta.draw(batch);
+            btnDesB.render(batch);
+            btnDesM.render(batch);
+
+
+            enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+
+        }
+
+        if(estadoJuego==EstadosJuego.GANO){
+
+            spriteGano.draw(batch);
+            enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+        }
+
+        if(estadoJuego!=EstadosJuego.FINAL&&estadoJuego!=EstadosJuego.GANO) {
+            btnDerecha.render(batch);
+            btnIzquierda.render(batch);
+            btnSalto.render(batch);
+            btnPausa.render(batch);
+            btnAtaque.render(batch);
+        }
         switch (vidas) {
             case 6:
                 vida1SpriteF.draw(batch);
@@ -369,6 +414,7 @@ public class PantallaNivel1 implements Screen
         if (posX>8960-640) {    // Si está en la última mitad
             // La cámara se queda a media pantalla antes del fin del mundo  :)
             camara.position.set(8960-640, camara.position.y, 0);
+            estadoJuego=EstadosJuego.FINAL;
         }
         camara.update();
 
@@ -664,6 +710,16 @@ public class PantallaNivel1 implements Screen
                     principal.setScreen(new PantallaNivel1(principal));
 
                 }
+            }else if(estadoJuego==EstadosJuego.FINAL){
+                if(btnDesB.contiene(x,y)){
+                    gemasC+=500;
+                    estadoJuego=EstadosJuego.GANO;
+
+                }
+                else if(btnDesM.contiene(x,y)){
+                    gemasC+=250;
+                    estadoJuego=EstadosJuego.GANO;
+                }
             }
             return true;    // Indica que ya procesó el evento
         }
@@ -708,10 +764,11 @@ public class PantallaNivel1 implements Screen
     }
 
     public enum EstadosJuego {
-        GANO,
+        FINAL,
         JUGANDO,
         PAUSADO,
-        PERDIO
+        PERDIO,
+        GANO
     }
 
 }
