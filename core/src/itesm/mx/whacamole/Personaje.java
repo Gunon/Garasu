@@ -10,11 +10,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-/**
- * Representa el personaje en pantalla
- *
- * @author Roberto Martínez Román
- */
 public class Personaje
 {
     public static final float VELOCIDAD_Y = -4f;   // Velocidad de caída
@@ -167,9 +162,6 @@ public class Personaje
                 // Prueba que no salga del mundo
                 nuevaX -= VELOCIDAD_X;
                 sprite.setX(nuevaX);
-                /*if (nuevaX<=Principal.ANCHO_MUNDO-sprite.getWidth()) {
-
-                }*/
                 break;
             case MOV_IZQUIERDA:
                 // Prueba que no salga del mundo

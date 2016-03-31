@@ -17,14 +17,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
-/**
- * Created by rmroman on 04/02/16.
- */
+
 public class PantallaNivel1 implements Screen
 {
     private final Principal principal;
@@ -416,7 +413,7 @@ public class PantallaNivel1 implements Screen
 
     @Override
     public void resize(int width, int height) {
-       // vista.update(width,height);
+       vista.update(width,height);
     }
 
     @Override
@@ -713,12 +710,7 @@ public class PantallaNivel1 implements Screen
         private Vector3 coordenadas = new Vector3();
         private float x, y;     // Las coordenadas en la pantalla
 
-        /*
-        Se ejecuta cuando el usuario PONE un dedo sobre la pantalla, los dos primeros parámetros
-        son las coordenadas relativas a la pantalla física (0,0) en la esquina superior izquierda
-        pointer - es el número de dedo que se pone en la pantalla, el primero es 0
-        button - el botón del mouse
-         */
+
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);

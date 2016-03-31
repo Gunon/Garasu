@@ -5,11 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-/**
- * Representa un botón en la pantalla
- *
- * @author Roberto Martínez Román
- */
+
 public class Boton
 {
     private Sprite sprite;              // Imagen

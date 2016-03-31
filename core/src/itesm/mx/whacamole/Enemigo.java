@@ -10,11 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-/**
- * Representa el personaje en pantalla
- *
- * @author Roberto Martínez Román
- */
+
 public class Enemigo
 {
     public static final float VELOCIDAD_Y = -4f;   // Velocidad de caída

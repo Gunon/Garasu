@@ -11,9 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by rmroman on 04/02/16.
- */
+
 public class PantallaInstrucciones implements Screen
 {
     private final Principal principal;
