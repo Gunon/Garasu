@@ -24,13 +24,15 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    //Instrucciones
+    private Texture texturaInstrucciones;
+    private Sprite spriteInstrucciones;
+
     //Boton Play
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
 
-    //Boton Ayuda
-    private Texture texturaBtnAyuda;
-    private Sprite spriteBtnAyuda;
+
 
     //Fondo Juego
     private Texture texturaFondoJuego;
@@ -40,17 +42,6 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
 
-    //Gema Amarilla
-    private Texture texturaGemaAmarilla;
-    private Sprite spriteGemaAmarilla;
-
-    //Gema Azul
-    private Texture texturaGemaAzul;
-    private Sprite spriteGemaAzul;
-
-    //Gema Morada
-    private Texture texturaGemaMorada;
-    private Sprite spriteGemaMorada;
 
     // Dibujar
     private SpriteBatch batch;
@@ -85,29 +76,16 @@ public class PantallaInstrucciones implements Screen
         texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
+        texturaInstrucciones = new Texture(Gdx.files.internal("Contenido_Instrucciones.png"));
+        spriteInstrucciones = new Sprite(texturaInstrucciones);
         //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
+        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-230 , Principal.ALTO_MUNDO/2-430);
 
-        //BtnInicio
-        texturaGemaAmarilla = new Texture(Gdx.files.internal("G_Amarilla.png"));
-        spriteGemaAmarilla = new Sprite(texturaGemaAmarilla);
-        spriteGemaAmarilla.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaAmarilla.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-200);
 
-        //BtnInicio
-        texturaGemaAzul = new Texture(Gdx.files.internal("G_Azul.png"));
-        spriteGemaAzul = new Sprite(texturaGemaAzul);
-        spriteGemaAzul.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaAzul.getWidth() / 2, Principal.ALTO_MUNDO/2-200);
 
-        //BtnInicio
-        texturaGemaMorada = new Texture(Gdx.files.internal("G_Morado.png"));
-        spriteGemaMorada = new Sprite(texturaGemaMorada);
-        spriteGemaMorada.setPosition(Principal.ANCHO_MUNDO / 2 - spriteGemaMorada.getWidth()+300 / 2, Principal.ALTO_MUNDO/2-200);
 
-        texturaBtnAyuda = new Texture(Gdx.files.internal("Btn_Ayuda.png"));
-        spriteBtnAyuda = new Sprite(texturaBtnAyuda);
-        spriteBtnAyuda.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
 
         //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
@@ -132,12 +110,11 @@ public class PantallaInstrucciones implements Screen
 
         spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
+        spriteInstrucciones.draw(batch);
         spriteBtnInicio.draw(batch);
-        spriteBtnAyuda.draw(batch);
+
         spriteTitulo.draw(batch);
-        spriteGemaAmarilla.draw(batch);
-        spriteGemaAzul.draw(batch);
-        spriteGemaMorada.draw(batch);
+
         batch.end();
 
     }
@@ -186,7 +163,7 @@ public class PantallaInstrucciones implements Screen
         // LIBERAR los recursos
         texturaFondo.dispose(); // regresamos la memoria
         texturaBtnInicio.dispose();
-        texturaBtnAyuda.dispose();
+
         texturaFondoJuego.dispose();
 
     }

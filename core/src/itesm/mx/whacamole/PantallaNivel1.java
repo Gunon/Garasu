@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -44,11 +45,21 @@ public class PantallaNivel1 implements Screen
     private Texture texturaEnemigo;
 
     private Texture TexturaCorazonLleno;
-    private Sprite vida1Sprite;
+
     private Texture TexturaCorazonMedio;
-    private Sprite vida2Sprite;
+
     private Texture TexturaCorazonVacio;
-    private Sprite vida3Sprite;
+    private Sprite vida1SpriteF;
+    private Sprite vida1SpriteH;
+    private Sprite vida1SpriteE;
+    private Sprite vida2SpriteF;
+    private Sprite vida2SpriteH;
+    private Sprite vida2SpriteE;
+    private Sprite vida3SpriteF;
+    private Sprite vida3SpriteH;
+    private Sprite vida3SpriteE;
+
+    public int vidas = 6;
 
     private Texture TexturaPausa;
     private Sprite spritePausa;
@@ -146,7 +157,7 @@ public class PantallaNivel1 implements Screen
         personaje = new Personaje(texturaPersonaje);
         enemigo = new Enemigo(texturaEnemigo);
         // Posición inicial del personaje
-        enemigo.getSprite().setPosition(Principal.ANCHO_MUNDO / 2,principal.ALTO_MUNDO /2);
+        enemigo.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
       personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
 
         // Crear los botones
@@ -182,13 +193,27 @@ public class PantallaNivel1 implements Screen
         TexturaCorazonLleno = assetManager.get("Corazon_lleno.png");
         TexturaCorazonMedio = assetManager.get("Corazon_medio.png");
         TexturaCorazonVacio = assetManager.get("Corazon_vacio.png");
-        vida1Sprite = new Sprite(TexturaCorazonLleno);
-        vida2Sprite = new Sprite(TexturaCorazonMedio);
-        vida3Sprite = new Sprite(TexturaCorazonVacio);
+        vida1SpriteF = new Sprite(TexturaCorazonLleno);
+        vida2SpriteF = new Sprite(TexturaCorazonLleno);
+        vida3SpriteF = new Sprite(TexturaCorazonLleno);
+        vida1SpriteH = new Sprite(TexturaCorazonMedio);
+        vida2SpriteH = new Sprite(TexturaCorazonMedio);
+        vida3SpriteH = new Sprite(TexturaCorazonMedio);
+        vida1SpriteE = new Sprite(TexturaCorazonVacio);
+        vida2SpriteE = new Sprite(TexturaCorazonVacio);
+        vida3SpriteE = new Sprite(TexturaCorazonVacio);
 
-        vida1Sprite.setPosition(TAM_CELDA,37*TAM_CELDA);
-        vida2Sprite.setPosition(10*TAM_CELDA,37*TAM_CELDA);
-        vida3Sprite.setPosition(19*TAM_CELDA,37*TAM_CELDA);
+        vida1SpriteF.setPosition(TAM_CELDA,37*TAM_CELDA);
+        vida2SpriteF.setPosition(10*TAM_CELDA,37*TAM_CELDA);
+        vida3SpriteF.setPosition(19*TAM_CELDA,37*TAM_CELDA);
+
+        vida1SpriteH.setPosition(TAM_CELDA,37*TAM_CELDA);
+        vida2SpriteH.setPosition(10*TAM_CELDA,37*TAM_CELDA);
+        vida3SpriteH.setPosition(19*TAM_CELDA,37*TAM_CELDA);
+
+        vida1SpriteE.setPosition(TAM_CELDA,37*TAM_CELDA);
+        vida2SpriteE.setPosition(10*TAM_CELDA,37*TAM_CELDA);
+        vida3SpriteE.setPosition(19*TAM_CELDA,37*TAM_CELDA);
 
         TexturaPausa = assetManager.get("MarcoPausa.png");
         spritePausa = new Sprite(TexturaPausa);
@@ -210,8 +235,8 @@ public class PantallaNivel1 implements Screen
         assetManager.load("Boton_atacar.png", Texture.class);
         assetManager.load("Corazon_lleno.png", Texture.class);
         assetManager.load("Corazon_medio.png", Texture.class);
-        assetManager.load("Corazon_vacio.png",Texture.class);
-        assetManager.load("MarcoPausa.png",Texture.class);
+        assetManager.load("Corazon_vacio.png", Texture.class);
+        assetManager.load("MarcoPausa.png", Texture.class);
         assetManager.load("Btn_InicioP.png",Texture.class);
         assetManager.finishLoading();
 
@@ -266,9 +291,44 @@ public class PantallaNivel1 implements Screen
         btnSalto.render(batch);
         btnPausa.render(batch);
         btnAtaque.render(batch);
-        vida1Sprite.draw(batch);
-        vida3Sprite.draw(batch);
-        vida2Sprite.draw(batch);
+        switch (vidas) {
+            case 6:
+                vida1SpriteF.draw(batch);
+                vida2SpriteF.draw(batch);
+                vida3SpriteF.draw(batch);
+                break;
+            case 5:
+                vida1SpriteF.draw(batch);
+                vida2SpriteF.draw(batch);
+                vida3SpriteH.draw(batch);
+                break;
+            case 4:
+                vida1SpriteF.draw(batch);
+                vida2SpriteF.draw(batch);
+                vida3SpriteE.draw(batch);
+                break;
+            case 3:
+                vida1SpriteF.draw(batch);
+                vida2SpriteH.draw(batch);
+                vida3SpriteE.draw(batch);
+                break;
+            case 2:
+                vida1SpriteF.draw(batch);
+                vida2SpriteE.draw(batch);
+                vida3SpriteE.draw(batch);
+                break;
+            case 1:
+                vida1SpriteH.draw(batch);
+                vida2SpriteE.draw(batch);
+                vida3SpriteE.draw(batch);
+                break;
+            case 0:
+                vida1SpriteE.draw(batch);
+                vida2SpriteE.draw(batch);
+                vida3SpriteE.draw(batch);
+                break;
+
+        }
         texto.mostrarMensaje(batch, "Puntaje : " + gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
 
         batch.end();
@@ -322,6 +382,7 @@ public class PantallaNivel1 implements Screen
                     personaje.setPosicion((personaje.getX()+(float)0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
                     musicaNivel1.play();
+                    probarChoqueParedes();
                 }
                 break;
             case MOV_DERECHA:       // Se mueve horizontal
@@ -332,6 +393,7 @@ public class PantallaNivel1 implements Screen
             switch (personaje.getEstadoSalto()) {
                 case SUBIENDO:
                 case BAJANDO:
+                    probarChoqueParedes();      // Prueba si debe moverse
                     personaje.actualizarSalto();    // Actualizar posición en 'y'
                     break;
             }
@@ -439,23 +501,28 @@ public class PantallaNivel1 implements Screen
         if (estado != Personaje.EstadoMovimiento.MOV_DERECHA && estado != Personaje.EstadoMovimiento.MOV_IZQUIERDA) {
             return;
         }*/
+
+        Rectangle a = personaje.getSprite().getBoundingRectangle();
+        Rectangle b = enemigo.getSprite().getBoundingRectangle();
+
+        if(a.overlaps(b)){
+
+            personaje.setPosicion(personaje.getX()-500,(int)personaje.getY());
+            vidas--;
+        }
         float px = personaje.getX();    // Posición actual
-        float ex = enemigo.getX();
+
         // Posición después de actualizar
         px = personaje.getEstadoMovimiento() == Personaje.EstadoMovimiento.MOV_DERECHA ? px + Personaje.VELOCIDAD_X :
                 px - Personaje.VELOCIDAD_X;
-        ex = enemigo.getEstadoMovimiento() == Enemigo.EstadoMovimiento.MOV_DERECHA ? px + Enemigo.VELOCIDAD_X :
-                ex - Enemigo.VELOCIDAD_X;
+
         int celdaX = (int) (px / TAM_CELDA);   // Casilla del personaje en X
-        int celdaXe = (int) (ex / TAM_CELDA);
         if (personaje.getEstadoMovimiento() == Personaje.EstadoMovimiento.MOV_DERECHA) {
             celdaX++;   // Casilla del lado derecho
         }
-        if (enemigo.getEstadoMovimiento() == Enemigo.EstadoMovimiento.MOV_DERECHA) {
-            celdaXe++;   // Casilla del lado derecho
-        }
+
         int celdaY = (int) (personaje.getY() / TAM_CELDA); // Casilla del personaje en Y
-        int celdaYe = (int) (enemigo.getY() / TAM_CELDA);
+
         TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
         TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
@@ -483,12 +550,12 @@ public class PantallaNivel1 implements Screen
                 }
             }
 
-            if(celdaX==celdaXe||celdaY==celdaYe){
-                enemigo.setPosicion(-100,-100);
-            }
+
 
 
         }
+
+
         if ( capaprincipal.getCell(celdaX,celdaY) != null || capaprincipal.getCell(celdaX,celdaY+1) != null ) {
             // Colisionará, dejamos de moverlo
 
