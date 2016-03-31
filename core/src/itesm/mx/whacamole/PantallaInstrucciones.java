@@ -91,7 +91,7 @@ public class PantallaInstrucciones implements Screen
         texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
         spriteInstrucciones2 = new Sprite(texturaInstrucciones2);
         spriteInstrucciones2.setPosition(0,90);
-
+//hola
         //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
