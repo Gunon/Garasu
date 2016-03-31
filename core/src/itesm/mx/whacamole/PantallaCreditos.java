@@ -2,6 +2,7 @@ package itesm.mx.whacamole;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,6 +21,7 @@ public class PantallaCreditos implements Screen
     private OrthographicCamera camara;
     private Viewport vista;
 
+    private Music musicaMenu;
     // Fondo
     private Texture texturaFondo;
     private Sprite spriteFondo;
@@ -50,6 +52,11 @@ public class PantallaCreditos implements Screen
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
         batch = new SpriteBatch();
+
+        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("POL-sacred-temple-short.ogg"));
+        musicaMenu.setLooping(true);
+
+        musicaMenu.play();
 
         cargarTexturasSprites();
 
@@ -121,6 +128,7 @@ public class PantallaCreditos implements Screen
                     touchX<spriteBtnInicioP.getX()+spriteBtnInicioP.getWidth()
                     && touchY>=spriteBtnInicioP.getY()
                     && touchY<=spriteBtnInicioP.getY()+spriteBtnInicioP.getHeight()){
+                musicaMenu.stop();
                 principal.setScreen(new PantallaMenu(principal));
             }
 

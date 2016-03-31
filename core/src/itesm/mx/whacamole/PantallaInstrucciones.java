@@ -139,6 +139,7 @@ public class PantallaInstrucciones implements Screen
         spriteGemaAzul.draw(batch);
         spriteGemaMorada.draw(batch);
         batch.end();
+
     }
 
     @Override

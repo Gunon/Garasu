@@ -2,6 +2,7 @@ package itesm.mx.whacamole;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,6 +20,8 @@ public class PantallaMenu implements Screen {
 
     private final Principal principal;
 
+
+
     private OrthographicCamera camara;
     private Viewport vista;
 
@@ -28,6 +31,9 @@ public class PantallaMenu implements Screen {
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+
+    //Musica
+  //  private Music musicaMenu;
 
     //Boton Play
     private Texture texturaBtnPlay;
@@ -68,6 +74,12 @@ public class PantallaMenu implements Screen {
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
+
+      /*  musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("POL-sacred-temple-short.ogg"));
+        musicaMenu.setLooping(true);
+
+            musicaMenu.play();*/
+
 
         batch = new SpriteBatch();
 
@@ -168,6 +180,7 @@ public class PantallaMenu implements Screen {
         texturaBtnOpciones.dispose();
         texturaTitulo.dispose();
         texturaBtnPausa.dispose();
+        /*musicaMenu.dispose();*/
 
     }
 
@@ -183,24 +196,29 @@ public class PantallaMenu implements Screen {
                     touchX<spriteBtnPlay.getX()+spriteBtnPlay.getWidth()
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
+               // musicaMenu.stop();
                 principal.setScreen(new PantallaNivel1(principal));
+
             }
             if(touchX>=spriteBtnInstrucciones.getX()&&
                     touchX<spriteBtnInstrucciones.getX()+spriteBtnInstrucciones.getWidth()
                     && touchY>=spriteBtnInstrucciones.getY()
                     && touchY<=spriteBtnInstrucciones.getY()+spriteBtnInstrucciones.getHeight()){
+               // musicaMenu.stop();
                 principal.setScreen(new PantallaInstrucciones(principal));
             }
             if(touchX>=spriteBtnOpciones.getX()&&
                     touchX<spriteBtnOpciones.getX()+spriteBtnOpciones.getWidth()
                     && touchY>=spriteBtnOpciones.getY()
                     && touchY<=spriteBtnOpciones.getY()+spriteBtnOpciones.getHeight()){
+               // musicaMenu.stop();
                 principal.setScreen(new PantallaOpciones(principal));
             }
             if(touchX>=spriteBtnPausa.getX()&&
                     touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
                     && touchY>=spriteBtnPausa.getY()
                     && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
+               // musicaMenu.stop();
                 principal.setScreen(new PantallaCreditos(principal));
             }
         }

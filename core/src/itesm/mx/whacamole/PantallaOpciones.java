@@ -2,6 +2,7 @@ package itesm.mx.whacamole;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,6 +25,9 @@ public class PantallaOpciones implements Screen {
 
     //Fondo
 
+
+    //Musica
+    private Music musicaMenu;
 
     private Texture texturaFondo;
     private Sprite spriteFondo;
@@ -69,6 +73,8 @@ public class PantallaOpciones implements Screen {
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
         batch = new SpriteBatch();
+
+
 
         cargarTeturasSprites();
     }
@@ -181,6 +187,7 @@ public class PantallaOpciones implements Screen {
                     touchX<spriteBtnInicio.getX()+spriteBtnInicio.getWidth()
                     && touchY>=spriteBtnInicio.getY()
                     && touchY<=spriteBtnInicio.getY()+spriteBtnInicio.getHeight()){
+
                 principal.setScreen(new PantallaMenu(principal));
             }
 

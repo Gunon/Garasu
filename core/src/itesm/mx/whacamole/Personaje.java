@@ -23,7 +23,10 @@ public class Personaje
     private Sprite sprite;  // Sprite cuando no se mueve
 
     // Animación
-    private Animation animacion;    // Caminando
+    private Animation animacionCaminata;    // Caminando
+    private Animation animacionSalto;
+    private Animation animacionAtaque;
+
     private float timerAnimacion;   // tiempo para calcular el frame
 
     // Estados del personaje
@@ -31,7 +34,7 @@ public class Personaje
     private EstadoSalto estadoSalto;
 
     // SALTO del personaje
-    private static final float V0 = 60;     // Velocidad inicial del salto
+    private static final float V0 = 50;     // Velocidad inicial del salto
     private static final float G = 9.81f;
     private static final float G_2 = G/2;   // Gravedad
     private float yInicial;         // 'y' donde inicia el salto
@@ -45,12 +48,18 @@ public class Personaje
         // Lee la textura como región
         TextureRegion texturaCompleta = new TextureRegion(textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(226,241);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(119,140);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
-        animacion = new Animation(0.25f,texturaPersonaje[0][1],
-                texturaPersonaje[0][2], texturaPersonaje[0][3],texturaPersonaje[0][4],texturaPersonaje[0][5] );
+        animacionCaminata = new Animation(0.25f,texturaPersonaje[0][0],
+                texturaPersonaje[0][1], texturaPersonaje[0][2],texturaPersonaje[0][3] );
+        animacionAtaque =    new Animation(0.25f,texturaPersonaje[0][4],
+                texturaPersonaje[0][5], texturaPersonaje[0][6],texturaPersonaje[0][7] );
+        animacionSalto =    new Animation(0.25f,
+                texturaPersonaje[0][9], texturaPersonaje[0][10],texturaPersonaje[0][11] );
+        animacionSalto.setPlayMode(Animation.PlayMode.LOOP);
+        animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
         // Animación infinita
-        animacion.setPlayMode(Animation.PlayMode.LOOP);
+        animacionCaminata.setPlayMode(Animation.PlayMode.LOOP);
         // Inicia el timer que contará tiempo para saber qué frame se dibuja
         timerAnimacion = 0;
         // Crea el sprite cuando para el personaje quieto (idle)
@@ -68,24 +77,49 @@ public class Personaje
                 // Incrementa el timer para calcular el frame que se dibuja
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 // Obtiene el frame que se debe mostrar (de acuerdo al timer)
-                TextureRegion region = animacion.getKeyFrame(timerAnimacion);
+                TextureRegion region = animacionCaminata.getKeyFrame(timerAnimacion);
                 // Dirección correcta
-                if (estadoMovimiento==EstadoMovimiento.MOV_IZQUIERDA) {
-                    if (!region.isFlipX()) {
-                        region.flip(true,false);
+                if(estadoSalto==EstadoSalto.EN_PISO) {
+                    if (estadoMovimiento == EstadoMovimiento.MOV_IZQUIERDA) {
+                        if (!region.isFlipX()) {
+                            region.flip(true, false);
+                        }
+                    } else if (estadoMovimiento == EstadoMovimiento.MOV_DERECHA) {
+                        if (region.isFlipX()) {
+                            region.flip(true, false);
+                        }
                     }
-                } else {
-                    if (region.isFlipX()) {
-                        region.flip(true,false);
-                    }
+                    // Dibuja el frame en las coordenadas del sprite
+                    batch.draw(region, sprite.getX(), sprite.getY());
                 }
-                // Dibuja el frame en las coordenadas del sprite
-                batch.draw(region, sprite.getX(), sprite.getY());
+                break;
+            case ATAQUE:
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                // Obtiene el frame que se debe mostrar (de acuerdo al timer)
+                TextureRegion regionAtaque = animacionAtaque.getKeyFrame(timerAnimacion);
+                batch.draw(regionAtaque, sprite.getX(), sprite.getY());
                 break;
             case INICIANDO:
             case QUIETO:
-                sprite.draw(batch); // Dibuja el sprite
+                if(estadoSalto==EstadoSalto.EN_PISO&&estadoMovimiento!=EstadoMovimiento.ATAQUE) {
+                    sprite.draw(batch); // Dibuja el sprite
+                }
                 break;
+        }
+        if(estadoSalto==EstadoSalto.BAJANDO||estadoSalto==EstadoSalto.SUBIENDO||estadoSalto==EstadoSalto.CAIDA_LIBRE){
+            timerAnimacion += Gdx.graphics.getDeltaTime();
+            // Obtiene el frame que se debe mostrar (de acuerdo al timer)
+            TextureRegion region = animacionSalto.getKeyFrame(timerAnimacion);
+            if (estadoMovimiento == EstadoMovimiento.MOV_IZQUIERDA) {
+                if (!region.isFlipX()) {
+                    region.flip(true, false);
+                }
+            } else if (estadoMovimiento == EstadoMovimiento.MOV_DERECHA) {
+                if (region.isFlipX()) {
+                    region.flip(true, false);
+                }
+            }
+            batch.draw(region,sprite.getX(),sprite.getY());
         }
 
     }
@@ -185,7 +219,8 @@ public class Personaje
         INICIANDO,
         QUIETO,
         MOV_IZQUIERDA,
-        MOV_DERECHA
+        MOV_DERECHA,
+        ATAQUE
     }
 
     public enum EstadoSalto {
