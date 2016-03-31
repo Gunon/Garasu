@@ -42,8 +42,8 @@ public class PantallaOpciones implements Screen {
     private Sprite spriteBtnMusica;
 
     //Boton Opciones
-    private Texture texturaBtnSonidos;
-    private Sprite spriteBtnSonidos;
+    private Texture texturaBtnMP;
+    private Sprite spriteBtnMP;
 
     //Titulo
     private Texture texturaTitulo;
@@ -54,7 +54,7 @@ public class PantallaOpciones implements Screen {
     private Sprite spriteFondoJuego;
 
 
-
+    private EstadoOpciones estado;
 
     //Dibujar
     private SpriteBatch batch;
@@ -95,21 +95,22 @@ public class PantallaOpciones implements Screen {
         //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Opciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
-        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-35, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2 - 35, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 + 240);
 
 
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
+        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
 
         //Boton Instrucciones
         texturaBtnMusica = new Texture(Gdx.files.internal("Btn_Musica.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
-        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth()-200 / 2, Principal.ALTO_MUNDO/2-100);
+        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2-200, Principal.ALTO_MUNDO / 2 - 100);
 
         //Boton Opciones
-        texturaBtnSonidos = new Texture(Gdx.files.internal("Btn_Sonidos.png"));
-        spriteBtnSonidos = new Sprite(texturaBtnSonidos);
-        spriteBtnSonidos.setPosition(Principal.ANCHO_MUNDO / 2 + 100, Principal.ALTO_MUNDO / 2 - 100);
+        texturaBtnMP = new Texture(Gdx.files.internal("Btn_MusicaPaloma.png"));
+        spriteBtnMP = new Sprite(texturaBtnMP);
+        spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2+200, Principal.ALTO_MUNDO / 2 - 100);
 
+        estado = EstadoOpciones.MUSICON;
         //TextoOpciones
 
 
@@ -131,8 +132,15 @@ public class PantallaOpciones implements Screen {
         spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
         spriteBtnInicio.draw(batch);
-        spriteBtnMusica.draw(batch);
-        spriteBtnSonidos.draw(batch);
+
+        if(estado == EstadoOpciones.MUSICON){
+            spriteBtnMP.draw(batch);
+        } else {
+            if(estado == EstadoOpciones.MUSICOFF){
+                spriteBtnMusica.draw(batch);
+            }
+        }
+
         spriteTitulo.draw(batch);
 
         batch.end();
@@ -169,7 +177,7 @@ public class PantallaOpciones implements Screen {
         texturaFondo.dispose();
         texturaBtnInicio.dispose();
         texturaBtnMusica.dispose();
-        texturaBtnSonidos.dispose();
+        texturaBtnMP.dispose();
         texturaTitulo.dispose();
         texturaFondoJuego.dispose();
 
@@ -187,12 +195,30 @@ public class PantallaOpciones implements Screen {
                     touchX<spriteBtnInicio.getX()+spriteBtnInicio.getWidth()
                     && touchY>=spriteBtnInicio.getY()
                     && touchY<=spriteBtnInicio.getY()+spriteBtnInicio.getHeight()){
-
                 principal.setScreen(new PantallaMenu(principal));
+            }
+            if(touchX>=spriteBtnMusica.getX()&&
+                    touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
+                    && touchY>=spriteBtnMusica.getY()
+                    && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight()
+                    && estado == EstadoOpciones.MUSICOFF){
+                estado = EstadoOpciones.MUSICON;
+            }
+            if(touchX>=spriteBtnMP.getX()&&
+                    touchX<spriteBtnMP.getX()+spriteBtnMP.getWidth()
+                    && touchY>=spriteBtnMP.getY()
+                    && touchY<=spriteBtnMP.getY()+spriteBtnMP.getHeight()
+                    && estado == EstadoOpciones.MUSICON){
+                estado = EstadoOpciones.MUSICOFF;
             }
 
         }
 
+    }
+
+    public enum EstadoOpciones {
+        MUSICON,
+        MUSICOFF
     }
 
 }
