@@ -24,14 +24,21 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
+    private EstadosPantalla estadosPantalla;
+
     //Instrucciones
-    private Texture texturaInstrucciones;
-    private Sprite spriteInstrucciones;
+    private Texture texturaInstrucciones1;
+    private Sprite spriteInstrucciones1;
+
+    private Texture texturaInstrucciones2;
+    private Sprite spriteInstrucciones2;
 
     //Boton Play
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
 
+    private Texture texturaBtnContinuar;
+    private Sprite spriteBtnContinuar;
 
 
     //Fondo Juego
@@ -54,6 +61,7 @@ public class PantallaInstrucciones implements Screen
 
     @Override
     public void show() {
+        estadosPantalla=EstadosPantalla.IN1;
         // Se ejecuta cuando se muestra la pantalla
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
@@ -76,12 +84,22 @@ public class PantallaInstrucciones implements Screen
         texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
-        texturaInstrucciones = new Texture(Gdx.files.internal("Contenido_Instrucciones.png"));
-        spriteInstrucciones = new Sprite(texturaInstrucciones);
+        texturaInstrucciones1 = new Texture(Gdx.files.internal("instrucciones1.png"));
+        spriteInstrucciones1 = new Sprite(texturaInstrucciones1);
+        spriteInstrucciones1.setPosition(0,90);
+
+        texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
+        spriteInstrucciones2 = new Sprite(texturaInstrucciones2);
+        spriteInstrucciones2.setPosition(0,90);
+
         //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-120 , Principal.ALTO_MUNDO/2-350);
+
+        texturaBtnContinuar= new Texture(Gdx.files.internal("Btn_continuar.png"));
+        spriteBtnContinuar= new Sprite(texturaBtnContinuar);
+        spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+300 , Principal.ALTO_MUNDO/2-350);
 
 
 
@@ -110,7 +128,14 @@ public class PantallaInstrucciones implements Screen
 
         spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
-        spriteInstrucciones.draw(batch);
+        if(estadosPantalla==EstadosPantalla.IN1){
+            spriteInstrucciones1.draw(batch);
+        }
+        if(estadosPantalla==EstadosPantalla.IN2){
+            spriteInstrucciones2.draw(batch);
+        }
+
+        spriteBtnContinuar.draw(batch);
         spriteBtnInicio.draw(batch);
 
         spriteTitulo.draw(batch);
@@ -154,6 +179,13 @@ public class PantallaInstrucciones implements Screen
                 principal.setScreen(new PantallaMenu(principal));
             }
 
+            if(touchX>=spriteBtnContinuar.getX()&&
+                    touchX<spriteBtnContinuar.getX()+spriteBtnContinuar.getWidth()
+                    && touchY>=spriteBtnContinuar.getY()
+                    && touchY<=spriteBtnContinuar.getY()+spriteBtnContinuar.getHeight()){
+                estadosPantalla = EstadosPantalla.IN2;
+            }
+
         }
     }
 
@@ -166,5 +198,9 @@ public class PantallaInstrucciones implements Screen
 
         texturaFondoJuego.dispose();
 
+    }
+    public enum EstadosPantalla {
+        IN1,
+        IN2
     }
 }
