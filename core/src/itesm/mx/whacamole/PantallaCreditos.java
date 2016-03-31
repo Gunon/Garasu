@@ -128,7 +128,9 @@ public class PantallaCreditos implements Screen
                     touchX<spriteBtnInicioP.getX()+spriteBtnInicioP.getWidth()
                     && touchY>=spriteBtnInicioP.getY()
                     && touchY<=spriteBtnInicioP.getY()+spriteBtnInicioP.getHeight()){
+
                 musicaMenu.stop();
+
                 principal.setScreen(new PantallaMenu(principal));
             }
 

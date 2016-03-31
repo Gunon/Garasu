@@ -81,7 +81,7 @@ public class PantallaInstrucciones implements Screen
         //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-230 , Principal.ALTO_MUNDO/2-430);
+        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-120 , Principal.ALTO_MUNDO/2-350);
 
 
 

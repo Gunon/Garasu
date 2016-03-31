@@ -182,11 +182,11 @@ public class PantallaNivel1 implements Screen
 
         texturaBtnInicio = assetManager.get("Btn_InicioP.png");
         btnInicio = new Boton(texturaBtnInicio);
-        btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-350,Principal.ALTO_MUNDO/2-300);
+        btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-350,Principal.ALTO_MUNDO/2-200);
 
-        texturaBtnReanudar=assetManager.get("Btn_InicioP.png");
+        texturaBtnReanudar=assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
-        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2-100,Principal.ALTO_MUNDO/2-300);
+        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+100,Principal.ALTO_MUNDO/2-200);
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
@@ -245,6 +245,7 @@ public class PantallaNivel1 implements Screen
         assetManager.load("Corazon_vacio.png", Texture.class);
         assetManager.load("MarcoPausa.png", Texture.class);
         assetManager.load("Btn_InicioP.png", Texture.class);
+        assetManager.load("Btn_continuar.png", Texture.class);
         assetManager.load("GameOver.png",Texture.class);
         assetManager.finishLoading();
 
@@ -652,6 +653,7 @@ public class PantallaNivel1 implements Screen
                 }
             }else if(estadoJuego==EstadosJuego.PAUSADO){
                 if(btnInicio.contiene(x,y)){
+                    musicaNivel1.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
                 if(btnReanudar.contiene(x,y)){
