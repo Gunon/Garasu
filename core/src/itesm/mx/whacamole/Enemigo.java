@@ -37,9 +37,7 @@ public class Enemigo
     private float tiempoVuelo;       // Tiempo que estará en el aire
     private float tiempoSalto;      // Tiempo actual de vuelo
 
-    /*
-    Constructor del personaje, recibe una imagen con varios frames, (ver imagen marioSprite.png)
-     */
+
     public Enemigo(Texture textura) {
         // Lee la textura como región
         TextureRegion texturaCompleta = new TextureRegion(textura);
