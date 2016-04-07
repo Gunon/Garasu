@@ -50,7 +50,7 @@ public class Personaje
         animacionAtaque =    new Animation(0.25f,texturaPersonaje[0][4],
                 texturaPersonaje[0][5], texturaPersonaje[0][6],texturaPersonaje[0][7] );
         animacionSalto =    new Animation(0.25f,
-                texturaPersonaje[0][9], texturaPersonaje[0][10],texturaPersonaje[0][11] );
+                texturaPersonaje[0][8], texturaPersonaje[0][9]);
         animacionSalto.setPlayMode(Animation.PlayMode.LOOP);
         animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
         // Animación infinita
