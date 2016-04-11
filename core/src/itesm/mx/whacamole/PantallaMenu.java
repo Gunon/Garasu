@@ -197,7 +197,7 @@ public class PantallaMenu implements Screen {
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
                // musicaMenu.stop();
-                principal.setScreen(new PantallaNivel1(principal));
+                principal.setScreen(new PantallaCargando(principal));
 
             }
             if(touchX>=spriteBtnInstrucciones.getX()&&

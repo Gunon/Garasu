@@ -108,7 +108,6 @@ public class PantallaNivel1 implements Screen
     // Dibujar
     private SpriteBatch batch;
 
-    AssetManager assetManager = new AssetManager();
 
     //Sonidos
     private Music musicaNivel1;
@@ -121,7 +120,9 @@ public class PantallaNivel1 implements Screen
 
     @Override
     public void show() {
+        AssetManager assetManager = principal.getAssetManager();
         // Se ejecuta cuando se muestra la pantalla
+
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
@@ -132,11 +133,9 @@ public class PantallaNivel1 implements Screen
         camaraHUD = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camaraHUD.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camaraHUD.update();
-        assetManager.setLoader(TiledMap.class,
-                new TmxMapLoader(new InternalFileHandleResolver()));
+
         batch = new SpriteBatch();
 
-        cargarRecursos();
 
         crearObjetos();
 
@@ -149,6 +148,7 @@ public class PantallaNivel1 implements Screen
     }
 
     private void crearObjetos() {
+        AssetManager assetManager = principal.getAssetManager();
          // Referencia al assetManager
         // Carga el mapa en memoria
         mapa = assetManager.get("Nivel_1_LargeMap.tmx");
@@ -254,7 +254,7 @@ public class PantallaNivel1 implements Screen
         spriteGano = new Sprite(texturaGano);
 
     }
-
+/*
     private void cargarRecursos() {
 
         assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
@@ -283,10 +283,11 @@ public class PantallaNivel1 implements Screen
 
 
 
-    }
+    }*/
 
     @Override
     public void render(float delta) {
+        AssetManager assetManager = principal.getAssetManager();
         // Leer
         if(estadoJuego==EstadosJuego.JUGANDO) {
             moverPersonaje();
@@ -494,10 +495,11 @@ public class PantallaNivel1 implements Screen
             // Recuperamos la celda en esta posición
             // La capa 0 es el fondo
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
+            TiledMapTileLayer.Cell celdaIzquierda = capa.getCell(celdaX-20, celdaY);
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
             TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 1, celdaY);
             // probar si la celda está ocupada
-            if ((celdaAbajo == null && celdaDerecha == null)) {
+            if ((celdaAbajo == null && celdaDerecha == null&&celdaIzquierda==null)) {
                 // Celda vacía, entonces el personaje puede avanzar
                 personaje.caer();
                 personaje.setEstadoSalto(Personaje.EstadoSalto.CAIDA_LIBRE);
@@ -696,12 +698,32 @@ public class PantallaNivel1 implements Screen
 
     @Override
     public void dispose() {
+        AssetManager assetManager = principal.getAssetManager();
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
       // regresamos la memoria
         texturaBtnPausa.dispose();
 
         texturaPersonaje.dispose();
+        assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
+        assetManager.load("izquierda.png", Texture.class);
+        assetManager.load("derecha.png", Texture.class);
+        assetManager.load("tiraGarasu.png", Texture.class);
+        assetManager.load("tiraEnemigo.png", Texture.class);
+        assetManager.load("POL-evil-throne-short.ogg", Music.class);
+        assetManager.load("Btn_Pausa.png", Texture.class);
+        assetManager.load("salto.png", Texture.class);
+        assetManager.load("Boton_atacar.png", Texture.class);
+        assetManager.load("Corazon_lleno.png", Texture.class);
+        assetManager.load("Corazon_medio.png", Texture.class);
+        assetManager.load("Corazon_vacio.png", Texture.class);
+        assetManager.load("MarcoPausa.png", Texture.class);
+        assetManager.load("Btn_InicioP.png", Texture.class);
+        assetManager.load("Btn_continuar.png", Texture.class);
+        assetManager.load("GameOver.png", Texture.class);
+        assetManager.load("pregunta.png", Texture.class);
+        assetManager.load("boton_decisiones.png",Texture.class);
+        assetManager.load("NivelCompletado.png",Texture.class);
 
     }
 
