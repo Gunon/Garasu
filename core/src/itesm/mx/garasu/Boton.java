@@ -1,4 +1,4 @@
-package itesm.mx.whacamole;
+package itesm.mx.garasu;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

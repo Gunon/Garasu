@@ -15,7 +15,7 @@ android {
         instrumentTest.setRoot('tests')
     }
     defaultConfig {
-        applicationId "itesm.mx.whacamole"
+        applicationId "itesm.mx.garasu"
         minSdkVersion 8
         targetSdkVersion 23
     }
@@ -64,7 +64,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'itesm.mx.whacamole/itesm.mx.whacamole.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'itesm.mx.garasu/AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.

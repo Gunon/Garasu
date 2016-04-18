@@ -1,4 +1,4 @@
-package itesm.mx.whacamole;
+package itesm.mx.garasu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

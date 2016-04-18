@@ -1,12 +1,11 @@
-package itesm.mx.whacamole.desktop;
+package itesm.mx.garasu.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import itesm.mx.whacamole.Principal;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new Principal(), config);
+		new LwjglApplication(new itesm.mx.garasu.Principal(), config);
 	}
 }

@@ -1,8 +1,7 @@
-package itesm.mx.whacamole;
+package itesm.mx.garasu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -196,7 +195,7 @@ public class PantallaMenu implements Screen {
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
                // musicaMenu.stop();
-                principal.setScreen(new PantallaCargando(principal));
+                principal.setScreen(new itesm.mx.garasu.PantallaCargando(principal));
 
             }
             if(touchX>=spriteBtnInstrucciones.getX()&&
@@ -204,21 +203,21 @@ public class PantallaMenu implements Screen {
                     && touchY>=spriteBtnInstrucciones.getY()
                     && touchY<=spriteBtnInstrucciones.getY()+spriteBtnInstrucciones.getHeight()){
                // musicaMenu.stop();
-                principal.setScreen(new PantallaInstrucciones(principal));
+                principal.setScreen(new itesm.mx.garasu.PantallaInstrucciones(principal));
             }
             if(touchX>=spriteBtnOpciones.getX()&&
                     touchX<spriteBtnOpciones.getX()+spriteBtnOpciones.getWidth()
                     && touchY>=spriteBtnOpciones.getY()
                     && touchY<=spriteBtnOpciones.getY()+spriteBtnOpciones.getHeight()){
                // musicaMenu.stop();
-                principal.setScreen(new PantallaOpciones(principal));
+                principal.setScreen(new itesm.mx.garasu.PantallaOpciones(principal));
             }
             if(touchX>=spriteBtnPausa.getX()&&
                     touchX<spriteBtnPausa.getX()+spriteBtnPausa.getWidth()
                     && touchY>=spriteBtnPausa.getY()
                     && touchY<=spriteBtnPausa.getY()+spriteBtnPausa.getHeight()){
                // musicaMenu.stop();
-                principal.setScreen(new PantallaCreditos(principal));
+                principal.setScreen(new itesm.mx.garasu.PantallaCreditos(principal));
             }
         }
 
