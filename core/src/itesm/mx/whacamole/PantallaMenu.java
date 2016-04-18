@@ -135,7 +135,6 @@ public class PantallaMenu implements Screen {
         leerEntrada();
 
 
-        leerEntrada();
         batch.begin();
         spriteFondo.draw(batch);
         spriteBtnPlay.draw(batch);

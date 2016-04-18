@@ -3,6 +3,9 @@ package itesm.mx.whacamole;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 
 public class Principal extends Game {
@@ -13,7 +16,8 @@ public class Principal extends Game {
 
 	@Override
 	public void create () {
-
+		assetManager.setLoader(TiledMap.class,
+				new TmxMapLoader(new InternalFileHandleResolver()));
 		setScreen(new PantallaMenu(this));
 	}
 

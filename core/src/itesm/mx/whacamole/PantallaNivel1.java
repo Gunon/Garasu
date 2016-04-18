@@ -120,7 +120,6 @@ public class PantallaNivel1 implements Screen
 
     @Override
     public void show() {
-        AssetManager assetManager = principal.getAssetManager();
         // Se ejecuta cuando se muestra la pantalla
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
@@ -445,15 +444,17 @@ public class PantallaNivel1 implements Screen
                 // Los bloques en el mapa son de 16x16
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
+                int celdaXDer = (int) (personaje.getX()+50);
                 int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
+                TiledMapTileLayer.Cell celdaDer = capa.getCell(celdaXDer, celdaY);
 
 
                 // probar si la celda está ocupada
-                if (celda == null) {
+                if (celda == null&&celdaDer==null) {
                     // Celda vacía, entonces el personaje puede avanzar
                     personaje.caer();
                 }else {  // Las estrellas no lo detienen :)
@@ -491,15 +492,19 @@ public class PantallaNivel1 implements Screen
                 && (personaje.getEstadoSalto() != Personaje.EstadoSalto.SUBIENDO)) {
             // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (personaje.getX() / TAM_CELDA);
+            int celdaXDer = (int) (personaje.getX() / TAM_CELDA+5);
+            Gdx.app.log("valor",""+celdaX);
+            Gdx.app.log("valor",""+celdaXDer);
+
             int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición
             // La capa 0 es el fondo
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
-            TiledMapTileLayer.Cell celdaIzquierda = capa.getCell(celdaX-20, celdaY);
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
-            TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 1, celdaY);
+            TiledMapTileLayer.Cell celdaAbajoDer = capa.getCell(celdaXDer, celdaY);
+
             // probar si la celda está ocupada
-            if ((celdaAbajo == null && celdaDerecha == null&&celdaIzquierda==null)) {
+            if ((celdaAbajo == null&&celdaAbajoDer==null)) {
                 // Celda vacía, entonces el personaje puede avanzar
                 personaje.caer();
                 personaje.setEstadoSalto(Personaje.EstadoSalto.CAIDA_LIBRE);

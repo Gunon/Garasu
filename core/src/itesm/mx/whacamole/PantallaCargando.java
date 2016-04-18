@@ -18,8 +18,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Pantala intermedia entre el menú y el juego
- *
- * @author Roberto Mtz Román
  */
 public class PantallaCargando implements Screen
 {
@@ -55,8 +53,7 @@ public class PantallaCargando implements Screen
         assetManager.load("luna.gif", Texture.class);
         assetManager.finishLoading();
         texturaCargando = assetManager.get("luna.gif");
-        assetManager.setLoader(TiledMap.class,
-                new TmxMapLoader(new InternalFileHandleResolver()));
+
         spriteCargando = new Sprite(texturaCargando);
         spriteCargando.setPosition(principal.ANCHO_MUNDO / 2 - spriteCargando.getWidth() / 2,
                 Principal.ALTO_MUNDO / 2 - spriteCargando.getHeight() / 2);
@@ -66,6 +63,7 @@ public class PantallaCargando implements Screen
 
     // Carga los recursos a través del administrador de assets (siguiente pantalla)
     private void cargarRecursos() {
+        Gdx.app.log("CargarRecursos","Iniciando");
         // Carga los recursos de la siguiente pantalla (PantallaJuego)
         assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
         assetManager.load("izquierda.png", Texture.class);
@@ -86,6 +84,7 @@ public class PantallaCargando implements Screen
         assetManager.load("pregunta.png", Texture.class);
         assetManager.load("boton_decisiones.png",Texture.class);
         assetManager.load("NivelCompletado.png",Texture.class);
+        Gdx.app.log("CargarRecursos", "Terminando");
     }
 
     @Override
