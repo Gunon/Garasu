@@ -96,7 +96,7 @@ public class PantallaOpciones implements Screen {
         //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Opciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
-        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2 - 35, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 + 240);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2 - 130, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 + 240);
 
 
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
