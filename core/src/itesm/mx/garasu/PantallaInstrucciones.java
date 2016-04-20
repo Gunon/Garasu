@@ -106,7 +106,7 @@ public class PantallaInstrucciones implements Screen
         //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
-        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-165, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
+        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-270, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
 
     }
 
@@ -128,12 +128,13 @@ public class PantallaInstrucciones implements Screen
         spriteFondo.draw(batch);
         if(estadosPantalla==EstadosPantalla.IN1){
             spriteInstrucciones1.draw(batch);
+            spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla==EstadosPantalla.IN2){
             spriteInstrucciones2.draw(batch);
         }
 
-        spriteBtnContinuar.draw(batch);
+
         spriteBtnInicio.draw(batch);
 
         spriteTitulo.draw(batch);
