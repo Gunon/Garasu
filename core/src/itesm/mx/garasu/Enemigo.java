@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Enemigo
 {
     public static final float VELOCIDAD_Y = -4f;   // Velocidad de caída
-    public static final float VELOCIDAD_X = 4;     // Velocidad horizontal
+    public static final float VELOCIDAD_X = 4f;     // Velocidad horizontal
     public   float mov =0;
     private float movLim = 400;
     public boolean first=true;
@@ -42,7 +42,7 @@ public class Enemigo
         // Lee la textura como región
         TextureRegion texturaCompleta = new TextureRegion(textura);
         // La divide en frames de 16x32 (ver marioSprite.png)
-        TextureRegion[][] texturaPersonaje = texturaCompleta.split(160,180);
+        TextureRegion[][] texturaPersonaje = texturaCompleta.split(123,181);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
         animacionCaminata = new Animation(0.25f,texturaPersonaje[0][1],
                 texturaPersonaje[0][2], texturaPersonaje[0][3]);
