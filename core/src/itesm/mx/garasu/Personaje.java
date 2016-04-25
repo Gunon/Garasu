@@ -101,7 +101,7 @@ public class Personaje
                 }
                 break;
         }
-        if(estadoSalto==EstadoSalto.BAJANDO||estadoSalto==EstadoSalto.SUBIENDO||estadoSalto==EstadoSalto.CAIDA_LIBRE){
+        if((estadoSalto==EstadoSalto.BAJANDO||estadoSalto==EstadoSalto.SUBIENDO||estadoSalto==EstadoSalto.CAIDA_LIBRE)&&estadoMovimiento!=EstadoMovimiento.ATAQUE){
             timerAnimacion += Gdx.graphics.getDeltaTime();
             // Obtiene el frame que se debe mostrar (de acuerdo al timer)
             TextureRegion region = animacionSalto.getKeyFrame(timerAnimacion);
