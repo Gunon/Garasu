@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="560" height="45" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="Fondo" tilewidth="16" tileheight="16" tilecount="7200" columns="160">
-  <image source="TMAssets/Fondo_2_Boceto_Correciones_5.jpg" width="2560" height="720"/>
+  <image source="Arboles/Fondo_2_Boceto_Correciones_5.jpg" width="2560" height="720"/>
  </tileset>
  <tileset firstgid="7201" name="Puente1" tilewidth="16" tileheight="16" tilecount="616" columns="22">
-  <image source="TMAssets/Puente.png" width="352" height="448"/>
+  <image source="Arboles/Puente.png" width="352" height="448"/>
  </tileset>
  <tileset firstgid="7817" name="puente2" tilewidth="16" tileheight="16" tilecount="868" columns="31">
-  <image source="TMAssets/Puente 2.png" width="496" height="448"/>
+  <image source="Arboles/Puente 2.png" width="496" height="448"/>
  </tileset>
  <tileset firstgid="8685" name="PuenteR1" tilewidth="16" tileheight="16" tilecount="616" columns="22">
-  <image source="TMAssets/PuenteRoto1.png" width="352" height="448"/>
+  <image source="Arboles/PuenteRoto1.png" width="352" height="448"/>
  </tileset>
  <tileset firstgid="9301" name="PuenteR2" tilewidth="16" tileheight="16" tilecount="616" columns="22">
-  <image source="TMAssets/PuenteRoto2.png" width="352" height="448"/>
+  <image source="Arboles/PuenteRoto2.png" width="352" height="448"/>
  </tileset>
  <tileset firstgid="9917" name="Plataformas" tilewidth="16" tileheight="16" tilecount="50" columns="25">
-  <image source="TMAssets/Plataformas 3.png" width="410" height="40"/>
+  <image source="Arboles/Plataformas 3.png" width="410" height="40"/>
  </tileset>
  <tileset firstgid="9967" name="Llamas" tilewidth="16" tileheight="16" tilecount="6720" columns="160">
-  <image source="TMAssets/llamas.png" width="2560" height="672"/>
+  <image source="Arboles/llamas.png" width="2560" height="672"/>
  </tileset>
  <tileset firstgid="16687" name="Fuego" tilewidth="16" tileheight="16" tilecount="69" columns="23">
-  <image source="TMAssets/Fuego.png" width="380" height="50"/>
+  <image source="Arboles/Fuego.png" width="380" height="50"/>
   <tile id="0">
    <animation>
     <frame tileid="0" duration="100"/>
@@ -50,6 +50,11 @@
     <frame tileid="26" duration="100"/>
     <frame tileid="29" duration="100"/>
    </animation>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
   </tile>
   <tile id="25">
    <animation>
@@ -81,7 +86,62 @@
   </tile>
  </tileset>
  <tileset firstgid="16756" name="Gemas" tilewidth="16" tileheight="16" tilecount="11" columns="11">
-  <image source="TMAssets/Gemas.png" width="176" height="30"/>
+  <image source="Arboles/Gemas.png" width="176" height="30"/>
+  <tile id="0">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="tipo" value="gema"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="16767" name="Casas" tilewidth="16" tileheight="16" tilecount="996" columns="83">
   <image source="Arboles/Casas.png" width="1337" height="194"/>

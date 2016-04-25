@@ -651,7 +651,7 @@ public class PantallaNivel2 implements Screen
         {
 
             // Borrar esta estrella y contabilizar
-            System.out.println(gemasCell.getTile().getProperties().get("tipo"));
+
             if(gemasCell.getTile().getProperties().get("tipo")!=null) {
                 if (gemasCell.getTile().getProperties().get("tipo").equals("gema")) {
                     gemas.setCell(celdaX, celdaY, null);
