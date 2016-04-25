@@ -490,8 +490,8 @@ public class PantallaNivel1 implements Screen
             // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (personaje.getX() / TAM_CELDA);
             int celdaXDer = (int) (personaje.getX() / TAM_CELDA+5);
-            Gdx.app.log("valor",""+celdaX);
-            Gdx.app.log("valor",""+celdaXDer);
+           // Gdx.app.log("valor",""+celdaX);
+            //Gdx.app.log("valor",""+celdaXDer);
 
             int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición

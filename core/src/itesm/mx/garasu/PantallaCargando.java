@@ -82,7 +82,7 @@ public class PantallaCargando implements Screen
         assetManager.load("pregunta.png", Texture.class);
         assetManager.load("boton_decisiones.png",Texture.class);
         assetManager.load("NivelCompletado.png",Texture.class);
-        Gdx.app.log("CargarRecursos", "Terminando");
+
     }
 
     @Override
@@ -111,7 +111,7 @@ public class PantallaCargando implements Screen
         } else {
             // Aún no termina la carga de assets, leer el avance
             float avance = assetManager.getProgress()*100;
-            Gdx.app.log("Cargando",avance+"%");
+           // Gdx.app.log("Cargando",avance+"%");
         }
     }
 

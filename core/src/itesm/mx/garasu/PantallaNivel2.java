@@ -441,7 +441,7 @@ public class PantallaNivel2 implements Screen
                 // Los bloques en el mapa son de 16x16
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
-                int celdaXDer = (int) (personaje.getX()+50);
+                int celdaXDer = (int) (personaje.getX()+30);
                 int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
@@ -449,9 +449,9 @@ public class PantallaNivel2 implements Screen
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
                 TiledMapTileLayer.Cell celdaDer = capa.getCell(celdaXDer, celdaY);
 
-
+              //  Gdx.app.log("Celda:", ""+celda.getTile().getId());
                 // probar si la celda está ocupada
-                if (celda == null&&celdaDer==null) {
+                if (celda == null/*&&celdaDer==null*/) {
                     // Celda vacía, entonces el personaje puede avanzar
                     personaje.caer();
                 }else {  // Las estrellas no lo detienen :)
@@ -490,8 +490,8 @@ public class PantallaNivel2 implements Screen
             // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (personaje.getX() / TAM_CELDA);
             int celdaXDer = (int) (personaje.getX() / TAM_CELDA+5);
-            Gdx.app.log("valor",""+celdaX);
-            Gdx.app.log("valor",""+celdaXDer);
+          //  Gdx.app.log("valor",""+celdaX);
+            //Gdx.app.log("valor",""+celdaXDer);
 
             int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición
@@ -643,7 +643,7 @@ public class PantallaNivel2 implements Screen
 
         int celdaY = (int) (personaje.getY() / TAM_CELDA); // Casilla del personaje en Y
 
-        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
+        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Prueba");
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
         TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
 
