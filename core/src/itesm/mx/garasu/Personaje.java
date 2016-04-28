@@ -45,12 +45,12 @@ public class Personaje
         // La divide en frames de 16x32 (ver marioSprite.png)
         TextureRegion[][] texturaPersonaje = texturaCompleta.split(119,140);
         // Crea la animación con tiempo de 0.25 segundos entre frames.
-        animacionCaminata = new Animation(0.25f,texturaPersonaje[0][0],
+        animacionCaminata = new Animation(0.12f,texturaPersonaje[0][0],
                 texturaPersonaje[0][1], texturaPersonaje[0][2],texturaPersonaje[0][3] );
-        animacionAtaque =    new Animation(0.25f,texturaPersonaje[0][4],
+        animacionAtaque =    new Animation(0.12f,texturaPersonaje[0][4],
                 texturaPersonaje[0][5], texturaPersonaje[0][6],texturaPersonaje[0][7] );
-        animacionSalto =    new Animation(0.25f,
-                texturaPersonaje[0][8], texturaPersonaje[0][9]);
+        animacionSalto =    new Animation(0.12f,
+                 texturaPersonaje[0][9]);
         animacionSalto.setPlayMode(Animation.PlayMode.LOOP);
         animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
         // Animación infinita

@@ -45,7 +45,7 @@ public class PantallaCargando implements Screen
     public void show() {
         // Crea la cámara/vista
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO/2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
         texturaLoading = new Texture(Gdx.files.internal("Loading_Tira.png"));
@@ -57,7 +57,7 @@ public class PantallaCargando implements Screen
         animacionCargando.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
         spriteLoadingFondo = new Sprite(texturaLoadingFondo);
-        spriteLoadingFondo.setPosition(camara.position.x,Principal.ALTO_MUNDO/2);
+        spriteLoadingFondo.setPosition(0,0);
         batch = new SpriteBatch();
 
         // Cargar recursos
@@ -105,7 +105,7 @@ public class PantallaCargando implements Screen
         // Entre begin-end dibujamos nuestros objetos en pantalla
         batch.begin();
         spriteLoadingFondo.draw(batch);
-        batch.draw(region, Principal.ANCHO_MUNDO/4,Principal.ALTO_MUNDO/2);
+        batch.draw(region, Principal.ANCHO_MUNDO/2-region.getRegionWidth()/2,Principal.ALTO_MUNDO/2-region.getRegionHeight()/2);
         batch.end();
     }
 
