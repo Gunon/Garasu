@@ -105,6 +105,7 @@ public class PantallaNivel2 implements Screen
     // Dibujar
     private SpriteBatch batch;
 
+    public int countG=0;
 
     //Sonidos
     private Music musicaNivel1;
@@ -464,7 +465,7 @@ public class PantallaNivel2 implements Screen
                     probarChoqueParedes();
                 }
                 break;
-            case MOV_DERECHA:       // Se mueve horizontal
+            case MOV_DERECHA:
             case MOV_IZQUIERDA:
                 probarChoqueParedes();      // Prueba si debe moverse
                 break;
@@ -647,33 +648,22 @@ public class PantallaNivel2 implements Screen
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
         TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
 
-        if (gemas.getCell(celdaX, celdaY) != null /*|| gemas.getCell(celdaX, celdaY + 1) != null*/)
-        {
 
-            // Borrar esta estrella y contabilizar
 
-            if(gemasCell.getTile().getProperties().get("tipo")!=null) {
-                if (gemasCell.getTile().getProperties().get("tipo").equals("gema")) {
-                    gemas.setCell(celdaX, celdaY, null);
-                    gemas.setCell(celdaX + 1, celdaY, null);
-                    gemas.setCell(celdaX - 1, celdaY, null);
-                    gemas.setCell(celdaX, celdaY + 1, null);
-                    gemas.setCell(celdaX + 1, celdaY + 1, null);
-                    gemas.setCell(celdaX - 1, celdaY + 1, null);
-                    gemas.setCell(celdaX - 1, celdaY - 1, null);
-                    gemas.setCell(celdaX, celdaY - 1, null);
-                    gemas.setCell(celdaX + 1, celdaY - 1, null);
-                    gemas.setCell(celdaX, celdaY + 2, null);
-                    gemas.setCell(celdaX + 1, celdaY + 2, null);
-                    gemas.setCell(celdaX - 1, celdaY + 2, null);
-                    gemasC+=100;
+        for(int i=0;i<7;i++){
+            for (int j=0;j<5;j++){
+                if (gemas.getCell(celdaX+i, celdaY+j)!=null){
+                    gemas.setCell(celdaX + i, celdaY+j, null);
+                    countG++;
+                    if(countG==9) {
+                        gemasC += 100;
+                        countG=0;
+                    }
                 }
             }
 
-
-
-
         }
+
 
 
         if ( capaprincipal.getCell(celdaX,celdaY) != null || capaprincipal.getCell(celdaX,celdaY+1) != null ) {

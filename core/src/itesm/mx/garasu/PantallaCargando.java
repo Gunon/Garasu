@@ -7,8 +7,10 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,9 +28,12 @@ public class PantallaCargando implements Screen
     private SpriteBatch batch;
 
     // Imagen cargando
-    private Texture texturaCargando;
-    private Sprite spriteCargando;
+    private Animation animacionCargando;
+    private Texture texturaLoading;
+    private float timerAnimacion;   // tiempo para calcular el frame
 
+    private Texture texturaLoadingFondo;
+    private Sprite spriteLoadingFondo;
     private AssetManager assetManager;  // Asset manager principal
 
     public PantallaCargando(Principal principal) {
@@ -39,29 +44,30 @@ public class PantallaCargando implements Screen
     @Override
     public void show() {
         // Crea la cámara/vista
-        camara = new OrthographicCamera(Principal.ANCHO_MUNDO, principal.ALTO_MUNDO);
-        camara.position.set(principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
+        camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO, 0);
         camara.update();
-        vista = new StretchViewport(principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
-
+        vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
+        texturaLoading = new Texture(Gdx.files.internal("Loading_Tira.png"));
+        TextureRegion texturaCompleta = new TextureRegion(texturaLoading);
+        texturaLoadingFondo = new Texture(Gdx.files.internal("Fondo loading.jpg"));
+        TextureRegion[][] texturaCargandoLuna = texturaCompleta.split(700,700);
+        animacionCargando = new Animation(0.10f,texturaCargandoLuna[0][0],
+                texturaCargandoLuna[0][1], texturaCargandoLuna[0][2],texturaCargandoLuna[0][3],texturaCargandoLuna[0][4],texturaCargandoLuna[0][5],texturaCargandoLuna[0][6],texturaCargandoLuna[0][7],texturaCargandoLuna[0][8],texturaCargandoLuna[0][9] );
+        animacionCargando.setPlayMode(Animation.PlayMode.LOOP);
+        timerAnimacion = 0;
+        spriteLoadingFondo = new Sprite(texturaLoadingFondo);
+        spriteLoadingFondo.setPosition(camara.position.x,Principal.ALTO_MUNDO/2);
         batch = new SpriteBatch();
 
         // Cargar recursos
-        assetManager.load("luna.gif", Texture.class);
-        assetManager.finishLoading();
-        texturaCargando = assetManager.get("luna.gif");
 
-        spriteCargando = new Sprite(texturaCargando);
-        spriteCargando.setPosition(principal.ANCHO_MUNDO / 2 - spriteCargando.getWidth() / 2,
-                Principal.ALTO_MUNDO / 2 - spriteCargando.getHeight() / 2);
 
         cargarRecursos();
     }
 
     // Carga los recursos a través del administrador de assets (siguiente pantalla)
     private void cargarRecursos() {
-        Gdx.app.log("CargarRecursos","Iniciando");
-        // Carga los recursos de la siguiente pantalla (PantallaJuego)
         assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
         assetManager.load("Nivel2_Mapa.tmx", TiledMap.class);
         assetManager.load("izquierda.png", Texture.class);
@@ -90,16 +96,16 @@ public class PantallaCargando implements Screen
 
         // Actualizar carga
         actualizar();
-
+        timerAnimacion += Gdx.graphics.getDeltaTime();
         // Dibujar
         borrarPantalla();
-        spriteCargando.setRotation(spriteCargando.getRotation() + 15);
 
         batch.setProjectionMatrix(camara.combined);
-
+        TextureRegion region = animacionCargando.getKeyFrame(timerAnimacion);
         // Entre begin-end dibujamos nuestros objetos en pantalla
         batch.begin();
-        spriteCargando.draw(batch);
+        spriteLoadingFondo.draw(batch);
+        batch.draw(region, Principal.ANCHO_MUNDO/4,Principal.ALTO_MUNDO/2);
         batch.end();
     }
 
@@ -108,10 +114,6 @@ public class PantallaCargando implements Screen
         if (assetManager.update()) {
             // Terminó la carga, cambiar de pantalla
             principal.setScreen(new PantallaNivel2(principal));
-        } else {
-            // Aún no termina la carga de assets, leer el avance
-            float avance = assetManager.getProgress()*100;
-           // Gdx.app.log("Cargando",avance+"%");
         }
     }
 
@@ -143,7 +145,7 @@ public class PantallaCargando implements Screen
 
     @Override
     public void dispose() {
-        texturaCargando.dispose();
+        texturaLoading.dispose();
         // Los assets de PantallaJuego se liberan en el método dispose de PantallaJuego
     }
 }
