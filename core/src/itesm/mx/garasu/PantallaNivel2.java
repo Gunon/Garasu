@@ -38,6 +38,12 @@ public class PantallaNivel2 implements Screen
     private Enemigo enemigo1;
     private Enemigo enemigo2;
     private Enemigo enemigo3;
+    private Enemigo enemigo4;
+    private Enemigo enemigo5;
+    private Enemigo enemigo6;
+    private Enemigo enemigo7;
+    private Enemigo enemigo8;
+    private Enemigo enemigo9;
     private Texture texturaEnemigo;
 
     private Texture texturaPregunta;
@@ -167,10 +173,22 @@ public class PantallaNivel2 implements Screen
         enemigo1 = new Enemigo(texturaEnemigo);
         enemigo2 = new Enemigo(texturaEnemigo);
         enemigo3 = new Enemigo(texturaEnemigo);
+        enemigo4 = new Enemigo(texturaEnemigo);
+        enemigo5 = new Enemigo(texturaEnemigo);
+        enemigo6 = new Enemigo(texturaEnemigo);
+        enemigo7 = new Enemigo(texturaEnemigo);
+        enemigo8 = new Enemigo(texturaEnemigo);
+        enemigo9 = new Enemigo(texturaEnemigo);
         // Posición inicial del personaje
         enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
         enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+3000,principal.ALTO_MUNDO /2-200);
         enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
+        enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4500,principal.ALTO_MUNDO /2+300);
+        enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
+        enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7500,principal.ALTO_MUNDO /2+300);
+        enemigo7.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1500,principal.ALTO_MUNDO /2+100);
+        enemigo8.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+100);
+        enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
       personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
 
         // Crear los botones
@@ -251,36 +269,6 @@ public class PantallaNivel2 implements Screen
         spriteGano = new Sprite(texturaGano);
 
     }
-/*
-    private void cargarRecursos() {
-
-        assetManager.load("Nivel2_Mapa.tmx", TiledMap.class);
-        assetManager.load("izquierda.png", Texture.class);
-        assetManager.load("derecha.png", Texture.class);
-        assetManager.load("tiraGarasu.png", Texture.class);
-        assetManager.load("tiraEnemigo.png", Texture.class);
-        assetManager.load("POL-evil-throne-short.ogg", Music.class);
-        assetManager.load("Btn_Pausa.png", Texture.class);
-        assetManager.load("salto.png", Texture.class);
-        assetManager.load("Boton_atacar.png", Texture.class);
-        assetManager.load("Corazon_lleno.png", Texture.class);
-        assetManager.load("Corazon_medio.png", Texture.class);
-        assetManager.load("Corazon_vacio.png", Texture.class);
-        assetManager.load("MarcoPausa.png", Texture.class);
-        assetManager.load("Btn_InicioP.png", Texture.class);
-        assetManager.load("Btn_continuar.png", Texture.class);
-        assetManager.load("GameOver.png", Texture.class);
-        assetManager.load("pregunta.png", Texture.class);
-        assetManager.load("boton_decisiones.png",Texture.class);
-        assetManager.load("NivelCompletado.png",Texture.class);
-        assetManager.finishLoading();
-
-
-
-
-
-
-    }*/
 
     @Override
     public void render(float delta) {
@@ -291,6 +279,12 @@ public class PantallaNivel2 implements Screen
             moverEnemigo(enemigo1);
             moverEnemigo(enemigo2);
             moverEnemigo(enemigo3);
+            moverEnemigo(enemigo4);
+            moverEnemigo(enemigo5);
+            moverEnemigo(enemigo6);
+            moverEnemigo(enemigo7);
+            moverEnemigo(enemigo8);
+            moverEnemigo(enemigo9);
             actualizarCamara();
         }
 
@@ -325,6 +319,12 @@ public class PantallaNivel2 implements Screen
             enemigo1.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo2.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo3.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo4.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo5.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo6.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo7.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo8.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo9.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
         }
         if(estadoJuego== EstadosJuego.PAUSADO){
             spritePausa.draw(batch);
@@ -336,6 +336,18 @@ public class PantallaNivel2 implements Screen
             enemigo2.first=true;
             enemigo3.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo3.first=true;
+            enemigo4.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo4.first=true;
+            enemigo5.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo5.first=true;
+            enemigo6.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo6.first=true;
+            enemigo7.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo7.first=true;
+            enemigo8.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo8.first=true;
+            enemigo9.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo9.first=true;
 
         }
         if(estadoJuego== EstadosJuego.FINAL){
@@ -347,6 +359,12 @@ public class PantallaNivel2 implements Screen
             enemigo1.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo2.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo3.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo4.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo5.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo6.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo7.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo8.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo9.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
 
         }
 
@@ -356,6 +374,12 @@ public class PantallaNivel2 implements Screen
             enemigo1.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo2.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo3.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo4.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo5.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo6.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo7.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo8.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+            enemigo9.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
         }
 
         if(estadoJuego!= EstadosJuego.FINAL&&estadoJuego!= EstadosJuego.GANO) {
@@ -463,23 +487,77 @@ public class PantallaNivel2 implements Screen
                         musicaNivel1.play();
                     }
                     probarChoqueParedes();
+                    probarChoqueEnemigo(enemigo1,personaje);
+                    probarChoqueEnemigo(enemigo2,personaje);
+                    probarChoqueEnemigo(enemigo3,personaje);
+                    probarChoqueEnemigo(enemigo4,personaje);
+                    probarChoqueEnemigo(enemigo5,personaje);
+                    probarChoqueEnemigo(enemigo6,personaje);
+                    probarChoqueEnemigo(enemigo7,personaje);
+                    probarChoqueEnemigo(enemigo8,personaje);
+                    probarChoqueEnemigo(enemigo9,personaje);
+
+
                 }
                 break;
             case MOV_DERECHA:
             case MOV_IZQUIERDA:
-                probarChoqueParedes();      // Prueba si debe moverse
+                probarChoqueParedes();
+                probarChoqueEnemigo(enemigo1,personaje);
+                probarChoqueEnemigo(enemigo2,personaje);
+                probarChoqueEnemigo(enemigo3,personaje);
+                probarChoqueEnemigo(enemigo4,personaje);
+                probarChoqueEnemigo(enemigo5,personaje);
+                probarChoqueEnemigo(enemigo6,personaje);
+                probarChoqueEnemigo(enemigo7,personaje);
+                probarChoqueEnemigo(enemigo8,personaje);
+                probarChoqueEnemigo(enemigo9,personaje);
+                      // Prueba si debe moverse
                 break;
             case QUIETO:
                 probarChoqueParedes();
+                probarChoqueEnemigo(enemigo1,personaje);
+                probarChoqueEnemigo(enemigo2,personaje);
+                probarChoqueEnemigo(enemigo3,personaje);
+                probarChoqueEnemigo(enemigo4,personaje);
+                probarChoqueEnemigo(enemigo5,personaje);
+                probarChoqueEnemigo(enemigo6,personaje);
+                probarChoqueEnemigo(enemigo7,personaje);
+                probarChoqueEnemigo(enemigo8,personaje);
+                probarChoqueEnemigo(enemigo9,personaje);
+
+
                 break;
             case ATAQUE:
                 probarChoqueParedes();
+                probarChoqueEnemigo(enemigo1,personaje);
+                probarChoqueEnemigo(enemigo2,personaje);
+                probarChoqueEnemigo(enemigo3,personaje);
+                probarChoqueEnemigo(enemigo4,personaje);
+                probarChoqueEnemigo(enemigo5,personaje);
+                probarChoqueEnemigo(enemigo6,personaje);
+                probarChoqueEnemigo(enemigo7,personaje);
+                probarChoqueEnemigo(enemigo8,personaje);
+                probarChoqueEnemigo(enemigo9,personaje);
+
+
                 break;
         }
             switch (personaje.getEstadoSalto()) {
                 case SUBIENDO:
                 case BAJANDO:
-                    probarChoqueParedes();      // Prueba si debe moverse
+                    probarChoqueParedes();
+                    probarChoqueEnemigo(enemigo1,personaje);
+                    probarChoqueEnemigo(enemigo2,personaje);
+                    probarChoqueEnemigo(enemigo3,personaje);
+                    probarChoqueEnemigo(enemigo4,personaje);
+                    probarChoqueEnemigo(enemigo5,personaje);
+                    probarChoqueEnemigo(enemigo6,personaje);
+                    probarChoqueEnemigo(enemigo7,personaje);
+                    probarChoqueEnemigo(enemigo8,personaje);
+                    probarChoqueEnemigo(enemigo9,personaje);
+
+                          // Prueba si debe moverse
                     personaje.actualizarSalto();    // Actualizar posición en 'y'
                     break;
             }
@@ -585,50 +663,24 @@ public class PantallaNivel2 implements Screen
 
         }
     }
-    private void probarChoqueParedes() {
 
-
+    private void probarChoqueEnemigo(Enemigo enemigo, Personaje personaje) {
         Rectangle a = personaje.getSprite().getBoundingRectangle();
-        Rectangle b = enemigo1.getSprite().getBoundingRectangle();
-        Rectangle c = enemigo2.getSprite().getBoundingRectangle();
-        Rectangle d = enemigo3.getSprite().getBoundingRectangle();
-
+        Rectangle b = enemigo.getSprite().getBoundingRectangle();
         if(a.overlaps(b)){
 
             if(personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.ATAQUE){
                 personaje.setPosicion(personaje.getX()-500,(int)personaje.getY());
                 vidas--;
             }else if(personaje.getEstadoMovimiento()== Personaje.EstadoMovimiento.ATAQUE){
-                enemigo1.setPosicion(-500, -500);
+                enemigo.setPosicion(-500, -500);
                 gemasC+=100;
             }
 
 
         }
-        if(a.overlaps(c)){
-
-            if(personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.ATAQUE){
-                personaje.setPosicion(personaje.getX()-500,(int)personaje.getY());
-                vidas--;
-            }else if(personaje.getEstadoMovimiento()== Personaje.EstadoMovimiento.ATAQUE){
-                enemigo2.setPosicion(-500, -500);
-                gemasC+=100;
-            }
-
-
-        }
-        if(a.overlaps(d)){
-
-            if(personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.ATAQUE){
-                personaje.setPosicion(personaje.getX()-500,(int)personaje.getY());
-                vidas--;
-            }else if(personaje.getEstadoMovimiento()== Personaje.EstadoMovimiento.ATAQUE){
-                enemigo3.setPosicion(-500, -500);
-                gemasC+=100;
-            }
-
-
-        }
+    }
+    private void probarChoqueParedes() {
 
 
         float px = personaje.getX();    // Posición actual

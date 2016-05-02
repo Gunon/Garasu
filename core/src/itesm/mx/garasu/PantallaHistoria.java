@@ -261,7 +261,7 @@ public class PantallaHistoria implements Screen
                         estadosPantalla = EstadosPantalla.IN6;
                         break;
                     case IN6:
-                        principal.setScreen(new PantallaNivel2(principal));
+                        principal.setScreen(new PantallaNivel1(principal));
                         break;
                 }
 

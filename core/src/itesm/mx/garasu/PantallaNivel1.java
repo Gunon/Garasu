@@ -354,6 +354,7 @@ public class PantallaNivel1 implements Screen
         if(estadoJuego==EstadosJuego.GANO){
 
             spriteGano.draw(batch);
+            principal.setScreen(new PantallaNivel2(principal));
             enemigo1.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo2.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             enemigo3.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
