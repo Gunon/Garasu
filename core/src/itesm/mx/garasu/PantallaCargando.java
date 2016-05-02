@@ -113,7 +113,7 @@ public class PantallaCargando implements Screen
 
         if (assetManager.update()) {
             // Terminó la carga, cambiar de pantalla
-            principal.setScreen(new PantallaNivel2(principal));
+            principal.setScreen(new PantallaHistoria(principal));
         }
     }
 

@@ -25,11 +25,30 @@ public class PantallaHistoria implements Screen
     private EstadosPantalla estadosPantalla;
 
     //Instrucciones
-    private Texture texturaInstrucciones1;
-    private Sprite spriteInstrucciones1;
+    private Texture texturaHistoria1;
+    private Sprite spriteHistoria1;
 
-    private Texture texturaInstrucciones2;
-    private Sprite spriteInstrucciones2;
+    private Texture texturaHistoria2;
+    private Sprite spriteHistoria2;
+
+    private Texture texturaHistoria3;
+    private Sprite spriteHistoria3;
+
+
+    private Texture texturaHistoria4;
+    private Sprite spriteHistoria4;
+
+
+    private Texture texturaHistoria5;
+    private Sprite spriteHistoria5;
+
+
+    private Texture texturaHistoria6;
+    private Sprite spriteHistoria6;
+
+    private Texture texturaTexto1;
+    private Sprite spriteTexto1;
+
 
     //Boton Play
     private Texture texturaBtnInicio;
@@ -82,31 +101,46 @@ public class PantallaHistoria implements Screen
         texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
-        texturaInstrucciones1 = new Texture(Gdx.files.internal("instrucciones1.png"));
-        spriteInstrucciones1 = new Sprite(texturaInstrucciones1);
-        spriteInstrucciones1.setPosition(0,90);
+        texturaTexto1 = new Texture(Gdx.files.internal("Texto.png"));
+        spriteTexto1 = new Sprite(texturaTexto1);
+        spriteTexto1.setPosition(0,0);
 
-        texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
-        spriteInstrucciones2 = new Sprite(texturaInstrucciones2);
-        spriteInstrucciones2.setPosition(0,90);
+
+
+        texturaHistoria1 = new Texture(Gdx.files.internal("F1.jpg"));
+        spriteHistoria1 = new Sprite(texturaHistoria1);
+        spriteHistoria1.setPosition(0,0);
+
+        texturaHistoria2 = new Texture(Gdx.files.internal("F2.jpg"));
+        spriteHistoria2 = new Sprite(texturaHistoria2);
+        spriteHistoria2.setPosition(0,0);
+
+        texturaHistoria3 = new Texture(Gdx.files.internal("F3.jpg"));
+        spriteHistoria3 = new Sprite(texturaHistoria3);
+        spriteHistoria3.setPosition(0,0);
+
+        texturaHistoria4 = new Texture(Gdx.files.internal("F4.jpg"));
+        spriteHistoria4 = new Sprite(texturaHistoria4);
+        spriteHistoria4.setPosition(0,0);
+
+        texturaHistoria5 = new Texture(Gdx.files.internal("F5.jpg"));
+        spriteHistoria5 = new Sprite(texturaHistoria5);
+        spriteHistoria5.setPosition(0,0);
+
+        texturaHistoria6 = new Texture(Gdx.files.internal("F6.jpg"));
+        spriteHistoria6 = new Sprite(texturaHistoria6);
+        spriteHistoria6.setPosition(0,0);
 //hola
         //BtnInicio
-        texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
-        spriteBtnInicio = new Sprite(texturaBtnInicio);
-        spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-120 , Principal.ALTO_MUNDO/2-350);
 
-        texturaBtnContinuar= new Texture(Gdx.files.internal("Btn_continuar.png"));
+
+        texturaBtnContinuar= new Texture(Gdx.files.internal("derecha.png"));
         spriteBtnContinuar= new Sprite(texturaBtnContinuar);
-        spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+300 , Principal.ALTO_MUNDO/2-350);
+        spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+450 , Principal.ALTO_MUNDO/2-350);
 
 
 
 
-
-        //Titulo
-        texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
-        spriteTitulo = new Sprite(texturaTitulo);
-        spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-270, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
 
     }
 
@@ -124,20 +158,54 @@ public class PantallaHistoria implements Screen
         // Dibujamos
         batch.begin();
 
-        spriteFondoJuego.draw(batch);
+       spriteFondoJuego.draw(batch);
         spriteFondo.draw(batch);
+
+
         if(estadosPantalla== EstadosPantalla.IN1){
-            spriteInstrucciones1.draw(batch);
+            spriteHistoria1.draw(batch);
+            spriteTexto1.draw(batch);
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN2){
-            spriteInstrucciones2.draw(batch);
+
+            spriteHistoria2.draw(batch);
+            spriteTexto1.draw(batch);
+
+            spriteBtnContinuar.draw(batch);
+        }
+        if(estadosPantalla== EstadosPantalla.IN3){
+
+            spriteHistoria3.draw(batch);
+            spriteTexto1.draw(batch);
+
+            spriteBtnContinuar.draw(batch);
+        }
+        if(estadosPantalla== EstadosPantalla.IN4){
+
+            spriteHistoria4.draw(batch);
+            spriteTexto1.draw(batch);
+
+            spriteBtnContinuar.draw(batch);
+        }
+        if(estadosPantalla== EstadosPantalla.IN5){
+
+            spriteHistoria5.draw(batch);
+            spriteTexto1.draw(batch);
+
+            spriteBtnContinuar.draw(batch);
+        }
+        if(estadosPantalla== EstadosPantalla.IN6){
+
+            spriteHistoria6.draw(batch);
+            spriteTexto1.draw(batch);
+
+            spriteBtnContinuar.draw(batch);
         }
 
-
+/*
         spriteBtnInicio.draw(batch);
-
-        spriteTitulo.draw(batch);
+*/
 
         batch.end();
 
@@ -171,18 +239,32 @@ public class PantallaHistoria implements Screen
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
-            if(touchX>=spriteBtnInicio.getX()&&
-                    touchX<spriteBtnInicio.getX()+spriteBtnInicio.getWidth()
-                    && touchY>=spriteBtnInicio.getY()
-                    && touchY<=spriteBtnInicio.getY()+spriteBtnInicio.getHeight()){
-                principal.setScreen(new PantallaMenu(principal));
-            }
 
             if(touchX>=spriteBtnContinuar.getX()&&
                     touchX<spriteBtnContinuar.getX()+spriteBtnContinuar.getWidth()
                     && touchY>=spriteBtnContinuar.getY()
                     && touchY<=spriteBtnContinuar.getY()+spriteBtnContinuar.getHeight()){
-                estadosPantalla = EstadosPantalla.IN2;
+                switch (estadosPantalla){
+                    case IN1:
+                        estadosPantalla = EstadosPantalla.IN2;
+                        break;
+                    case IN2:
+                        estadosPantalla = EstadosPantalla.IN3;
+                        break;
+                    case IN3:
+                        estadosPantalla = EstadosPantalla.IN4;
+                        break;
+                    case IN4:
+                        estadosPantalla = EstadosPantalla.IN5;
+                        break;
+                    case IN5:
+                        estadosPantalla = EstadosPantalla.IN6;
+                        break;
+                    case IN6:
+                        principal.setScreen(new PantallaNivel2(principal));
+                        break;
+                }
+
             }
 
         }
@@ -200,6 +282,10 @@ public class PantallaHistoria implements Screen
     }
     public enum EstadosPantalla {
         IN1,
-        IN2
+        IN2,
+        IN3,
+        IN4,
+        IN5,
+        IN6
     }
 }
