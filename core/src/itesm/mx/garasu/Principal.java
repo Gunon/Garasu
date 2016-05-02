@@ -18,7 +18,7 @@ public class Principal extends Game {
 	public void create () {
 		assetManager.setLoader(TiledMap.class,
 				new TmxMapLoader(new InternalFileHandleResolver()));
-		setScreen(new PantallaMenu(this));
+		setScreen(new PantallaTec(this));
 	}
 
 	public AssetManager getAssetManager() {
