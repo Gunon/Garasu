@@ -45,6 +45,8 @@ public class PantallaNivel2 implements Screen
     private Enemigo enemigo7;
     private Enemigo enemigo8;
     private Enemigo enemigo9;
+    private Enemigo enemigo10;
+    private Enemigo enemigo11;
     private Texture texturaEnemigo;
 
     private Texture texturaPregunta;
@@ -182,6 +184,8 @@ public class PantallaNivel2 implements Screen
         enemigo7 = new Enemigo(texturaEnemigo);
         enemigo8 = new Enemigo(texturaEnemigo);
         enemigo9 = new Enemigo(texturaEnemigo);
+        enemigo10 = new Enemigo(texturaEnemigo);
+        enemigo11 = new Enemigo(texturaEnemigo);
 
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
@@ -192,16 +196,20 @@ public class PantallaNivel2 implements Screen
         enemigos.add(enemigo7);
         enemigos.add(enemigo8);
         enemigos.add(enemigo9);
+        enemigos.add(enemigo10);
+        enemigos.add(enemigo11);
         // Posición inicial del personaje
         enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
         enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+3000,principal.ALTO_MUNDO /2-200);
         enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
-        enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4500,principal.ALTO_MUNDO /2+300);
+        enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4000,principal.ALTO_MUNDO /2+300);
         enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
-        enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7500,principal.ALTO_MUNDO /2+300);
+        enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1250,principal.ALTO_MUNDO /2+1500);
         enemigo7.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1500,principal.ALTO_MUNDO /2+100);
         enemigo8.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+100);
-        enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
+       enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
+        enemigo10.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+300);
+        enemigo11.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5500,principal.ALTO_MUNDO /2+300);
       personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
 
         // Crear los botones

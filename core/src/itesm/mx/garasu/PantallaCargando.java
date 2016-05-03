@@ -29,12 +29,20 @@ public class PantallaCargando implements Screen
 
     // Imagen cargando
     private Animation animacionCargando;
-    private Texture texturaLoading;
+    //private Texture texturaLoading;
+    private Texture texturaLoading1;
+    private Texture texturaLoading2;
+    private Texture texturaLoading3;
+    private Texture texturaLoading4;
+    private Texture texturaLoading5;
+    private Texture texturaLoading6;
     private float timerAnimacion;   // tiempo para calcular el frame
 
     private Texture texturaLoadingFondo;
     private Sprite spriteLoadingFondo;
     private AssetManager assetManager;  // Asset manager principal
+
+
 
     public PantallaCargando(Principal principal) {
         this.principal = principal;
@@ -45,15 +53,31 @@ public class PantallaCargando implements Screen
     public void show() {
         // Crea la cámara/vista
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
-        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO/2, 0);
+        camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO, camara);
-        texturaLoading = new Texture(Gdx.files.internal("Loading_Tira.png"));
-        TextureRegion texturaCompleta = new TextureRegion(texturaLoading);
+        //texturaLoading = new Texture(Gdx.files.internal("Loading_Tira.png"));
+        texturaLoading1 = new Texture(Gdx.files.internal("Loading_Tira1.png"));
+        texturaLoading2 = new Texture(Gdx.files.internal("Loading_Tira2.png"));
+        texturaLoading3 = new Texture(Gdx.files.internal("Loading_Tira3.png"));
+        texturaLoading4 = new Texture(Gdx.files.internal("Loading_Tira4.png"));
+        texturaLoading5 = new Texture(Gdx.files.internal("Loading_Tira5.png"));
+        texturaLoading6 = new Texture(Gdx.files.internal("Loading_Tira6.png"));
+        //TextureRegion texturaCompleta = new TextureRegion(texturaLoading);
         texturaLoadingFondo = new Texture(Gdx.files.internal("Fondo loading.jpg"));
-        TextureRegion[][] texturaCargandoLuna = texturaCompleta.split(700,700);
-        animacionCargando = new Animation(0.10f,texturaCargandoLuna[0][0],
+        //TextureRegion[][] texturaCargandoLuna = texturaCompleta.split(700,700);
+        TextureRegion t1 = new TextureRegion(texturaLoading1,700,700);
+        TextureRegion t2 = new TextureRegion(texturaLoading2,700,700);
+        TextureRegion t3 = new TextureRegion(texturaLoading3,700,700);
+        TextureRegion t4 = new TextureRegion(texturaLoading4,700,700);
+        TextureRegion t5 = new TextureRegion(texturaLoading5,700,700);
+        TextureRegion t6 = new TextureRegion(texturaLoading6,700,700);
+       /* animacionCargando = new Animation(0.10f,texturaCargandoLuna[0][0],
                 texturaCargandoLuna[0][1], texturaCargandoLuna[0][2],texturaCargandoLuna[0][3],texturaCargandoLuna[0][4],texturaCargandoLuna[0][5]);
+       */
+        animacionCargando = new Animation(0.10f,t1,
+                t2, t3,t4,t5,t6);
+
         animacionCargando.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
         spriteLoadingFondo = new Sprite(texturaLoadingFondo);
@@ -145,7 +169,7 @@ public class PantallaCargando implements Screen
 
     @Override
     public void dispose() {
-        texturaLoading.dispose();
+      //  texturaLoading.dispose();
         // Los assets de PantallaJuego se liberan en el método dispose de PantallaJuego
     }
 }
