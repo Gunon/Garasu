@@ -53,7 +53,7 @@ public class PantallaCargando implements Screen
         texturaLoadingFondo = new Texture(Gdx.files.internal("Fondo loading.jpg"));
         TextureRegion[][] texturaCargandoLuna = texturaCompleta.split(700,700);
         animacionCargando = new Animation(0.10f,texturaCargandoLuna[0][0],
-                texturaCargandoLuna[0][1], texturaCargandoLuna[0][2],texturaCargandoLuna[0][3],texturaCargandoLuna[0][4],texturaCargandoLuna[0][5],texturaCargandoLuna[0][6],texturaCargandoLuna[0][7],texturaCargandoLuna[0][8],texturaCargandoLuna[0][9] );
+                texturaCargandoLuna[0][1], texturaCargandoLuna[0][2],texturaCargandoLuna[0][3],texturaCargandoLuna[0][4],texturaCargandoLuna[0][5]);
         animacionCargando.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
         spriteLoadingFondo = new Sprite(texturaLoadingFondo);

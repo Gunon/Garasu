@@ -252,36 +252,7 @@ public class PantallaNivel1 implements Screen
         spriteGano = new Sprite(texturaGano);
 
     }
-/*
-    private void cargarRecursos() {
 
-        assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
-        assetManager.load("izquierda.png", Texture.class);
-        assetManager.load("derecha.png", Texture.class);
-        assetManager.load("tiraGarasu.png", Texture.class);
-        assetManager.load("tiraEnemigo.png", Texture.class);
-        assetManager.load("POL-evil-throne-short.ogg", Music.class);
-        assetManager.load("Btn_Pausa.png", Texture.class);
-        assetManager.load("salto.png", Texture.class);
-        assetManager.load("Boton_atacar.png", Texture.class);
-        assetManager.load("Corazon_lleno.png", Texture.class);
-        assetManager.load("Corazon_medio.png", Texture.class);
-        assetManager.load("Corazon_vacio.png", Texture.class);
-        assetManager.load("MarcoPausa.png", Texture.class);
-        assetManager.load("Btn_InicioP.png", Texture.class);
-        assetManager.load("Btn_continuar.png", Texture.class);
-        assetManager.load("GameOver.png", Texture.class);
-        assetManager.load("pregunta.png", Texture.class);
-        assetManager.load("boton_decisiones.png",Texture.class);
-        assetManager.load("NivelCompletado.png",Texture.class);
-        assetManager.finishLoading();
-
-
-
-
-
-
-    }*/
 
     @Override
     public void render(float delta) {
@@ -694,33 +665,20 @@ public class PantallaNivel1 implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
       // regresamos la memoria
+        assetManager.unload("Nivel_1_LargeMap.tmx");
         texturaBtnPausa.dispose();
-
         texturaPersonaje.dispose();
-        assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
-        assetManager.load("izquierda.png", Texture.class);
-        assetManager.load("derecha.png", Texture.class);
-        assetManager.load("tiraGarasu.png", Texture.class);
-        assetManager.load("tiraEnemigo.png", Texture.class);
-        assetManager.load("POL-evil-throne-short.ogg", Music.class);
-        assetManager.load("Btn_Pausa.png", Texture.class);
-        assetManager.load("salto.png", Texture.class);
-        assetManager.load("Boton_atacar.png", Texture.class);
-        assetManager.load("Corazon_lleno.png", Texture.class);
-        assetManager.load("Corazon_medio.png", Texture.class);
-        assetManager.load("Corazon_vacio.png", Texture.class);
-        assetManager.load("MarcoPausa.png", Texture.class);
-        assetManager.load("Btn_InicioP.png", Texture.class);
-        assetManager.load("Btn_continuar.png", Texture.class);
-        assetManager.load("GameOver.png", Texture.class);
-        assetManager.load("pregunta.png", Texture.class);
-        assetManager.load("boton_decisiones.png",Texture.class);
-        assetManager.load("NivelCompletado.png",Texture.class);
+        TexturaCorazonLleno.dispose();
+        TexturaCorazonMedio.dispose();
+        TexturaCorazonVacio.dispose();
+        TexturaPausa.dispose();
+        texturaPregunta.dispose();
+        TexturaPerdio.dispose();
+        texturaGano.dispose();
+
 
     }
 
-   /* Clase utilizada para manejar los eventos de touch en la pantalla
-    */
     public class ProcesadorEntrada extends InputAdapter
     {
         private Vector3 coordenadas = new Vector3();

@@ -122,6 +122,7 @@ public class PantallaTec implements Screen {
         //Cuando lo que usamos sale de memoria
         texturaFondo.dispose();
 
+
     }
 
 

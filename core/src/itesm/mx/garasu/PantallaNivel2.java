@@ -713,27 +713,16 @@ public class PantallaNivel2 implements Screen
         // LIBERAR los recursos
       // regresamos la memoria
         texturaBtnPausa.dispose();
-
         texturaPersonaje.dispose();
-        assetManager.load("Nivel2_Mapa.tmx", TiledMap.class);
-        assetManager.load("izquierda.png", Texture.class);
-        assetManager.load("derecha.png", Texture.class);
-        assetManager.load("tiraGarasu.png", Texture.class);
-        assetManager.load("tiraEnemigo.png", Texture.class);
-        assetManager.load("POL-evil-throne-short.ogg", Music.class);
-        assetManager.load("Btn_Pausa.png", Texture.class);
-        assetManager.load("salto.png", Texture.class);
-        assetManager.load("Boton_atacar.png", Texture.class);
-        assetManager.load("Corazon_lleno.png", Texture.class);
-        assetManager.load("Corazon_medio.png", Texture.class);
-        assetManager.load("Corazon_vacio.png", Texture.class);
-        assetManager.load("MarcoPausa.png", Texture.class);
-        assetManager.load("Btn_InicioP.png", Texture.class);
-        assetManager.load("Btn_continuar.png", Texture.class);
-        assetManager.load("GameOver.png", Texture.class);
-        assetManager.load("pregunta.png", Texture.class);
-        assetManager.load("boton_decisiones.png",Texture.class);
-        assetManager.load("NivelCompletado.png",Texture.class);
+        TexturaCorazonLleno.dispose();
+        TexturaCorazonMedio.dispose();
+        TexturaCorazonVacio.dispose();
+        TexturaPausa.dispose();
+        texturaPregunta.dispose();
+        TexturaPerdio.dispose();
+        texturaGano.dispose();
+        assetManager.unload("Nivel2_Mapa.tmx");
+
 
     }
 

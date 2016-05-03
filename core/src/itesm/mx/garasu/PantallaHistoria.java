@@ -49,11 +49,6 @@ public class PantallaHistoria implements Screen
     private Texture texturaTexto1;
     private Sprite spriteTexto1;
 
-
-    //Boton Play
-    private Texture texturaBtnInicio;
-    private Sprite spriteBtnInicio;
-
     private Texture texturaBtnContinuar;
     private Sprite spriteBtnContinuar;
 
@@ -62,9 +57,7 @@ public class PantallaHistoria implements Screen
     private Texture texturaFondoJuego;
     private Sprite spriteFondoJuego;
 
-    //Titulo
-    private Texture texturaTitulo;
-    private Sprite spriteTitulo;
+
 
 
     // Dibujar
@@ -274,10 +267,16 @@ public class PantallaHistoria implements Screen
     public void dispose() {
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
-        texturaFondo.dispose(); // regresamos la memoria
-        texturaBtnInicio.dispose();
-
+        texturaFondo.dispose();
         texturaFondoJuego.dispose();
+         texturaTexto1.dispose();
+        texturaHistoria1.dispose();
+         texturaHistoria2.dispose();
+         texturaHistoria3.dispose();
+         texturaHistoria4.dispose();
+         texturaHistoria5.dispose();
+         texturaHistoria6.dispose();
+         texturaBtnContinuar.dispose();
 
     }
     public enum EstadosPantalla {
