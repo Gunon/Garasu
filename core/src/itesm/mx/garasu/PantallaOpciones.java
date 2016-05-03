@@ -104,12 +104,12 @@ public class PantallaOpciones implements Screen {
         //Boton Instrucciones
         texturaBtnMusica = new Texture(Gdx.files.internal("Btn_Musica.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
-        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2-200, Principal.ALTO_MUNDO / 2 - 100);
+        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2, Principal.ALTO_MUNDO / 2 - 100);
 
         //Boton Opciones
         texturaBtnMP = new Texture(Gdx.files.internal("Btn_MusicaPaloma.png"));
         spriteBtnMP = new Sprite(texturaBtnMP);
-        spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2+200, Principal.ALTO_MUNDO / 2 - 100);
+        spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2+500, Principal.ALTO_MUNDO / 2 - 100);
 
         estado = EstadoOpciones.MUSICON;
         //TextoOpciones
