@@ -15,7 +15,6 @@ class PantallaMenu implements Screen {
 
     private final Principal principal;
 
-    public static Music musicaMenu;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -53,13 +52,15 @@ class PantallaMenu implements Screen {
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
-        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("menuMusica.wav"));
-        musicaMenu.setLooping(true);
-
-        if(!Principal.firstm) {
-            musicaMenu.play();
+        Principal.musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("menuMusica.wav"));
+        Principal.musicaMenu.setLooping(true);
+        System.out.println(Principal.musicaT);
+        if(Principal.musicaT) {
+            Principal.musicaMenu.play();
         }
-        Principal.firstm=true;
+
+
+
         batch = new SpriteBatch();
 
         cargarTeturasSprites();

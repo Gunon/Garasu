@@ -4,6 +4,7 @@ package itesm.mx.garasu;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
@@ -16,6 +17,7 @@ public class Principal extends Game {
 	public static boolean firstm = false;
 	public static boolean playing =true;
 
+	public static Music musicaMenu;
 
 	public static boolean musicaT = true;
 	@Override

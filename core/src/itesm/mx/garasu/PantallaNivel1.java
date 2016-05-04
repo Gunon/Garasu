@@ -91,7 +91,7 @@ public class PantallaNivel1 implements Screen
 
     @Override
     public void show() {
-
+        Principal.musicaMenu.stop();
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
         camara.update();

@@ -11,10 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by user on 25/01/2016.
- */
-//update
+
 public class PantallaOpciones implements Screen {
 
     private final Principal principal;
@@ -81,21 +78,14 @@ public class PantallaOpciones implements Screen {
         spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2-300 , Principal.ALTO_MUNDO / 2 - 100);
 
         estado = EstadoOpciones.MUSICON;
-
+        Principal.musicaMenu.stop();
 
     }
 
 
     @Override
     public void render(float delta) {
-        if(Principal.musicaT && !Principal.playing){
-            PantallaMenu.musicaMenu.play();
-            Principal.playing=true;
-        }
-        if(!Principal.musicaT && Principal.playing){
-            PantallaMenu.musicaMenu.stop();
-            Principal.playing=false;
-        }
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camara.combined);
@@ -169,16 +159,16 @@ public class PantallaOpciones implements Screen {
                     touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
                     && touchY>=spriteBtnMusica.getY()
                     && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight()
-                    && estado == EstadoOpciones.MUSICON){
-                estado = EstadoOpciones.MUSICOFF;
+                   ){
+
                 Principal.musicaT=false;
             }
             if(touchX>=spriteBtnMP.getX()&&
                     touchX<spriteBtnMP.getX()+spriteBtnMP.getWidth()
                     && touchY>=spriteBtnMP.getY()
                     && touchY<=spriteBtnMP.getY()+spriteBtnMP.getHeight()
-                    && estado == EstadoOpciones.MUSICOFF){
-                estado = EstadoOpciones.MUSICON;
+                    ){
+
                 Principal.musicaT=true;
             }
 

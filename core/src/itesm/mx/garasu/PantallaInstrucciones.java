@@ -45,6 +45,7 @@ public class PantallaInstrucciones implements Screen
 
     @Override
     public void show() {
+       Principal.musicaMenu.stop();
         estadosPantalla=EstadosPantalla.IN1;
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
