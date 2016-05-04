@@ -99,7 +99,10 @@ public class PantallaCargando implements Screen
         assetManager.load("derecha.png", Texture.class);
         assetManager.load("tiraGarasu.png", Texture.class);
         assetManager.load("tiraEnemigo.png", Texture.class);
-        assetManager.load("POL-evil-throne-short.ogg", Music.class);
+        assetManager.load("menuMusica.wav", Music.class);
+        assetManager.load("Nivel1.wav", Music.class);
+        assetManager.load("Nivel2.wav", Music.class);
+        assetManager.load("Nivel3.wav", Music.class);
         assetManager.load("Btn_Pausa.png", Texture.class);
         assetManager.load("salto.png", Texture.class);
         assetManager.load("Boton_atacar.png", Texture.class);
@@ -113,6 +116,7 @@ public class PantallaCargando implements Screen
         assetManager.load("pregunta.png", Texture.class);
         assetManager.load("boton_decisiones.png",Texture.class);
         assetManager.load("NivelCompletado.png",Texture.class);
+        assetManager.load("TiraGisbar.png",Texture.class);
 
     }
 
@@ -138,7 +142,7 @@ public class PantallaCargando implements Screen
 
         if (assetManager.update()) {
             // Terminó la carga, cambiar de pantalla
-            principal.setScreen(new PantallaNivel2(principal));
+            principal.setScreen(new PantallaHistoria(principal));
 
         }
     }

@@ -2,6 +2,7 @@ package itesm.mx.garasu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,7 +20,7 @@ public class PantallaMenu implements Screen {
 
     private final Principal principal;
 
-
+    public static Music musicaMenu;
 
     private OrthographicCamera camara;
     private Viewport vista;
@@ -74,12 +75,13 @@ public class PantallaMenu implements Screen {
         camara.update();
         vista = new StretchViewport(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO,camara);
 
-      /*  musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("POL-sacred-temple-short.ogg"));
+        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("menuMusica.wav"));
         musicaMenu.setLooping(true);
 
-            musicaMenu.play();*/
-
-
+        if(!Principal.firstm) {
+            musicaMenu.play();
+        }
+        Principal.firstm=true;
         batch = new SpriteBatch();
 
         cargarTeturasSprites();
@@ -125,8 +127,8 @@ public class PantallaMenu implements Screen {
 
 
     @Override
-    public void render(float delta) {
-        //Borrar la pantalla
+        public void render(float delta) {
+            //Borrar la pantalla
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -195,6 +197,7 @@ public class PantallaMenu implements Screen {
                     && touchY>=spriteBtnPlay.getY()
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
                // musicaMenu.stop();
+                Principal.firstm = false;
                 principal.setScreen(new itesm.mx.garasu.PantallaCargando(principal));
                 dispose();
 

@@ -53,10 +53,7 @@ public class PantallaCreditos implements Screen
 
         batch = new SpriteBatch();
 
-        musicaMenu = Gdx.audio.newMusic(Gdx.files.internal("POL-sacred-temple-short.ogg"));
-        musicaMenu.setLooping(true);
 
-        musicaMenu.play();
 
         cargarTexturasSprites();
 
@@ -129,7 +126,6 @@ public class PantallaCreditos implements Screen
                     && touchY>=spriteBtnInicioP.getY()
                     && touchY<=spriteBtnInicioP.getY()+spriteBtnInicioP.getHeight()){
 
-                musicaMenu.stop();
 
                 principal.setScreen(new PantallaMenu(principal));
             }

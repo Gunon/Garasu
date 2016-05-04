@@ -26,10 +26,6 @@ public class PantallaOpciones implements Screen {
     //Fondo
 
 
-    //Musica
-    private Music musicaMenu;
-    public static boolean musicaT = true;
-
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
@@ -104,12 +100,12 @@ public class PantallaOpciones implements Screen {
         //Boton Instrucciones
         texturaBtnMusica = new Texture(Gdx.files.internal("Btn_Musica.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
-        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2, Principal.ALTO_MUNDO / 2 - 100);
+        spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2+300, Principal.ALTO_MUNDO / 2 - 100);
 
         //Boton Opciones
         texturaBtnMP = new Texture(Gdx.files.internal("Btn_MusicaPaloma.png"));
         spriteBtnMP = new Sprite(texturaBtnMP);
-        spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2+500, Principal.ALTO_MUNDO / 2 - 100);
+        spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2-300 , Principal.ALTO_MUNDO / 2 - 100);
 
         estado = EstadoOpciones.MUSICON;
         //TextoOpciones
@@ -121,11 +117,18 @@ public class PantallaOpciones implements Screen {
     @Override
     public void render(float delta) {
         //Borrar la pantalla
-
+        if(Principal.musicaT==true&&Principal.playing!=true){
+            PantallaMenu.musicaMenu.play();
+            Principal.playing=true;
+        }
+        if(Principal.musicaT==false&&Principal.playing==true){
+            PantallaMenu.musicaMenu.stop();
+            Principal.playing=false;
+        }
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camara.combined);
-        leerEntrada();
+
 
 
         leerEntrada();
@@ -134,13 +137,11 @@ public class PantallaOpciones implements Screen {
         spriteFondo.draw(batch);
         spriteBtnInicio.draw(batch);
 
-        if(estado == EstadoOpciones.MUSICON){
+
             spriteBtnMP.draw(batch);
-        } else {
-            if(estado == EstadoOpciones.MUSICOFF){
+
                 spriteBtnMusica.draw(batch);
-            }
-        }
+
 
         spriteTitulo.draw(batch);
 
@@ -202,17 +203,17 @@ public class PantallaOpciones implements Screen {
                     touchX<spriteBtnMusica.getX()+spriteBtnMusica.getWidth()
                     && touchY>=spriteBtnMusica.getY()
                     && touchY<=spriteBtnMusica.getY()+spriteBtnMusica.getHeight()
-                    && estado == EstadoOpciones.MUSICOFF){
-                estado = EstadoOpciones.MUSICON;
-                musicaT=true;
+                    && estado == EstadoOpciones.MUSICON){
+                estado = EstadoOpciones.MUSICOFF;
+                Principal.musicaT=false;
             }
             if(touchX>=spriteBtnMP.getX()&&
                     touchX<spriteBtnMP.getX()+spriteBtnMP.getWidth()
                     && touchY>=spriteBtnMP.getY()
                     && touchY<=spriteBtnMP.getY()+spriteBtnMP.getHeight()
-                    && estado == EstadoOpciones.MUSICON){
-                estado = EstadoOpciones.MUSICOFF;
-                musicaT=false;
+                    && estado == EstadoOpciones.MUSICOFF){
+                estado = EstadoOpciones.MUSICON;
+                Principal.musicaT=true;
             }
 
         }

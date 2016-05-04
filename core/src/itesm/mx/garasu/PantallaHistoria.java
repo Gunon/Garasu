@@ -122,7 +122,7 @@ public class PantallaHistoria implements Screen
 
         texturaBtnContinuar= new Texture(Gdx.files.internal("derecha.png"));
         spriteBtnContinuar= new Sprite(texturaBtnContinuar);
-        spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+450 , Principal.ALTO_MUNDO/2-350);
+        spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+450 , Principal.ALTO_MUNDO/2+300-texturaBtnContinuar.getHeight());
 
 
 
@@ -244,6 +244,7 @@ public class PantallaHistoria implements Screen
                         estadosPantalla = EstadosPantalla.IN6;
                         break;
                     case IN6:
+                        PantallaMenu.musicaMenu.stop();
                         principal.setScreen(new PantallaNivel1(principal));
                         break;
                 }

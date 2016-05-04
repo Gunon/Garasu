@@ -34,6 +34,9 @@ public class PantallaNivel2 implements Screen
     //Personaje
     private Personaje personaje;
     private Texture texturaPersonaje;
+
+    private Texture texturaGisbar;
+    private Sprite spriteGisbar;
     public static final int TAM_CELDA = 16;
 
     private Enemigo enemigo1;
@@ -120,7 +123,7 @@ public class PantallaNivel2 implements Screen
     public int countG=0;
 
     //Sonidos
-    private Music musicaNivel1;
+    private Music musicaNivel2;
 
 
     public PantallaNivel2(Principal principal) {
@@ -131,6 +134,7 @@ public class PantallaNivel2 implements Screen
     @Override
     public void show() {
         // Se ejecuta cuando se muestra la pantalla
+
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2, 0);
@@ -167,10 +171,12 @@ public class PantallaNivel2 implements Screen
        // rendererMapa.setView(camara);
         // Cargar frames
 
-        musicaNivel1 = assetManager.get("POL-evil-throne-short.ogg");
-        musicaNivel1.setLooping(true);
+        musicaNivel2 = assetManager.get("Nivel2.wav");
+        musicaNivel2.setLooping(true);
 
-
+        if(Principal.musicaT==true) {
+            musicaNivel2.play();
+        }
 
         texturaPersonaje = assetManager.get("tiraGarasu.png");
         texturaEnemigo = assetManager.get("tiraEnemigo.png");
@@ -202,7 +208,7 @@ public class PantallaNivel2 implements Screen
         // Posición inicial del personaje
         enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, principal.ALTO_MUNDO / 2 - 200);
         enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, principal.ALTO_MUNDO / 2 - 200);
-        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
+        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, principal.ALTO_MUNDO / 2 - 200);
         enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4000,principal.ALTO_MUNDO /2+300);
         enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
         enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1250,principal.ALTO_MUNDO /2+1500);
@@ -211,7 +217,7 @@ public class PantallaNivel2 implements Screen
        enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
         enemigo10.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+300);
         enemigo11.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5500,principal.ALTO_MUNDO /2+300);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
+      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2);
 
         // Crear los botones
         texturaBtnIzquierda = assetManager.get("izquierda.png");
@@ -238,8 +244,7 @@ public class PantallaNivel2 implements Screen
         btnReanudar = new Boton(texturaBtnReanudar);
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
         btnContinuar = new Boton(texturaBtnReanudar);
-        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth(),Principal.ALTO_MUNDO/2-200);
-
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
         btnPausa.setPosicion(70 * TAM_CELDA, 38 * TAM_CELDA);
@@ -247,7 +252,7 @@ public class PantallaNivel2 implements Screen
 
         texturaBtnDes = assetManager.get("boton_decisiones.png");
         btnDesB = new Boton(texturaBtnDes);
-        btnDesB.setPosicion(2*TAM_CELDA , 3 * TAM_CELDA);
+        btnDesB.setPosicion(2 * TAM_CELDA, 3 * TAM_CELDA);
 
         btnDesM = new Boton(texturaBtnDes);
         btnDesM.setPosicion(40 * TAM_CELDA, 3 * TAM_CELDA);
@@ -285,6 +290,11 @@ public class PantallaNivel2 implements Screen
         texturaPregunta = assetManager.get("pregunta.png");
         spritePregunta = new Sprite(texturaPregunta);
 
+
+
+        texturaGisbar = assetManager.get("TiraGisbar.png");
+        spriteGisbar = new Sprite(texturaGisbar);
+        spriteGisbar.setPosition(Principal.ANCHO_MUNDO-texturaGisbar.getWidth()-50,Principal.ALTO_MUNDO/2-300);
 
         TexturaPerdio = assetManager.get("GameOver.png");
         spritePerdio = new Sprite(TexturaPerdio);
@@ -349,6 +359,8 @@ public class PantallaNivel2 implements Screen
 
         }
         if(estadoJuego== EstadosJuego.FINAL){
+            spriteGisbar.draw(batch);
+
             spritePregunta.draw(batch);
             btnDesB.render(batch);
             btnDesM.render(batch);
@@ -468,9 +480,7 @@ public class PantallaNivel2 implements Screen
                     // Dejarlo sobre la celda que lo detiene
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
-                    if(PantallaOpciones.musicaT==true) {
-                        musicaNivel1.play();
-                    }
+
                     probarChoqueParedes();
                     for(Enemigo enemigo: enemigos){
                         probarChoqueEnemigo(enemigo,personaje);
@@ -703,15 +713,6 @@ public class PantallaNivel2 implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
       // regresamos la memoria
-        texturaBtnPausa.dispose();
-        texturaPersonaje.dispose();
-        TexturaCorazonLleno.dispose();
-        TexturaCorazonMedio.dispose();
-        TexturaCorazonVacio.dispose();
-        TexturaPausa.dispose();
-        texturaPregunta.dispose();
-        TexturaPerdio.dispose();
-        texturaGano.dispose();
         assetManager.unload("Nivel2_Mapa.tmx");
 
 
@@ -747,11 +748,12 @@ public class PantallaNivel2 implements Screen
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.ATAQUE);
                 }
                 if(btnInicio.contiene(x,y)&&estadoJuego== EstadosJuego.PAUSADO){
+                    musicaNivel2.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
             }else if(estadoJuego== EstadosJuego.PAUSADO){
                 if(btnInicio.contiene(x,y)){
-                    musicaNivel1.stop();
+                    musicaNivel2.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
                 if(btnReanudar.contiene(x,y)){
@@ -759,6 +761,7 @@ public class PantallaNivel2 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
+                    musicaNivel2.stop();
                     principal.setScreen(new PantallaNivel2(principal));
 
                 }
@@ -774,6 +777,7 @@ public class PantallaNivel2 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.GANO){
                 if(btnContinuar.contiene(x,y)){
+                    musicaNivel2.stop();
                     principal.setScreen(new PantallaNivel3(principal));
                 }
             }

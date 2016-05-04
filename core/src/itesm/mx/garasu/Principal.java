@@ -13,7 +13,12 @@ public class Principal extends Game {
 	public static final int ANCHO_MUNDO = 1280;
 
 	private final AssetManager assetManager = new AssetManager();
+	public static boolean firstm = false;
+	public static boolean playing =true;
 
+	//Musica
+
+	public static boolean musicaT = true;
 	@Override
 	public void create () {
 		assetManager.setLoader(TiledMap.class,

@@ -34,6 +34,9 @@ public class PantallaNivel1 implements Screen
     //Personaje
     private Personaje personaje;
     private Texture texturaPersonaje;
+
+    private Texture texturaGisbar;
+    private Sprite spriteGisbar;
     public static final int TAM_CELDA = 16;
 
     private Enemigo enemigo1;
@@ -159,7 +162,7 @@ public class PantallaNivel1 implements Screen
        // rendererMapa.setView(camara);
         // Cargar frames
 
-        musicaNivel1 = assetManager.get("POL-evil-throne-short.ogg");
+        musicaNivel1 = assetManager.get("Nivel1.wav");
         musicaNivel1.setLooping(true);
 
 
@@ -178,7 +181,7 @@ public class PantallaNivel1 implements Screen
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
         enemigos.add(enemigo3);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2);
+      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2-100);
 
         // Crear los botones
         texturaBtnIzquierda = assetManager.get("izquierda.png");
@@ -206,7 +209,7 @@ public class PantallaNivel1 implements Screen
 
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
         btnContinuar = new Boton(texturaBtnReanudar);
-        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth(),Principal.ALTO_MUNDO/2-200);
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
 
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
@@ -254,6 +257,9 @@ public class PantallaNivel1 implements Screen
         texturaPregunta = assetManager.get("pregunta.png");
         spritePregunta = new Sprite(texturaPregunta);
 
+        texturaGisbar = assetManager.get("TiraGisbar.png");
+        spriteGisbar = new Sprite(texturaGisbar);
+        spriteGisbar.setPosition(Principal.ANCHO_MUNDO-texturaGisbar.getWidth()-50,Principal.ALTO_MUNDO/2-250);
 
         TexturaPerdio = assetManager.get("GameOver.png");
         spritePerdio = new Sprite(TexturaPerdio);
@@ -278,7 +284,6 @@ public class PantallaNivel1 implements Screen
 
 
 
-        /*leerEntrada();*/
         assetManager.update();
         // Actualizar objetos
         // Borrar la pantalla
@@ -320,6 +325,7 @@ public class PantallaNivel1 implements Screen
 
         }
         if(estadoJuego==EstadosJuego.FINAL){
+            spriteGisbar.draw(batch);
             spritePregunta.draw(batch);
             btnDesB.render(batch);
             btnDesM.render(batch);
@@ -443,7 +449,7 @@ public class PantallaNivel1 implements Screen
                     // Dejarlo sobre la celda que lo detiene
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
-                    if(PantallaOpciones.musicaT==true) {
+                    if(Principal.musicaT==true) {
                         musicaNivel1.play();
                     }
                     probarChoqueParedes();
@@ -706,6 +712,7 @@ public class PantallaNivel1 implements Screen
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.ATAQUE);
                 }
                 if(btnInicio.contiene(x,y)&&estadoJuego==EstadosJuego.PAUSADO){
+                    musicaNivel1.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
             }else if(estadoJuego==EstadosJuego.PAUSADO){
@@ -718,6 +725,7 @@ public class PantallaNivel1 implements Screen
                 }
             }else if(estadoJuego==EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
+                    musicaNivel1.stop();
                     principal.setScreen(new PantallaNivel1(principal));
 
                 }
@@ -733,6 +741,7 @@ public class PantallaNivel1 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.GANO){
                 if(btnContinuar.contiene(x,y)){
+                    musicaNivel1.stop();
                     principal.setScreen(new PantallaNivel2(principal));
                 }
             }

@@ -71,7 +71,7 @@ public class Personaje
     // Dibuja el personaje
     public void render(SpriteBatch batch) {
         // Dibuja el personaje dependiendo del estadoMovimiento
-        System.out.println(der);
+
         switch (estadoMovimiento) {
             case MOV_DERECHA:
             case MOV_IZQUIERDA:
@@ -96,7 +96,7 @@ public class Personaje
                 }
                 break;
             case ATAQUE:
-                System.out.println(der);
+
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 // Obtiene el frame que se debe mostrar (de acuerdo al timer)
 

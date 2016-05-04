@@ -34,6 +34,8 @@ public class PantallaNivel3 implements Screen
     //Personaje
     private Personaje personaje;
     private Texture texturaPersonaje;
+    private Texture texturaGisbar;
+    private Sprite spriteGisbar;
     public static final int TAM_CELDA = 16;
 
     private Enemigo enemigo1;
@@ -166,7 +168,7 @@ public class PantallaNivel3 implements Screen
        // rendererMapa.setView(camara);
         // Cargar frames
 
-        musicaNivel1 = assetManager.get("POL-evil-throne-short.ogg");
+        musicaNivel1 = assetManager.get("Nivel3.wav");
         musicaNivel1.setLooping(true);
 
 
@@ -199,9 +201,9 @@ public class PantallaNivel3 implements Screen
         enemigos.add(enemigo10);
         enemigos.add(enemigo11);
         // Posición inicial del personaje
-        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
-        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+3000,principal.ALTO_MUNDO /2-200);
-        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
+        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, principal.ALTO_MUNDO / 2 - 200);
+        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, principal.ALTO_MUNDO / 2 - 200);
+        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, principal.ALTO_MUNDO / 2 - 200);
         enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4000,principal.ALTO_MUNDO /2+300);
         enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
         enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1250,principal.ALTO_MUNDO /2+1500);
@@ -210,7 +212,8 @@ public class PantallaNivel3 implements Screen
        enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
         enemigo10.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+300);
         enemigo11.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5500,principal.ALTO_MUNDO /2+300);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
+        personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2-100);
+
 
         // Crear los botones
         texturaBtnIzquierda = assetManager.get("izquierda.png");
@@ -244,7 +247,7 @@ public class PantallaNivel3 implements Screen
 
         texturaBtnDes = assetManager.get("boton_decisiones.png");
         btnDesB = new Boton(texturaBtnDes);
-        btnDesB.setPosicion(2*TAM_CELDA , 3 * TAM_CELDA);
+        btnDesB.setPosicion(2 * TAM_CELDA, 3 * TAM_CELDA);
 
         btnDesM = new Boton(texturaBtnDes);
         btnDesM.setPosicion(40 * TAM_CELDA, 3 * TAM_CELDA);
@@ -281,6 +284,10 @@ public class PantallaNivel3 implements Screen
 
         texturaPregunta = assetManager.get("pregunta.png");
         spritePregunta = new Sprite(texturaPregunta);
+
+        texturaGisbar = assetManager.get("TiraGisbar.png");
+        spriteGisbar = new Sprite(texturaGisbar);
+        spriteGisbar.setPosition(Principal.ANCHO_MUNDO-texturaGisbar.getWidth()-50,Principal.ALTO_MUNDO/2-250);
 
 
         TexturaPerdio = assetManager.get("GameOver.png");
@@ -346,6 +353,7 @@ public class PantallaNivel3 implements Screen
 
         }
         if(estadoJuego== EstadosJuego.FINAL){
+            spriteGisbar.draw(batch);
             spritePregunta.draw(batch);
             btnDesB.render(batch);
             btnDesM.render(batch);
@@ -464,7 +472,7 @@ public class PantallaNivel3 implements Screen
                     // Dejarlo sobre la celda que lo detiene
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
-                    if(PantallaOpciones.musicaT==true) {
+                    if(Principal.musicaT==true) {
                         musicaNivel1.play();
                     }
                     probarChoqueParedes();
@@ -623,6 +631,7 @@ public class PantallaNivel3 implements Screen
                 if(personaje.getDer()==false) {
                     personaje.setPosicion(personaje.getX() + 500, (int) personaje.getY());
                 }
+                vidas--;
                 vidas--;
             }else if(personaje.getEstadoMovimiento()== Personaje.EstadoMovimiento.ATAQUE){
                 enemigo.setPosicion(-500, -500);
