@@ -426,7 +426,7 @@ public class PantallaNivel2 implements Screen
                 // Los bloques en el mapa son de 16x16
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
-                int celdaXDer = (int) (personaje.getX()+30);
+                int celdaXDer = (int) (personaje.getX()+50);
                 int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
@@ -436,7 +436,7 @@ public class PantallaNivel2 implements Screen
 
               //  Gdx.app.log("Celda:", ""+celda.getTile().getId());
                 // probar si la celda está ocupada
-                if (celda == null/*&&celdaDer==null*/) {
+                if (celda == null&&celdaDer==null) {
                     // Celda vacía, entonces el personaje puede avanzar
                     personaje.caer();
                 }else {  // Las estrellas no lo detienen :)
@@ -628,7 +628,7 @@ public class PantallaNivel2 implements Screen
 
         TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
-        TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
+
 
 
 
