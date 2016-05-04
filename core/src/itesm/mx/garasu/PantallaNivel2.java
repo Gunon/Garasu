@@ -603,8 +603,7 @@ public class PantallaNivel2 implements Screen
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
 
-        assetManager.unload("Nivel2_Mapa.tmx");
-        assetManager.unload("pregunta2.png");
+
 
 
     }

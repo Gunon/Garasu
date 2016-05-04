@@ -589,8 +589,7 @@ public class PantallaNivel1 implements Screen
     @Override
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
-        assetManager.unload("Nivel_1_LargeMap.tmx");
-        assetManager.unload("pregunta.png");
+
 
 
     }
