@@ -626,7 +626,7 @@ public class PantallaNivel2 implements Screen
 
         int celdaY = (int) (personaje.getY() / TAM_CELDA); // Casilla del personaje en Y
 
-        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Prueba");
+        TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
         TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
 
