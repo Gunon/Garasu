@@ -20,7 +20,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
-public class PantallaNivel1 implements Screen
+public class PantallaNivel3 implements Screen
 {
     private final Principal principal;
     private OrthographicCamera camara;
@@ -39,6 +39,14 @@ public class PantallaNivel1 implements Screen
     private Enemigo enemigo1;
     private Enemigo enemigo2;
     private Enemigo enemigo3;
+    private Enemigo enemigo4;
+    private Enemigo enemigo5;
+    private Enemigo enemigo6;
+    private Enemigo enemigo7;
+    private Enemigo enemigo8;
+    private Enemigo enemigo9;
+    private Enemigo enemigo10;
+    private Enemigo enemigo11;
     private Texture texturaEnemigo;
 
     private Texture texturaPregunta;
@@ -61,6 +69,8 @@ public class PantallaNivel1 implements Screen
 
     public int vidas = 6;
 
+    private Array <Enemigo> enemigos = new Array<Enemigo>();
+
     private Texture TexturaPausa;
     private Sprite spritePausa;
 
@@ -72,7 +82,7 @@ public class PantallaNivel1 implements Screen
 
     //puntaje
     private Texto texto;
-    public static int gemasC;
+
 
     //
     private Texture texturaBtnPausa;
@@ -84,9 +94,6 @@ public class PantallaNivel1 implements Screen
 
     private Texture texturaBtnReanudar;
     private Boton btnReanudar;
-    private Boton btnContinuar;
-
-    private int countG=0;
 
     // Botones izquierda/derecha
     private Texture texturaBtnIzquierda;
@@ -105,17 +112,17 @@ public class PantallaNivel1 implements Screen
     private Boton btnDesM;
     //Estados
     private EstadosJuego estadoJuego;
-    private Array<Enemigo> enemigos = new Array<Enemigo>();
 
     // Dibujar
     private SpriteBatch batch;
 
+    public int countG=0;
 
     //Sonidos
     private Music musicaNivel1;
 
 
-    public PantallaNivel1(Principal principal) {
+    public PantallaNivel3(Principal principal) {
         this.principal = principal;
     }
 
@@ -142,7 +149,7 @@ public class PantallaNivel1 implements Screen
 
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
-        estadoJuego=EstadosJuego.JUGANDO;
+        estadoJuego= EstadosJuego.JUGANDO;
 
         // Texto
         texto = new Texto();
@@ -152,7 +159,7 @@ public class PantallaNivel1 implements Screen
         AssetManager assetManager = principal.getAssetManager();
          // Referencia al assetManager
         // Carga el mapa en memoria
-        mapa = assetManager.get("Nivel_1_LargeMap.tmx");
+        mapa = assetManager.get("Nivel3_Mapa.tmx");
         //mapa.getLayers().get(0).setVisible(false);    // Pueden ocultar una capa así
         // Crear el objeto que dibujará el mapa
         rendererMapa = new OrthogonalTiledMapRenderer(mapa,batch);
@@ -171,14 +178,39 @@ public class PantallaNivel1 implements Screen
         enemigo1 = new Enemigo(texturaEnemigo);
         enemigo2 = new Enemigo(texturaEnemigo);
         enemigo3 = new Enemigo(texturaEnemigo);
-        // Posición inicial del personaje
-        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, principal.ALTO_MUNDO / 2 - 200);
-        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, principal.ALTO_MUNDO / 2 - 200);
-        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, principal.ALTO_MUNDO / 2 - 200);
+        enemigo4 = new Enemigo(texturaEnemigo);
+        enemigo5 = new Enemigo(texturaEnemigo);
+        enemigo6 = new Enemigo(texturaEnemigo);
+        enemigo7 = new Enemigo(texturaEnemigo);
+        enemigo8 = new Enemigo(texturaEnemigo);
+        enemigo9 = new Enemigo(texturaEnemigo);
+        enemigo10 = new Enemigo(texturaEnemigo);
+        enemigo11 = new Enemigo(texturaEnemigo);
+
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
         enemigos.add(enemigo3);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2);
+        enemigos.add(enemigo4);
+        enemigos.add(enemigo5);
+        enemigos.add(enemigo6);
+        enemigos.add(enemigo7);
+        enemigos.add(enemigo8);
+        enemigos.add(enemigo9);
+        enemigos.add(enemigo10);
+        enemigos.add(enemigo11);
+        // Posición inicial del personaje
+        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
+        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+3000,principal.ALTO_MUNDO /2-200);
+        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
+        enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4000,principal.ALTO_MUNDO /2+300);
+        enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
+        enemigo6.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1250,principal.ALTO_MUNDO /2+1500);
+        enemigo7.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1500,principal.ALTO_MUNDO /2+100);
+        enemigo8.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+100);
+       enemigo9.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+6000,principal.ALTO_MUNDO /2+100);
+        enemigo10.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+2500,principal.ALTO_MUNDO /2+300);
+        enemigo11.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5500,principal.ALTO_MUNDO /2+300);
+      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO /2);
 
         // Crear los botones
         texturaBtnIzquierda = assetManager.get("izquierda.png");
@@ -203,11 +235,7 @@ public class PantallaNivel1 implements Screen
 
         texturaBtnReanudar=assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
-
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
-        btnContinuar = new Boton(texturaBtnReanudar);
-        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth(),Principal.ALTO_MUNDO/2-200);
-
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
@@ -263,12 +291,11 @@ public class PantallaNivel1 implements Screen
 
     }
 
-
     @Override
     public void render(float delta) {
         AssetManager assetManager = principal.getAssetManager();
         // Leer
-        if(estadoJuego==EstadosJuego.JUGANDO) {
+        if(estadoJuego== EstadosJuego.JUGANDO) {
             moverPersonaje();
             for(Enemigo enemigo: enemigos){
                 moverEnemigo(enemigo);
@@ -301,15 +328,14 @@ public class PantallaNivel1 implements Screen
 
         batch.setProjectionMatrix(camaraHUD.combined);
         batch.begin();
-        if(estadoJuego==EstadosJuego.PERDIO){
+        if(estadoJuego== EstadosJuego.PERDIO){
             spritePerdio.draw(batch);
             btnReanudar.render(batch);
-
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             }
         }
-        if(estadoJuego==EstadosJuego.PAUSADO){
+        if(estadoJuego== EstadosJuego.PAUSADO){
             spritePausa.draw(batch);
             btnInicio.render(batch);
             btnReanudar.render(batch);
@@ -319,30 +345,25 @@ public class PantallaNivel1 implements Screen
             }
 
         }
-        if(estadoJuego==EstadosJuego.FINAL){
+        if(estadoJuego== EstadosJuego.FINAL){
             spritePregunta.draw(batch);
             btnDesB.render(batch);
             btnDesM.render(batch);
 
-
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             }
-
         }
 
-        if(estadoJuego==EstadosJuego.GANO){
+        if(estadoJuego== EstadosJuego.GANO){
 
             spriteGano.draw(batch);
-            btnContinuar.render(batch);
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             }
-
-
         }
 
-        if(estadoJuego!=EstadosJuego.FINAL&&estadoJuego!=EstadosJuego.GANO) {
+        if(estadoJuego!= EstadosJuego.FINAL&&estadoJuego!= EstadosJuego.GANO) {
             btnDerecha.render(batch);
             btnIzquierda.render(batch);
             btnSalto.render(batch);
@@ -388,7 +409,7 @@ public class PantallaNivel1 implements Screen
                 break;
 
         }
-        texto.mostrarMensaje(batch, "Puntaje : " + gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
+        texto.mostrarMensaje(batch, "Puntaje : " + PantallaNivel1.gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
 
         batch.end();
     }
@@ -413,7 +434,7 @@ public class PantallaNivel1 implements Screen
         if (posX>8960-640) {    // Si está en la última mitad
             // La cámara se queda a media pantalla antes del fin del mundo  :)
             camara.position.set(8960-640, camara.position.y, 0);
-            estadoJuego=EstadosJuego.FINAL;
+            estadoJuego= EstadosJuego.FINAL;
         }
         camara.update();
 
@@ -426,7 +447,7 @@ public class PantallaNivel1 implements Screen
                 // Los bloques en el mapa son de 16x16
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
-                int celdaXDer = (int) (personaje.getX()+50);
+                int celdaXDer = (int) (personaje.getX()+30);
                 int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
@@ -434,9 +455,9 @@ public class PantallaNivel1 implements Screen
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
                 TiledMapTileLayer.Cell celdaDer = capa.getCell(celdaXDer, celdaY);
 
-
+              //  Gdx.app.log("Celda:", ""+celda.getTile().getId());
                 // probar si la celda está ocupada
-                if (celda == null&&celdaDer==null) {
+                if (celda == null/*&&celdaDer==null*/) {
                     // Celda vacía, entonces el personaje puede avanzar
                     personaje.caer();
                 }else {  // Las estrellas no lo detienen :)
@@ -448,23 +469,27 @@ public class PantallaNivel1 implements Screen
                     }
                     probarChoqueParedes();
                     for(Enemigo enemigo: enemigos){
-                    probarChoqueEnemigo(enemigo,personaje);
-                }
+                        probarChoqueEnemigo(enemigo,personaje);
+                    }
+
+
+
                 }
                 break;
             case MOV_DERECHA:
-                // Se mueve horizontal
             case MOV_IZQUIERDA:
                 probarChoqueParedes();
-                      for(Enemigo enemigo: enemigos){
+                for(Enemigo enemigo: enemigos){
                     probarChoqueEnemigo(enemigo,personaje);
-                }// Prueba si debe moverse
+                }
                 break;
             case QUIETO:
                 probarChoqueParedes();
                 for(Enemigo enemigo: enemigos){
                     probarChoqueEnemigo(enemigo,personaje);
                 }
+
+
                 break;
             case ATAQUE:
                 probarChoqueParedes();
@@ -477,9 +502,9 @@ public class PantallaNivel1 implements Screen
                 case SUBIENDO:
                 case BAJANDO:
                     probarChoqueParedes();
-                          for(Enemigo enemigo: enemigos){
-                    probarChoqueEnemigo(enemigo,personaje);
-                }// Prueba si debe moverse
+                    for(Enemigo enemigo: enemigos){
+                        probarChoqueEnemigo(enemigo,personaje);
+                    }
                     personaje.actualizarSalto();    // Actualizar posición en 'y'
                     break;
             }
@@ -491,7 +516,7 @@ public class PantallaNivel1 implements Screen
             // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (personaje.getX() / TAM_CELDA);
             int celdaXDer = (int) (personaje.getX() / TAM_CELDA+5);
-           // Gdx.app.log("valor",""+celdaX);
+          //  Gdx.app.log("valor",""+celdaX);
             //Gdx.app.log("valor",""+celdaXDer);
 
             int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
@@ -610,9 +635,6 @@ public class PantallaNivel1 implements Screen
     private void probarChoqueParedes() {
 
 
-
-
-
         float px = personaje.getX();    // Posición actual
 
         // Posición después de actualizar
@@ -630,19 +652,22 @@ public class PantallaNivel1 implements Screen
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
         TiledMapTileLayer.Cell gemasCell = gemas.getCell(celdaX, celdaY);
 
+
+
         for(int i=0;i<7;i++){
             for (int j=0;j<5;j++){
                 if (gemas.getCell(celdaX+i, celdaY+j)!=null){
                     gemas.setCell(celdaX + i, celdaY+j, null);
                     countG++;
                     if(countG==9) {
-                        gemasC += 100;
+                        PantallaNivel1.gemasC += 100;
                         countG=0;
                     }
                 }
             }
 
         }
+
 
 
         if ( capaprincipal.getCell(celdaX,celdaY) != null || capaprincipal.getCell(celdaX,celdaY+1) != null ) {
@@ -673,11 +698,12 @@ public class PantallaNivel1 implements Screen
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
       // regresamos la memoria
-        assetManager.unload("Nivel_1_LargeMap.tmx");
 
 
     }
 
+   /* Clase utilizada para manejar los eventos de touch en la pantalla
+    */
     public class ProcesadorEntrada extends InputAdapter
     {
         private Vector3 coordenadas = new Vector3();
@@ -687,7 +713,7 @@ public class PantallaNivel1 implements Screen
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);
-            if (estadoJuego==EstadosJuego.JUGANDO) {
+            if (estadoJuego== EstadosJuego.JUGANDO) {
                 // Preguntar si las coordenadas están sobre el botón derecho
                 if (btnDerecha.contiene(x, y) && personaje.getEstadoMovimiento() != Personaje.EstadoMovimiento.INICIANDO) {
                     // Tocó el botón derecha, hacer que el personaje se mueva a la derecha
@@ -700,15 +726,15 @@ public class PantallaNivel1 implements Screen
                     personaje.saltar();
                 }else
                 if(btnPausa.contiene(x,y)){
-                    estadoJuego=EstadosJuego.PAUSADO;
+                    estadoJuego= EstadosJuego.PAUSADO;
                 }
                 if(btnAtaque.contiene(x,y)){
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.ATAQUE);
                 }
-                if(btnInicio.contiene(x,y)&&estadoJuego==EstadosJuego.PAUSADO){
+                if(btnInicio.contiene(x,y)&&estadoJuego== EstadosJuego.PAUSADO){
                     principal.setScreen(new PantallaMenu(principal));
                 }
-            }else if(estadoJuego==EstadosJuego.PAUSADO){
+            }else if(estadoJuego== EstadosJuego.PAUSADO){
                 if(btnInicio.contiene(x,y)){
                     musicaNivel1.stop();
                     principal.setScreen(new PantallaMenu(principal));
@@ -716,24 +742,20 @@ public class PantallaNivel1 implements Screen
                 if(btnReanudar.contiene(x,y)){
                     estadoJuego = EstadosJuego.JUGANDO;
                 }
-            }else if(estadoJuego==EstadosJuego.PERDIO){
+            }else if(estadoJuego== EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
-                    principal.setScreen(new PantallaNivel1(principal));
+                    principal.setScreen(new PantallaNivel3(principal));
 
                 }
-            }else if(estadoJuego==EstadosJuego.FINAL){
+            }else if(estadoJuego== EstadosJuego.FINAL){
                 if(btnDesB.contiene(x,y)){
-                    gemasC+=500;
-                    estadoJuego=EstadosJuego.GANO;
+                    PantallaNivel1.gemasC+=500;
+                    estadoJuego= EstadosJuego.GANO;
 
                 }
                 else if(btnDesM.contiene(x,y)){
-                    gemasC+=250;
-                    estadoJuego=EstadosJuego.GANO;
-                }
-            }else if(estadoJuego== EstadosJuego.GANO){
-                if(btnContinuar.contiene(x,y)){
-                    principal.setScreen(new PantallaNivel2(principal));
+                    PantallaNivel1.gemasC+=250;
+                    estadoJuego= EstadosJuego.GANO;
                 }
             }
             return true;    // Indica que ya procesó el evento

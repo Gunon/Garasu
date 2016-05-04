@@ -93,7 +93,7 @@ public class PantallaMenu implements Screen {
         //Creditos
         texturaBtnPausa = new Texture(Gdx.files.internal("Btn_Creditos.png"));
         spriteBtnPausa = new Sprite(texturaBtnPausa);
-        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 +300);
+        spriteBtnPausa.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnPausa.getWidth() / 2 + 550, Principal.ALTO_MUNDO / 2 - spriteBtnPausa.getRegionHeight() / 2 + 300);
 
 
         // BotonPlay
@@ -196,6 +196,7 @@ public class PantallaMenu implements Screen {
                     && touchY<=spriteBtnPlay.getY()+spriteBtnPlay.getHeight()){
                // musicaMenu.stop();
                 principal.setScreen(new itesm.mx.garasu.PantallaCargando(principal));
+                dispose();
 
             }
             if(touchX>=spriteBtnInstrucciones.getX()&&

@@ -76,6 +76,7 @@ public class PantallaTec implements Screen {
 
          tiempo = Gdx.graphics.getRawDeltaTime()+tiempo;
         if(tiempo>3){
+            dispose();
             principal.setScreen(new PantallaGarasu(principal));
         }
         Gdx.gl.glClearColor(1, 1, 1, 1);

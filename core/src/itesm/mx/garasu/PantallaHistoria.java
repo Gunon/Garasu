@@ -19,8 +19,7 @@ public class PantallaHistoria implements Screen
     private Viewport vista;
 
     // Fondo
-    private Texture texturaFondo;
-    private Sprite spriteFondo;
+
 
     private EstadosPantalla estadosPantalla;
 
@@ -46,16 +45,14 @@ public class PantallaHistoria implements Screen
     private Texture texturaHistoria6;
     private Sprite spriteHistoria6;
 
-    private Texture texturaTexto1;
-    private Sprite spriteTexto1;
+
 
     private Texture texturaBtnContinuar;
     private Sprite spriteBtnContinuar;
 
 
     //Fondo Juego
-    private Texture texturaFondoJuego;
-    private Sprite spriteFondoJuego;
+
 
 
 
@@ -88,15 +85,11 @@ public class PantallaHistoria implements Screen
 
     private void cargarTexturasSprites() {
         // Fondo
-        texturaFondo = new Texture(Gdx.files.internal("marco_menus_copy.png"));
-        spriteFondo = new Sprite(texturaFondo);
 
-        texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
-        spriteFondoJuego = new Sprite(texturaFondoJuego);
 
-        texturaTexto1 = new Texture(Gdx.files.internal("Texto.png"));
-        spriteTexto1 = new Sprite(texturaTexto1);
-        spriteTexto1.setPosition(0,0);
+
+
+
 
 
 
@@ -151,47 +144,44 @@ public class PantallaHistoria implements Screen
         // Dibujamos
         batch.begin();
 
-       spriteFondoJuego.draw(batch);
-        spriteFondo.draw(batch);
+
 
 
         if(estadosPantalla== EstadosPantalla.IN1){
             spriteHistoria1.draw(batch);
-            spriteTexto1.draw(batch);
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN2){
 
             spriteHistoria2.draw(batch);
-            spriteTexto1.draw(batch);
+
 
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN3){
 
             spriteHistoria3.draw(batch);
-            spriteTexto1.draw(batch);
+
 
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN4){
 
             spriteHistoria4.draw(batch);
-            spriteTexto1.draw(batch);
 
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN5){
 
             spriteHistoria5.draw(batch);
-            spriteTexto1.draw(batch);
+
 
             spriteBtnContinuar.draw(batch);
         }
         if(estadosPantalla== EstadosPantalla.IN6){
 
             spriteHistoria6.draw(batch);
-            spriteTexto1.draw(batch);
+
 
             spriteBtnContinuar.draw(batch);
         }
@@ -221,7 +211,7 @@ public class PantallaHistoria implements Screen
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     private void leerEntrada() {
@@ -267,9 +257,9 @@ public class PantallaHistoria implements Screen
     public void dispose() {
         // Cuando la PantallaMenu sale de memoria.
         // LIBERAR los recursos
-        texturaFondo.dispose();
-        texturaFondoJuego.dispose();
-         texturaTexto1.dispose();
+
+
+
         texturaHistoria1.dispose();
          texturaHistoria2.dispose();
          texturaHistoria3.dispose();

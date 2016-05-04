@@ -82,7 +82,7 @@ public class PantallaNivel2 implements Screen
 
     //puntaje
     private Texto texto;
-    private int gemasC;
+
 
     //
     private Texture texturaBtnPausa;
@@ -94,6 +94,7 @@ public class PantallaNivel2 implements Screen
 
     private Texture texturaBtnReanudar;
     private Boton btnReanudar;
+    private Boton btnContinuar;
 
     // Botones izquierda/derecha
     private Texture texturaBtnIzquierda;
@@ -199,8 +200,8 @@ public class PantallaNivel2 implements Screen
         enemigos.add(enemigo10);
         enemigos.add(enemigo11);
         // Posición inicial del personaje
-        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+1000,principal.ALTO_MUNDO /2-200);
-        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+3000,principal.ALTO_MUNDO /2-200);
+        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, principal.ALTO_MUNDO / 2 - 200);
+        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, principal.ALTO_MUNDO / 2 - 200);
         enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5000,principal.ALTO_MUNDO /2-200);
         enemigo4.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+4000,principal.ALTO_MUNDO /2+300);
         enemigo5.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+7000,principal.ALTO_MUNDO /2+300);
@@ -236,6 +237,8 @@ public class PantallaNivel2 implements Screen
         texturaBtnReanudar=assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
+        btnContinuar = new Boton(texturaBtnReanudar);
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth(),Principal.ALTO_MUNDO/2-200);
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
@@ -358,6 +361,7 @@ public class PantallaNivel2 implements Screen
         if(estadoJuego== EstadosJuego.GANO){
 
             spriteGano.draw(batch);
+            btnContinuar.render(batch);
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             }
@@ -409,7 +413,7 @@ public class PantallaNivel2 implements Screen
                 break;
 
         }
-        texto.mostrarMensaje(batch, "Puntaje : " + gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
+        texto.mostrarMensaje(batch, "Puntaje : " + PantallaNivel1.gemasC, Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO * 0.95f);
 
         batch.end();
     }
@@ -471,15 +475,7 @@ public class PantallaNivel2 implements Screen
                     for(Enemigo enemigo: enemigos){
                         probarChoqueEnemigo(enemigo,personaje);
                     }
-                   /* probarChoqueEnemigo(enemigo1,personaje);
-                    probarChoqueEnemigo(enemigo2,personaje);
-                    probarChoqueEnemigo(enemigo3,personaje);
-                    probarChoqueEnemigo(enemigo4,personaje);
-                    probarChoqueEnemigo(enemigo5,personaje);
-                    probarChoqueEnemigo(enemigo6,personaje);
-                    probarChoqueEnemigo(enemigo7,personaje);
-                    probarChoqueEnemigo(enemigo8,personaje);
-                    probarChoqueEnemigo(enemigo9,personaje);*/
+
 
 
                 }
@@ -489,32 +485,13 @@ public class PantallaNivel2 implements Screen
                 probarChoqueParedes();
                 for(Enemigo enemigo: enemigos){
                     probarChoqueEnemigo(enemigo,personaje);
-                }/*
-                probarChoqueEnemigo(enemigo1,personaje);
-                probarChoqueEnemigo(enemigo2,personaje);
-                probarChoqueEnemigo(enemigo3,personaje);
-                probarChoqueEnemigo(enemigo4,personaje);
-                probarChoqueEnemigo(enemigo5,personaje);
-                probarChoqueEnemigo(enemigo6,personaje);
-                probarChoqueEnemigo(enemigo7,personaje);
-                probarChoqueEnemigo(enemigo8,personaje);
-                probarChoqueEnemigo(enemigo9,personaje);*/
-                      // Prueba si debe moverse
+                }
                 break;
             case QUIETO:
                 probarChoqueParedes();
                 for(Enemigo enemigo: enemigos){
                     probarChoqueEnemigo(enemigo,personaje);
-                }/*
-                probarChoqueEnemigo(enemigo1,personaje);
-                probarChoqueEnemigo(enemigo2,personaje);
-                probarChoqueEnemigo(enemigo3,personaje);
-                probarChoqueEnemigo(enemigo4,personaje);
-                probarChoqueEnemigo(enemigo5,personaje);
-                probarChoqueEnemigo(enemigo6,personaje);
-                probarChoqueEnemigo(enemigo7,personaje);
-                probarChoqueEnemigo(enemigo8,personaje);
-                probarChoqueEnemigo(enemigo9,personaje);*/
+                }
 
 
                 break;
@@ -638,17 +615,23 @@ public class PantallaNivel2 implements Screen
         }
     }
 
+
     private void probarChoqueEnemigo(Enemigo enemigo, Personaje personaje) {
         Rectangle a = personaje.getSprite().getBoundingRectangle();
         Rectangle b = enemigo.getSprite().getBoundingRectangle();
         if(a.overlaps(b)){
 
             if(personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.ATAQUE){
-                personaje.setPosicion(personaje.getX()-500,(int)personaje.getY());
+                if(personaje.getDer()==true) {
+                    personaje.setPosicion(personaje.getX() - 500, (int) personaje.getY());
+                }
+                if(personaje.getDer()==false) {
+                    personaje.setPosicion(personaje.getX() + 500, (int) personaje.getY());
+                }
                 vidas--;
             }else if(personaje.getEstadoMovimiento()== Personaje.EstadoMovimiento.ATAQUE){
                 enemigo.setPosicion(-500, -500);
-                gemasC+=100;
+                PantallaNivel1.gemasC+=100;
             }
 
 
@@ -682,7 +665,7 @@ public class PantallaNivel2 implements Screen
                     gemas.setCell(celdaX + i, celdaY+j, null);
                     countG++;
                     if(countG==9) {
-                        gemasC += 100;
+                        PantallaNivel1.gemasC += 100;
                         countG=0;
                     }
                 }
@@ -709,7 +692,7 @@ public class PantallaNivel2 implements Screen
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
 
@@ -781,13 +764,17 @@ public class PantallaNivel2 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.FINAL){
                 if(btnDesB.contiene(x,y)){
-                    gemasC+=500;
+                    PantallaNivel1.gemasC+=500;
                     estadoJuego= EstadosJuego.GANO;
 
                 }
                 else if(btnDesM.contiene(x,y)){
-                    gemasC+=250;
+                    PantallaNivel1.gemasC+=250;
                     estadoJuego= EstadosJuego.GANO;
+                }
+            }else if(estadoJuego== EstadosJuego.GANO){
+                if(btnContinuar.contiene(x,y)){
+                    principal.setScreen(new PantallaNivel3(principal));
                 }
             }
             return true;    // Indica que ya procesó el evento

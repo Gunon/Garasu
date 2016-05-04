@@ -94,6 +94,7 @@ public class PantallaCargando implements Screen
     private void cargarRecursos() {
         assetManager.load("Nivel_1_LargeMap.tmx", TiledMap.class);
         assetManager.load("Nivel2_Mapa.tmx", TiledMap.class);
+        assetManager.load("Nivel3_Mapa.tmx", TiledMap.class);
         assetManager.load("izquierda.png", Texture.class);
         assetManager.load("derecha.png", Texture.class);
         assetManager.load("tiraGarasu.png", Texture.class);
@@ -138,6 +139,7 @@ public class PantallaCargando implements Screen
         if (assetManager.update()) {
             // Terminó la carga, cambiar de pantalla
             principal.setScreen(new PantallaNivel2(principal));
+
         }
     }
 
@@ -164,12 +166,20 @@ public class PantallaCargando implements Screen
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
     public void dispose() {
       //  texturaLoading.dispose();
+        texturaLoading1.dispose();
+        texturaLoading2.dispose();
+        texturaLoading3.dispose();
+        texturaLoading4.dispose();
+        texturaLoading5.dispose();
+        texturaLoading6.dispose();
+        //TextureRegion texturaCompleta = new TextureRegion(texturaLoading);
+        texturaLoadingFondo.dispose();
         // Los assets de PantallaJuego se liberan en el método dispose de PantallaJuego
     }
 }
