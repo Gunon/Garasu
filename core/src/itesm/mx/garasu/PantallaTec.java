@@ -2,13 +2,11 @@ package itesm.mx.garasu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by user on 25/01/2016.
  */
 //update
-public class PantallaTec implements Screen {
+class PantallaTec implements Screen {
 
     private final Principal principal;
 
@@ -94,10 +92,6 @@ public class PantallaTec implements Screen {
 
     }
 
-
-    public void create() {
-
-    }
 
     public void resize(int width, int height) {
         vista.update(width, height);

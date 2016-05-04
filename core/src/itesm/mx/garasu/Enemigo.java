@@ -14,14 +14,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Enemigo
 {
     public static final float VELOCIDAD_Y = -4f;   // Velocidad de caída
-    public static final float VELOCIDAD_X = 4f;     // Velocidad horizontal
-    public   float mov =0;
-    private float movLim = 400;
+    private static final float VELOCIDAD_X = 4f;     // Velocidad horizontal
+    private float mov =0;
     public boolean first=true;
-    private Sprite sprite;  // Sprite cuando no se mueve
+    private final Sprite sprite;  // Sprite cuando no se mueve
 
     // Animación
-    private Animation animacionCaminata;    // Caminando
+    private final Animation animacionCaminata;    // Caminando
     private Animation animacionSalto;
     private float timerAnimacion;   // tiempo para calcular el frame
 
@@ -37,6 +36,7 @@ public class Enemigo
     private float tiempoVuelo;       // Tiempo que estará en el aire
     private float tiempoSalto;      // Tiempo actual de vuelo
 
+    private final float movLim = 400;
 
     public Enemigo(Texture textura) {
         // Lee la textura como región
@@ -104,7 +104,8 @@ public class Enemigo
                 nuevaX += VELOCIDAD_X;
                 sprite.setX(nuevaX);
                 mov+=VELOCIDAD_X;
-                if(mov>=movLim){
+
+                if(mov>= movLim){
                     mov=0;
                     estadoMovimiento = EstadoMovimiento.MOV_IZQUIERDA;
                 }
@@ -116,7 +117,8 @@ public class Enemigo
                 // Prueba que no salga del mundo
                 nuevaX -= VELOCIDAD_X;
                 mov+=VELOCIDAD_X;
-                if(mov>=movLim){
+
+                if(mov>= movLim){
                     mov=0;
                     estadoMovimiento = EstadoMovimiento.MOV_DERECHA;
                 }
@@ -173,12 +175,12 @@ public class Enemigo
     }
 
     // Modificador del estadoMovimiento
-    public void setEstadoMovimiento(EstadoMovimiento estadoMovimiento) {
-        this.estadoMovimiento = estadoMovimiento;
+    public void setEstadoMovimiento() {
+        this.estadoMovimiento = EstadoMovimiento.QUIETO;
     }
 
-    public void setEstadoSalto(EstadoSalto estadoSalto) {
-        this.estadoSalto = estadoSalto;
+    public void setEstadoSalto() {
+        this.estadoSalto = EstadoSalto.CAIDA_LIBRE;
     }
 
     // Inicia el salto

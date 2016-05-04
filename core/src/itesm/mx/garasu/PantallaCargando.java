@@ -18,9 +18,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Pantala intermedia entre el menú y el juego
  */
-public class PantallaCargando implements Screen
+class PantallaCargando implements Screen
 {
-    private Principal principal;
+    private final Principal principal;
 
     // La cámara y vista principal
     private OrthographicCamera camara;
@@ -40,7 +40,7 @@ public class PantallaCargando implements Screen
 
     private Texture texturaLoadingFondo;
     private Sprite spriteLoadingFondo;
-    private AssetManager assetManager;  // Asset manager principal
+    private final AssetManager assetManager;  // Asset manager principal
 
 
 

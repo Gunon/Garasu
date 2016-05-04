@@ -15,13 +15,13 @@ public class Personaje
     public static final float VELOCIDAD_Y = -4f;   // Velocidad de caída
     public static final float VELOCIDAD_X = 7;     // Velocidad horizontal
 
-    private Sprite sprite;  // Sprite cuando no se mueve
+    private final Sprite sprite;  // Sprite cuando no se mueve
 
     // Animación
-    private Animation animacionCaminata;    // Caminando
-    private Animation animacionSalto;
-    private Animation animacionAtaque;
-    private Animation animacionQuieto;
+    private final Animation animacionCaminata;    // Caminando
+    private final Animation animacionSalto;
+    private final Animation animacionAtaque;
+    private final Animation animacionQuieto;
 
     private float timerAnimacion;   // tiempo para calcular el frame
 
@@ -36,7 +36,7 @@ public class Personaje
     private float yInicial;         // 'y' donde inicia el salto
     private float tiempoVuelo;       // Tiempo que estará en el aire
     private float tiempoSalto;      // Tiempo actual de vuelo
-    public static boolean der = true;
+    private static boolean der = true;
     /*
     Constructor del personaje, recibe una imagen con varios frames, (ver imagen marioSprite.png)
      */
@@ -101,9 +101,9 @@ public class Personaje
                 // Obtiene el frame que se debe mostrar (de acuerdo al timer)
 
                 TextureRegion regionAtaque = animacionAtaque.getKeyFrame(timerAnimacion);
-                if (der == true && regionAtaque.isFlipX() ) {
+                if (der && regionAtaque.isFlipX() ) {
                     regionAtaque.flip(true, false);
-                } else if (der == false && !regionAtaque.isFlipX()) {
+                } else if (!der && !regionAtaque.isFlipX()) {
                     regionAtaque.flip(true, false);
 
 
@@ -115,9 +115,9 @@ public class Personaje
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 TextureRegion regionQuieto = animacionQuieto.getKeyFrame(timerAnimacion);
                 if (estadoSalto == EstadoSalto.EN_PISO && estadoMovimiento != EstadoMovimiento.ATAQUE) {
-                    if (der == true && regionQuieto.isFlipX()) {
+                    if (der && regionQuieto.isFlipX()) {
                         regionQuieto.flip(true, false);
-                    } else if (der == false && !regionQuieto.isFlipX()) {
+                    } else if (!der && !regionQuieto.isFlipX()) {
                         regionQuieto.flip(true, false);
                     }
 

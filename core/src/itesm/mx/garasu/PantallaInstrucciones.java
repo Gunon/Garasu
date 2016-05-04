@@ -24,18 +24,14 @@ public class PantallaInstrucciones implements Screen
 
     private EstadosPantalla estadosPantalla;
 
-    //Instrucciones
-    private Texture texturaInstrucciones1;
     private Sprite spriteInstrucciones1;
 
-    private Texture texturaInstrucciones2;
     private Sprite spriteInstrucciones2;
 
     //Boton Play
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
 
-    private Texture texturaBtnContinuar;
     private Sprite spriteBtnContinuar;
 
 
@@ -43,8 +39,6 @@ public class PantallaInstrucciones implements Screen
     private Texture texturaFondoJuego;
     private Sprite spriteFondoJuego;
 
-    //Titulo
-    private Texture texturaTitulo;
     private Sprite spriteTitulo;
 
 
@@ -82,11 +76,11 @@ public class PantallaInstrucciones implements Screen
         texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
 
-        texturaInstrucciones1 = new Texture(Gdx.files.internal("instrucciones1.png"));
+        Texture texturaInstrucciones1 = new Texture(Gdx.files.internal("instrucciones1.png"));
         spriteInstrucciones1 = new Sprite(texturaInstrucciones1);
         spriteInstrucciones1.setPosition(0,90);
 
-        texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
+        Texture texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
         spriteInstrucciones2 = new Sprite(texturaInstrucciones2);
         spriteInstrucciones2.setPosition(0,90);
 //hola
@@ -95,7 +89,7 @@ public class PantallaInstrucciones implements Screen
         spriteBtnInicio = new Sprite(texturaBtnInicio);
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-120 , Principal.ALTO_MUNDO/2-350);
 
-        texturaBtnContinuar= new Texture(Gdx.files.internal("Btn_continuar.png"));
+        Texture texturaBtnContinuar = new Texture(Gdx.files.internal("Btn_continuar.png"));
         spriteBtnContinuar= new Sprite(texturaBtnContinuar);
         spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+300 , Principal.ALTO_MUNDO/2-350);
 
@@ -104,7 +98,7 @@ public class PantallaInstrucciones implements Screen
 
 
         //Titulo
-        texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
+        Texture texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
         spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-270, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
 
@@ -164,7 +158,7 @@ public class PantallaInstrucciones implements Screen
     }
 
     private void leerEntrada() {
-        if(Gdx.input.justTouched()==true){
+        if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);//Transforma las coordenadas

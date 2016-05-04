@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by rmroman on 04/02/16.
  */
-public class PantallaCreditos implements Screen
+class PantallaCreditos implements Screen
 {
     private final Principal principal;
     private OrthographicCamera camara;
@@ -114,7 +114,7 @@ public class PantallaCreditos implements Screen
     }
 
     private void leerEntrada() {
-        if(Gdx.input.justTouched()==true){
+        if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);//Transforma las coordenadas

@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by user on 25/01/2016.
  */
 //update
-public class PantallaGarasu implements Screen {
+class PantallaGarasu implements Screen {
 
     private final Principal principal;
 
@@ -90,10 +90,6 @@ public class PantallaGarasu implements Screen {
 
     }
 
-
-    public void create() {
-
-    }
 
     public void resize(int width, int height) {
         vista.update(width, height);

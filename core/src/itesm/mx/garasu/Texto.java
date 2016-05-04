@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
-public class Texto
+class Texto
 {
-    private BitmapFont font;
+    private final BitmapFont font;
 
     public Texto() {
         font = new BitmapFont(Gdx.files.internal("GarasuFont.fnt"));

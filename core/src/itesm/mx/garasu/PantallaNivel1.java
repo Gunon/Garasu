@@ -33,25 +33,12 @@ public class PantallaNivel1 implements Screen
 
     //Personaje
     private Personaje personaje;
-    private Texture texturaPersonaje;
 
-    private Texture texturaGisbar;
     private Sprite spriteGisbar;
-    public static final int TAM_CELDA = 16;
+    private static final int TAM_CELDA = 16;
 
-    private Enemigo enemigo1;
-    private Enemigo enemigo2;
-    private Enemigo enemigo3;
-    private Texture texturaEnemigo;
-
-    private Texture texturaPregunta;
     private Sprite spritePregunta;
 
-    private Texture TexturaCorazonLleno;
-
-    private Texture TexturaCorazonMedio;
-
-    private Texture TexturaCorazonVacio;
     private Sprite vida1SpriteF;
     private Sprite vida1SpriteH;
     private Sprite vida1SpriteE;
@@ -62,53 +49,39 @@ public class PantallaNivel1 implements Screen
     private Sprite vida3SpriteH;
     private Sprite vida3SpriteE;
 
-    public int vidas = 6;
+    private int vidas = 6;
 
-    private Texture TexturaPausa;
     private Sprite spritePausa;
 
-    private Texture TexturaPerdio;
     private Sprite spritePerdio;
 
-    private Texture texturaGano;
     private Sprite spriteGano;
 
     //puntaje
     private Texto texto;
     public static int gemasC;
 
-    //
-    private Texture texturaBtnPausa;
     private Boton btnPausa;
 
-    //Boton Play
-    private Texture texturaBtnInicio;
     private Boton btnInicio;
 
-    private Texture texturaBtnReanudar;
     private Boton btnReanudar;
     private Boton btnContinuar;
 
     private int countG=0;
 
-    // Botones izquierda/derecha
-    private Texture texturaBtnIzquierda;
     private Boton btnIzquierda;
-    private Texture texturaBtnDerecha;
     private Boton btnDerecha;
 
-    private Texture texturaBtnSalto;
     private Boton btnSalto;
 
-    private Texture texturaBtnAtaque;
     private Boton btnAtaque;
 
-    private Texture texturaBtnDes;
     private Boton btnDesB;
     private Boton btnDesM;
     //Estados
     private EstadosJuego estadoJuego;
-    private Array<Enemigo> enemigos = new Array<Enemigo>();
+    private final Array<Enemigo> enemigos = new Array<Enemigo>();
 
     // Dibujar
     private SpriteBatch batch;
@@ -166,58 +139,57 @@ public class PantallaNivel1 implements Screen
         musicaNivel1.setLooping(true);
 
 
-
-        texturaPersonaje = assetManager.get("tiraGarasu.png");
-        texturaEnemigo = assetManager.get("tiraEnemigo.png");
+        Texture texturaPersonaje = assetManager.get("tiraGarasu.png");
+        Texture texturaEnemigo = assetManager.get("tiraEnemigo.png");
         // Crear el personaje
         personaje = new Personaje(texturaPersonaje);
-        enemigo1 = new Enemigo(texturaEnemigo);
-        enemigo2 = new Enemigo(texturaEnemigo);
-        enemigo3 = new Enemigo(texturaEnemigo);
+        Enemigo enemigo1 = new Enemigo(texturaEnemigo);
+        Enemigo enemigo2 = new Enemigo(texturaEnemigo);
+        Enemigo enemigo3 = new Enemigo(texturaEnemigo);
         // Posición inicial del personaje
-        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, principal.ALTO_MUNDO / 2 - 200);
-        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, principal.ALTO_MUNDO / 2 - 200);
-        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, principal.ALTO_MUNDO / 2 - 200);
+        enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, Principal.ALTO_MUNDO / 2 - 200);
+        enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, Principal.ALTO_MUNDO / 2 - 200);
+        enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, Principal.ALTO_MUNDO / 2 - 200);
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
         enemigos.add(enemigo3);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2 - 100);
+      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2 - 100);
 
         // Crear los botones
-        texturaBtnIzquierda = assetManager.get("izquierda.png");
+        Texture texturaBtnIzquierda = assetManager.get("izquierda.png");
         btnIzquierda = new Boton(texturaBtnIzquierda);
         btnIzquierda.setPosicion(TAM_CELDA, 5 * 0);
 
-        texturaBtnDerecha = assetManager.get("derecha.png");
+        Texture texturaBtnDerecha = assetManager.get("derecha.png");
         btnDerecha = new Boton(texturaBtnDerecha);
         btnDerecha.setPosicion(15 * TAM_CELDA, 5 * 0);
 
-        texturaBtnSalto = assetManager.get("salto.png");
+        Texture texturaBtnSalto = assetManager.get("salto.png");
         btnSalto= new Boton(texturaBtnSalto);
         btnSalto.setPosicion(68 * TAM_CELDA, 0);
 
-        texturaBtnAtaque = assetManager.get("Boton_atacar.png");
+        Texture texturaBtnAtaque = assetManager.get("Boton_atacar.png");
         btnAtaque= new Boton(texturaBtnAtaque);
         btnAtaque.setPosicion(56 * TAM_CELDA, 0);
 
-        texturaBtnInicio = assetManager.get("Btn_InicioP.png");
+        Texture texturaBtnInicio = assetManager.get("Btn_InicioP.png");
         btnInicio = new Boton(texturaBtnInicio);
         btnInicio.setPosicion(Principal.ANCHO_MUNDO/2-450,Principal.ALTO_MUNDO/2-200);
 
-        texturaBtnReanudar=assetManager.get("Btn_continuar.png");
+        Texture texturaBtnReanudar = assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
 
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
         btnContinuar = new Boton(texturaBtnReanudar);
-        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
 
 
-        texturaBtnPausa = assetManager.get("Btn_Pausa.png");
+        Texture texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
         btnPausa.setPosicion(70 * TAM_CELDA, 38 * TAM_CELDA);
-        btnPausa.setAlfa(0.7f);
+        btnPausa.setAlfa();
 
-        texturaBtnDes = assetManager.get("boton_decisiones.png");
+        Texture texturaBtnDes = assetManager.get("boton_decisiones.png");
         btnDesB = new Boton(texturaBtnDes);
         btnDesB.setPosicion(2*TAM_CELDA , 3 * TAM_CELDA);
 
@@ -225,19 +197,18 @@ public class PantallaNivel1 implements Screen
         btnDesM.setPosicion(40 * TAM_CELDA, 3 * TAM_CELDA);
 
 
-
-        TexturaCorazonLleno = assetManager.get("Corazon_lleno.png");
-        TexturaCorazonMedio = assetManager.get("Corazon_medio.png");
-        TexturaCorazonVacio = assetManager.get("Corazon_vacio.png");
-        vida1SpriteF = new Sprite(TexturaCorazonLleno);
-        vida2SpriteF = new Sprite(TexturaCorazonLleno);
-        vida3SpriteF = new Sprite(TexturaCorazonLleno);
-        vida1SpriteH = new Sprite(TexturaCorazonMedio);
-        vida2SpriteH = new Sprite(TexturaCorazonMedio);
-        vida3SpriteH = new Sprite(TexturaCorazonMedio);
-        vida1SpriteE = new Sprite(TexturaCorazonVacio);
-        vida2SpriteE = new Sprite(TexturaCorazonVacio);
-        vida3SpriteE = new Sprite(TexturaCorazonVacio);
+        Texture texturaCorazonLleno = assetManager.get("Corazon_lleno.png");
+        Texture texturaCorazonMedio = assetManager.get("Corazon_medio.png");
+        Texture texturaCorazonVacio = assetManager.get("Corazon_vacio.png");
+        vida1SpriteF = new Sprite(texturaCorazonLleno);
+        vida2SpriteF = new Sprite(texturaCorazonLleno);
+        vida3SpriteF = new Sprite(texturaCorazonLleno);
+        vida1SpriteH = new Sprite(texturaCorazonMedio);
+        vida2SpriteH = new Sprite(texturaCorazonMedio);
+        vida3SpriteH = new Sprite(texturaCorazonMedio);
+        vida1SpriteE = new Sprite(texturaCorazonVacio);
+        vida2SpriteE = new Sprite(texturaCorazonVacio);
+        vida3SpriteE = new Sprite(texturaCorazonVacio);
 
         vida1SpriteF.setPosition(TAM_CELDA,37*TAM_CELDA);
         vida2SpriteF.setPosition(10*TAM_CELDA,37*TAM_CELDA);
@@ -251,20 +222,20 @@ public class PantallaNivel1 implements Screen
         vida2SpriteE.setPosition(10*TAM_CELDA,37*TAM_CELDA);
         vida3SpriteE.setPosition(19*TAM_CELDA,37*TAM_CELDA);
 
-        TexturaPausa = assetManager.get("MarcoPausa.png");
-        spritePausa = new Sprite(TexturaPausa);
+        Texture texturaPausa = assetManager.get("MarcoPausa.png");
+        spritePausa = new Sprite(texturaPausa);
 
-        texturaPregunta = assetManager.get("pregunta.png");
+        Texture texturaPregunta = assetManager.get("pregunta.png");
         spritePregunta = new Sprite(texturaPregunta);
 
-        texturaGisbar = assetManager.get("TiraGisbar.png");
+        Texture texturaGisbar = assetManager.get("TiraGisbar.png");
         spriteGisbar = new Sprite(texturaGisbar);
-        spriteGisbar.setPosition(Principal.ANCHO_MUNDO-texturaGisbar.getWidth()-50,Principal.ALTO_MUNDO/2-250);
+        spriteGisbar.setPosition(Principal.ANCHO_MUNDO- texturaGisbar.getWidth()-50,Principal.ALTO_MUNDO/2-250);
 
-        TexturaPerdio = assetManager.get("GameOver.png");
-        spritePerdio = new Sprite(TexturaPerdio);
+        Texture texturaPerdio = assetManager.get("GameOver.png");
+        spritePerdio = new Sprite(texturaPerdio);
 
-        texturaGano = assetManager.get("NivelCompletado.png");
+        Texture texturaGano = assetManager.get("NivelCompletado.png");
         spriteGano = new Sprite(texturaGano);
 
     }
@@ -311,7 +282,7 @@ public class PantallaNivel1 implements Screen
             btnReanudar.render(batch);
 
             for(Enemigo enemigo: enemigos){
-                enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+                enemigo.setEstadoMovimiento();
             }
         }
         if(estadoJuego==EstadosJuego.PAUSADO){
@@ -319,7 +290,7 @@ public class PantallaNivel1 implements Screen
             btnInicio.render(batch);
             btnReanudar.render(batch);
             for(Enemigo enemigo: enemigos){
-                enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+                enemigo.setEstadoMovimiento();
                 enemigo.first=true;
             }
 
@@ -332,7 +303,7 @@ public class PantallaNivel1 implements Screen
 
 
             for(Enemigo enemigo: enemigos){
-                enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+                enemigo.setEstadoMovimiento();
             }
 
         }
@@ -342,7 +313,7 @@ public class PantallaNivel1 implements Screen
             spriteGano.draw(batch);
             btnContinuar.render(batch);
             for(Enemigo enemigo: enemigos){
-                enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+                enemigo.setEstadoMovimiento();
             }
 
 
@@ -433,7 +404,7 @@ public class PantallaNivel1 implements Screen
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
                 int celdaXDer = (int) (personaje.getX()+50);
-                int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
+                int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
@@ -449,7 +420,7 @@ public class PantallaNivel1 implements Screen
                     // Dejarlo sobre la celda que lo detiene
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
-                    if(Principal.musicaT==true) {
+                    if(Principal.musicaT) {
                         musicaNivel1.play();
                     }
                     probarChoqueParedes();
@@ -500,7 +471,7 @@ public class PantallaNivel1 implements Screen
            // Gdx.app.log("valor",""+celdaX);
             //Gdx.app.log("valor",""+celdaXDer);
 
-            int celdaY = (int) ((personaje.getY() + personaje.VELOCIDAD_Y) / TAM_CELDA);
+            int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición
             // La capa 0 es el fondo
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
@@ -535,7 +506,7 @@ public class PantallaNivel1 implements Screen
                 // Los bloques en el mapa son de 16x16
                 // Calcula la celda donde estaría después de moverlo
                 int celdaX = (int) (enemy.getX() / TAM_CELDA);
-                int celdaY = (int) ((enemy.getY() + enemy.VELOCIDAD_Y) / TAM_CELDA);
+                int celdaY = (int) ((enemy.getY() + Enemigo.VELOCIDAD_Y) / TAM_CELDA);
                 // Recuperamos la celda en esta posición
                 // La capa 0 es el fondo
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
@@ -549,7 +520,7 @@ public class PantallaNivel1 implements Screen
                 }else {  // Las estrellas no lo detienen :)
                     // Dejarlo sobre la celda que lo detiene
                     enemy.setPosicion((enemy.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
-                    enemy.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
+                    enemy.setEstadoMovimiento();
 
                 }
                 break;
@@ -568,7 +539,7 @@ public class PantallaNivel1 implements Screen
                 && (enemy.getEstadoSalto() != Enemigo.EstadoSalto.SUBIENDO)) {
             // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (enemy.getX() / TAM_CELDA);
-            int celdaY = (int) ((enemy.getY() + enemy.VELOCIDAD_Y) / TAM_CELDA);
+            int celdaY = (int) ((enemy.getY() + Enemigo.VELOCIDAD_Y) / TAM_CELDA);
             // Recuperamos la celda en esta posición
             // La capa 0 es el fondo
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
@@ -578,7 +549,7 @@ public class PantallaNivel1 implements Screen
             if ((celdaAbajo == null && celdaDerecha == null)) {
                 // Celda vacía, entonces el personaje puede avanzar
                 enemy.caer();
-                enemy.setEstadoSalto(Enemigo.EstadoSalto.CAIDA_LIBRE);
+                enemy.setEstadoSalto();
 
             } else {
                 // Dejarlo sobre la celda que lo detiene
@@ -598,10 +569,10 @@ public class PantallaNivel1 implements Screen
         if(a.overlaps(b)){
 
             if(personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.ATAQUE){
-                if(personaje.getDer()==true) {
+                if(personaje.getDer()) {
                     personaje.setPosicion(personaje.getX() - 500, (int) personaje.getY());
                 }
-                if(personaje.getDer()==false) {
+                if(!personaje.getDer()) {
                     personaje.setPosicion(personaje.getX() + 500, (int) personaje.getY());
                 }
                 vidas--;
@@ -687,7 +658,7 @@ public class PantallaNivel1 implements Screen
 
     public class ProcesadorEntrada extends InputAdapter
     {
-        private Vector3 coordenadas = new Vector3();
+        private final Vector3 coordenadas = new Vector3();
         private float x, y;     // Las coordenadas en la pantalla
 
 
@@ -769,7 +740,7 @@ public class PantallaNivel1 implements Screen
         public boolean touchDragged(int screenX, int screenY, int pointer) {
             transformarCoordenadas(screenX, screenY);
             // Acaba de salir de las fechas (y no es el botón de salto)
-            if (x<principal.ANCHO_MUNDO/2 && personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.QUIETO) {
+            if (x< Principal.ANCHO_MUNDO /2 && personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.QUIETO) {
                 if (!btnIzquierda.contiene(x, y) && !btnDerecha.contiene(x, y) ) {
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
                 }

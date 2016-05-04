@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 
-public class Boton
+class Boton
 {
-    private Sprite sprite;              // Imagen
-    private Rectangle rectColision;     // Rectangulo para verificar colisiones o touch
+    private final Sprite sprite;              // Imagen
+    private final Rectangle rectColision;     // Rectangulo para verificar colisiones o touch
 
     public Boton(Texture textura) {
         sprite = new Sprite(textura);
@@ -40,8 +40,8 @@ public class Boton
         return sprite.getX();
     }
 
-    public void setAlfa(float alfa) {
-        sprite.setAlpha(alfa);
+    public void setAlfa() {
+        sprite.setAlpha(0.7f);
     }
 
     public boolean contiene(float x, float y) {

@@ -2,7 +2,6 @@ package itesm.mx.garasu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -117,11 +116,11 @@ public class PantallaOpciones implements Screen {
     @Override
     public void render(float delta) {
         //Borrar la pantalla
-        if(Principal.musicaT==true&&Principal.playing!=true){
+        if(Principal.musicaT && !Principal.playing){
             PantallaMenu.musicaMenu.play();
             Principal.playing=true;
         }
-        if(Principal.musicaT==false&&Principal.playing==true){
+        if(!Principal.musicaT && Principal.playing){
             PantallaMenu.musicaMenu.stop();
             Principal.playing=false;
         }
@@ -149,10 +148,6 @@ public class PantallaOpciones implements Screen {
 
     }
 
-
-    public void create() {
-
-    }
 
     public void resize(int width, int height) {
         vista.update(width, height);
@@ -186,7 +181,7 @@ public class PantallaOpciones implements Screen {
     }
 
     private  void leerEntrada(){
-        if(Gdx.input.justTouched()==true){
+        if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);//Transforma las coordenadas

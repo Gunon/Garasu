@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by user on 25/01/2016.
  */
 //update
-public class PantallaMenu implements Screen {
+class PantallaMenu implements Screen {
 
     private final Principal principal;
 
@@ -148,10 +148,6 @@ public class PantallaMenu implements Screen {
     }
 
 
-    public void create() {
-
-    }
-
     public void resize(int width, int height) {
         vista.update(width, height);
     }
@@ -185,7 +181,7 @@ public class PantallaMenu implements Screen {
     }
 
     private  void leerEntrada(){
-        if(Gdx.input.justTouched()==true){
+        if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camara.unproject(coordenadas);//Transforma las coordenadas
