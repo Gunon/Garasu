@@ -378,6 +378,8 @@ public class PantallaNivel1 implements Screen
             case INICIANDO:
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
                 int celdaXDer = (int) (personaje.getX()+50);
+
+
                 int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
 
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
@@ -441,6 +443,7 @@ public class PantallaNivel1 implements Screen
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
             TiledMapTileLayer.Cell celdaAbajoDer = capa.getCell(celdaXDer, celdaY);
 
+
             if ((celdaAbajo == null&&celdaAbajoDer==null)) {
                 personaje.caer();
                 personaje.setEstadoSalto(Personaje.EstadoSalto.CAIDA_LIBRE);
@@ -490,7 +493,7 @@ public class PantallaNivel1 implements Screen
 
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
-            TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 1, celdaY);
+            TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 50, celdaY);
             if ((celdaAbajo == null && celdaDerecha == null)) {
                 enemy.caer();
                 enemy.setEstadoSalto();
