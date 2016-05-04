@@ -181,7 +181,7 @@ public class PantallaNivel1 implements Screen
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
         enemigos.add(enemigo3);
-      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2-100);
+      personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, principal.ALTO_MUNDO / 2 - 100);
 
         // Crear los botones
         texturaBtnIzquierda = assetManager.get("izquierda.png");
@@ -680,6 +680,7 @@ public class PantallaNivel1 implements Screen
         // LIBERAR los recursos
       // regresamos la memoria
         assetManager.unload("Nivel_1_LargeMap.tmx");
+        assetManager.unload("pregunta.png");
 
 
     }

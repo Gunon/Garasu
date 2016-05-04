@@ -96,6 +96,7 @@ public class PantallaNivel3 implements Screen
 
     private Texture texturaBtnReanudar;
     private Boton btnReanudar;
+    private Boton btnContinuar;
 
     // Botones izquierda/derecha
     private Texture texturaBtnIzquierda;
@@ -121,7 +122,7 @@ public class PantallaNivel3 implements Screen
     public int countG=0;
 
     //Sonidos
-    private Music musicaNivel1;
+    private Music musicaNivel3;
 
 
     public PantallaNivel3(Principal principal) {
@@ -168,8 +169,8 @@ public class PantallaNivel3 implements Screen
        // rendererMapa.setView(camara);
         // Cargar frames
 
-        musicaNivel1 = assetManager.get("Nivel3.wav");
-        musicaNivel1.setLooping(true);
+        musicaNivel3 = assetManager.get("Nivel3.wav");
+        musicaNivel3.setLooping(true);
 
 
 
@@ -239,6 +240,8 @@ public class PantallaNivel3 implements Screen
         texturaBtnReanudar=assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
+        btnContinuar = new Boton(texturaBtnInicio);
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2-texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
 
         texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
@@ -282,7 +285,7 @@ public class PantallaNivel3 implements Screen
         TexturaPausa = assetManager.get("MarcoPausa.png");
         spritePausa = new Sprite(TexturaPausa);
 
-        texturaPregunta = assetManager.get("pregunta.png");
+        texturaPregunta = assetManager.get("pregunta3.png");
         spritePregunta = new Sprite(texturaPregunta);
 
         texturaGisbar = assetManager.get("TiraGisbar.png");
@@ -366,6 +369,7 @@ public class PantallaNivel3 implements Screen
         if(estadoJuego== EstadosJuego.GANO){
 
             spriteGano.draw(batch);
+            btnContinuar.render(batch);
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento(Enemigo.EstadoMovimiento.QUIETO);
             }
@@ -473,7 +477,7 @@ public class PantallaNivel3 implements Screen
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
                     if(Principal.musicaT==true) {
-                        musicaNivel1.play();
+                        musicaNivel3.play();
                     }
                     probarChoqueParedes();
                     for(Enemigo enemigo: enemigos){
@@ -741,11 +745,12 @@ public class PantallaNivel3 implements Screen
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.ATAQUE);
                 }
                 if(btnInicio.contiene(x,y)&&estadoJuego== EstadosJuego.PAUSADO){
+                    musicaNivel3.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
             }else if(estadoJuego== EstadosJuego.PAUSADO){
                 if(btnInicio.contiene(x,y)){
-                    musicaNivel1.stop();
+                    musicaNivel3.stop();
                     principal.setScreen(new PantallaMenu(principal));
                 }
                 if(btnReanudar.contiene(x,y)){
@@ -753,6 +758,7 @@ public class PantallaNivel3 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
+                    musicaNivel3.stop();
                     principal.setScreen(new PantallaNivel3(principal));
 
                 }
@@ -765,6 +771,11 @@ public class PantallaNivel3 implements Screen
                 else if(btnDesM.contiene(x,y)){
                     PantallaNivel1.gemasC+=250;
                     estadoJuego= EstadosJuego.GANO;
+                }
+            }else if(estadoJuego== EstadosJuego.GANO){
+                if(btnContinuar.contiene(x,y)){
+                    musicaNivel3.stop();
+                    principal.setScreen(new PantallaMenu(principal));
                 }
             }
             return true;    // Indica que ya procesó el evento

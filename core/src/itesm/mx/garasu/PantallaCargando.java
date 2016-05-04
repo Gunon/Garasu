@@ -114,6 +114,8 @@ public class PantallaCargando implements Screen
         assetManager.load("Btn_continuar.png", Texture.class);
         assetManager.load("GameOver.png", Texture.class);
         assetManager.load("pregunta.png", Texture.class);
+        assetManager.load("pregunta2.png", Texture.class);
+        assetManager.load("pregunta3.png", Texture.class);
         assetManager.load("boton_decisiones.png",Texture.class);
         assetManager.load("NivelCompletado.png",Texture.class);
         assetManager.load("TiraGisbar.png",Texture.class);

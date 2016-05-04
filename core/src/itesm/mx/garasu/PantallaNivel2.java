@@ -287,7 +287,7 @@ public class PantallaNivel2 implements Screen
         TexturaPausa = assetManager.get("MarcoPausa.png");
         spritePausa = new Sprite(TexturaPausa);
 
-        texturaPregunta = assetManager.get("pregunta.png");
+        texturaPregunta = assetManager.get("pregunta2.png");
         spritePregunta = new Sprite(texturaPregunta);
 
 
@@ -714,6 +714,7 @@ public class PantallaNivel2 implements Screen
         // LIBERAR los recursos
       // regresamos la memoria
         assetManager.unload("Nivel2_Mapa.tmx");
+        assetManager.unload("pregunta2.png");
 
 
     }
