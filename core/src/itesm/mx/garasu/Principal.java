@@ -16,7 +16,6 @@ public class Principal extends Game {
 	public static boolean firstm = false;
 	public static boolean playing =true;
 
-	//Musica
 
 	public static boolean musicaT = true;
 	@Override

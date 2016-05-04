@@ -10,10 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by user on 25/01/2016.
- */
-//update
+
 class PantallaTec implements Screen {
 
     private final Principal principal;
@@ -23,7 +20,6 @@ class PantallaTec implements Screen {
     private OrthographicCamera camara;
     private Viewport vista;
 
-    //Fondo
 
 
     private Texture texturaFondo;
@@ -31,7 +27,6 @@ class PantallaTec implements Screen {
 
 
 
-    //Dibujar
     private SpriteBatch batch;
 
     public PantallaTec(Principal principal) {
@@ -55,11 +50,9 @@ class PantallaTec implements Screen {
     }
 
     private void cargarTeturasSprites() {
-        //Fondos
         texturaFondo = new Texture(Gdx.files.internal("Splash TEc.jpg"));
         spriteFondo = new Sprite(texturaFondo);
 
-        //Fondo Juego
 
 
 
@@ -114,7 +107,6 @@ class PantallaTec implements Screen {
 
     @Override
     public void dispose() {
-        //Cuando lo que usamos sale de memoria
         texturaFondo.dispose();
 
 

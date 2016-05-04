@@ -18,12 +18,9 @@ public class PantallaHistoria implements Screen
     private OrthographicCamera camara;
     private Viewport vista;
 
-    // Fondo
 
 
     private EstadosPantalla estadosPantalla;
-
-    //Instrucciones
     private Texture texturaHistoria1;
     private Sprite spriteHistoria1;
 
@@ -49,15 +46,6 @@ public class PantallaHistoria implements Screen
 
     private Texture texturaBtnContinuar;
     private Sprite spriteBtnContinuar;
-
-
-    //Fondo Juego
-
-
-
-
-
-    // Dibujar
     private SpriteBatch batch;
 
 
@@ -69,7 +57,6 @@ public class PantallaHistoria implements Screen
     @Override
     public void show() {
         estadosPantalla= EstadosPantalla.IN1;
-        // Se ejecuta cuando se muestra la pantalla
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
         camara.update();
@@ -84,15 +71,6 @@ public class PantallaHistoria implements Screen
 
 
     private void cargarTexturasSprites() {
-        // Fondo
-
-
-
-
-
-
-
-
         texturaHistoria1 = new Texture(Gdx.files.internal("F1.jpg"));
         spriteHistoria1 = new Sprite(texturaHistoria1);
         spriteHistoria1.setPosition(0,0);
@@ -116,8 +94,6 @@ public class PantallaHistoria implements Screen
         texturaHistoria6 = new Texture(Gdx.files.internal("F6.jpg"));
         spriteHistoria6 = new Sprite(texturaHistoria6);
         spriteHistoria6.setPosition(0,0);
-//hola
-        //BtnInicio
 
 
         texturaBtnContinuar= new Texture(Gdx.files.internal("derecha.png"));
@@ -132,16 +108,12 @@ public class PantallaHistoria implements Screen
 
     @Override
     public void render(float delta) {
-        // Leer
         leerEntrada();
 
-        // Actualizar objetos
-        // Borrar la pantalla
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
-        // Dibujamos
         batch.begin();
 
 
@@ -186,9 +158,6 @@ public class PantallaHistoria implements Screen
             spriteBtnContinuar.draw(batch);
         }
 
-/*
-        spriteBtnInicio.draw(batch);
-*/
 
         batch.end();
 
@@ -218,7 +187,7 @@ public class PantallaHistoria implements Screen
         if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camara.unproject(coordenadas);//Transforma las coordenadas
+            camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
@@ -256,11 +225,6 @@ public class PantallaHistoria implements Screen
 
     @Override
     public void dispose() {
-        // Cuando la PantallaMenu sale de memoria.
-        // LIBERAR los recursos
-
-
-
         texturaHistoria1.dispose();
          texturaHistoria2.dispose();
          texturaHistoria3.dispose();

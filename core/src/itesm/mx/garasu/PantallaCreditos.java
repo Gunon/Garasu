@@ -22,20 +22,16 @@ class PantallaCreditos implements Screen
     private Viewport vista;
 
     private Music musicaMenu;
-    // Fondo
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
-    //Boton Play
     private Texture texturaBtnInicioP;
     private Sprite spriteBtnInicioP;
 
 
-    // Dibujar
     private SpriteBatch batch;
 
 
-    //Sonids
 
 
     public PantallaCreditos(Principal principal) {
@@ -45,7 +41,6 @@ class PantallaCreditos implements Screen
 
     @Override
     public void show() {
-        // Se ejecuta cuando se muestra la pantalla
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
         camara.update();
@@ -62,11 +57,9 @@ class PantallaCreditos implements Screen
 
 
     private void cargarTexturasSprites() {
-        // Fondo
         texturaFondo = new Texture(Gdx.files.internal("creditos.png"));
         spriteFondo = new Sprite(texturaFondo);
 
-        //BtnInicio
         texturaBtnInicioP = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicioP = new Sprite(texturaBtnInicioP);
         spriteBtnInicioP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicioP.getWidth()/2+550, Principal.ALTO_MUNDO / 2 - spriteBtnInicioP.getRegionHeight() / 2 +300);
@@ -74,16 +67,10 @@ class PantallaCreditos implements Screen
 
     @Override
     public void render(float delta) {
-        // Leer
         leerEntrada();
-
-        // Actualizar objetos
-        // Borrar la pantalla
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
-        // Dibujamos
         batch.begin();
 
 
@@ -117,7 +104,7 @@ class PantallaCreditos implements Screen
         if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camara.unproject(coordenadas);//Transforma las coordenadas
+            camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
@@ -135,12 +122,9 @@ class PantallaCreditos implements Screen
 
     @Override
     public void dispose() {
-        // Cuando la PantallaMenu sale de memoria.
-        // LIBERAR los recursos
-        texturaFondo.dispose(); // regresamos la memoria
+        texturaFondo.dispose();
         texturaBtnInicioP.dispose();
 
-        //  texturaBtnInicio.dispose();
 
     }
 }

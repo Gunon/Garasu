@@ -21,38 +21,21 @@ public class PantallaOpciones implements Screen {
 
     private OrthographicCamera camara;
     private Viewport vista;
-
-    //Fondo
-
-
     private Texture texturaFondo;
     private Sprite spriteFondo;
-
-
-    //Boton Play
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
-
-    //Boton Salir
     private Texture texturaBtnMusica;
     private Sprite spriteBtnMusica;
-
-    //Boton Opciones
     private Texture texturaBtnMP;
     private Sprite spriteBtnMP;
-
-    //Titulo
     private Texture texturaTitulo;
     private Sprite spriteTitulo;
-
-    //Fondo Juego
     private Texture texturaFondoJuego;
     private Sprite spriteFondoJuego;
 
 
     private EstadoOpciones estado;
-
-    //Dibujar
     private SpriteBatch batch;
 
     public PantallaOpciones(Principal principal) {
@@ -76,19 +59,12 @@ public class PantallaOpciones implements Screen {
     }
 
     private void cargarTeturasSprites() {
-        //Fondos
         texturaFondo = new Texture(Gdx.files.internal("marco_menus_copy.png"));
         spriteFondo = new Sprite(texturaFondo);
-
-        //Fondo Juego
         texturaFondoJuego = new Texture(Gdx.files.internal("Pantalla_Inicio_copy.jpg"));
         spriteFondoJuego = new Sprite(texturaFondoJuego);
-
-        // BotonPlay
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
-
-        //Titulo
         texturaTitulo = new Texture(Gdx.files.internal("T_Opciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
         spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2 - 130, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 + 240);
@@ -96,18 +72,15 @@ public class PantallaOpciones implements Screen {
 
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth() / 2, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 - 140);
 
-        //Boton Instrucciones
         texturaBtnMusica = new Texture(Gdx.files.internal("Btn_Musica.png"));
         spriteBtnMusica = new Sprite(texturaBtnMusica);
         spriteBtnMusica.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getWidth() / 2+300, Principal.ALTO_MUNDO / 2 - 100);
 
-        //Boton Opciones
         texturaBtnMP = new Texture(Gdx.files.internal("Btn_MusicaPaloma.png"));
         spriteBtnMP = new Sprite(texturaBtnMP);
         spriteBtnMP.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnMusica.getRegionWidth() / 2-300 , Principal.ALTO_MUNDO / 2 - 100);
 
         estado = EstadoOpciones.MUSICON;
-        //TextoOpciones
 
 
     }
@@ -115,7 +88,6 @@ public class PantallaOpciones implements Screen {
 
     @Override
     public void render(float delta) {
-        //Borrar la pantalla
         if(Principal.musicaT && !Principal.playing){
             PantallaMenu.musicaMenu.play();
             Principal.playing=true;
@@ -170,7 +142,6 @@ public class PantallaOpciones implements Screen {
 
     @Override
     public void dispose() {
-        //Cuando lo que usamos sale de memoria
         texturaFondo.dispose();
         texturaBtnInicio.dispose();
         texturaBtnMusica.dispose();
@@ -184,7 +155,7 @@ public class PantallaOpciones implements Screen {
         if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camara.unproject(coordenadas);//Transforma las coordenadas
+            camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 

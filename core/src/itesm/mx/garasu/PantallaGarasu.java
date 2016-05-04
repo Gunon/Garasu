@@ -10,10 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by user on 25/01/2016.
- */
-//update
+
 class PantallaGarasu implements Screen {
 
     private final Principal principal;
@@ -23,7 +20,6 @@ class PantallaGarasu implements Screen {
     private OrthographicCamera camara;
     private Viewport vista;
 
-    //Fondo
 
 
     private Texture texturaFondo;
@@ -31,7 +27,6 @@ class PantallaGarasu implements Screen {
 
 
 
-    //Dibujar
     private SpriteBatch batch;
 
     public PantallaGarasu(Principal principal) {
@@ -55,22 +50,13 @@ class PantallaGarasu implements Screen {
     }
 
     private void cargarTeturasSprites() {
-        //Fondos
         texturaFondo = new Texture(Gdx.files.internal("Splash Garasu.jpg"));
         spriteFondo = new Sprite(texturaFondo);
-
-        //Fondo Juego
-
-
-
-
-
     }
 
 
     @Override
     public void render(float delta) {
-        //Borrar la pantalla
         tiempo = Gdx.graphics.getRawDeltaTime()+tiempo;
         if(tiempo>3){
             principal.setScreen(new PantallaMenu(principal));
@@ -112,7 +98,6 @@ class PantallaGarasu implements Screen {
 
     @Override
     public void dispose() {
-        //Cuando lo que usamos sale de memoria
         texturaFondo.dispose();
 
     }

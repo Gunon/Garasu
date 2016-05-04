@@ -8,12 +8,12 @@ import com.badlogic.gdx.math.Rectangle;
 
 class Boton
 {
-    private final Sprite sprite;              // Imagen
-    private final Rectangle rectColision;     // Rectangulo para verificar colisiones o touch
+    private final Sprite sprite;
+    private final Rectangle rectColision;
 
     public Boton(Texture textura) {
         sprite = new Sprite(textura);
-        // El rectángulo de colisión siempre está 'sobre' el sprite
+
         rectColision = new Rectangle(sprite.getX(), sprite.getY(),
                 sprite.getWidth(), sprite.getHeight());
     }
@@ -27,7 +27,7 @@ class Boton
         return rectColision;
     }
 
-    // Dibuja el botón
+
     public void render(SpriteBatch batch) {
         sprite.draw(batch);
     }

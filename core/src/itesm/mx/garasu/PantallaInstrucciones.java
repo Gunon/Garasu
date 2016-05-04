@@ -18,7 +18,6 @@ public class PantallaInstrucciones implements Screen
     private OrthographicCamera camara;
     private Viewport vista;
 
-    // Fondo
     private Texture texturaFondo;
     private Sprite spriteFondo;
 
@@ -28,21 +27,14 @@ public class PantallaInstrucciones implements Screen
 
     private Sprite spriteInstrucciones2;
 
-    //Boton Play
     private Texture texturaBtnInicio;
     private Sprite spriteBtnInicio;
 
     private Sprite spriteBtnContinuar;
-
-
-    //Fondo Juego
     private Texture texturaFondoJuego;
     private Sprite spriteFondoJuego;
 
     private Sprite spriteTitulo;
-
-
-    // Dibujar
     private SpriteBatch batch;
 
 
@@ -54,7 +46,6 @@ public class PantallaInstrucciones implements Screen
     @Override
     public void show() {
         estadosPantalla=EstadosPantalla.IN1;
-        // Se ejecuta cuando se muestra la pantalla
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
         camara.position.set(Principal.ANCHO_MUNDO/2, Principal.ALTO_MUNDO/2, 0);
         camara.update();
@@ -69,7 +60,6 @@ public class PantallaInstrucciones implements Screen
 
 
     private void cargarTexturasSprites() {
-        // Fondo
         texturaFondo = new Texture(Gdx.files.internal("marco_menus_copy.png"));
         spriteFondo = new Sprite(texturaFondo);
 
@@ -83,8 +73,6 @@ public class PantallaInstrucciones implements Screen
         Texture texturaInstrucciones2 = new Texture(Gdx.files.internal("instrucciones2.png"));
         spriteInstrucciones2 = new Sprite(texturaInstrucciones2);
         spriteInstrucciones2.setPosition(0,90);
-//hola
-        //BtnInicio
         texturaBtnInicio = new Texture(Gdx.files.internal("Btn_InicioP.png"));
         spriteBtnInicio = new Sprite(texturaBtnInicio);
         spriteBtnInicio.setPosition(Principal.ANCHO_MUNDO / 2-120 , Principal.ALTO_MUNDO/2-350);
@@ -93,11 +81,6 @@ public class PantallaInstrucciones implements Screen
         spriteBtnContinuar= new Sprite(texturaBtnContinuar);
         spriteBtnContinuar.setPosition(Principal.ANCHO_MUNDO / 2+300 , Principal.ALTO_MUNDO/2-350);
 
-
-
-
-
-        //Titulo
         Texture texturaTitulo = new Texture(Gdx.files.internal("T_Instrucciones.png"));
         spriteTitulo = new Sprite(texturaTitulo);
         spriteTitulo.setPosition(Principal.ANCHO_MUNDO / 2 - spriteBtnInicio.getWidth()/2-270, Principal.ALTO_MUNDO / 2 - spriteBtnInicio.getRegionHeight() / 2 +240);
@@ -106,16 +89,10 @@ public class PantallaInstrucciones implements Screen
 
     @Override
     public void render(float delta) {
-        // Leer
         leerEntrada();
-
-        // Actualizar objetos
-        // Borrar la pantalla
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
-        // Dibujamos
         batch.begin();
 
         spriteFondoJuego.draw(batch);
@@ -161,7 +138,7 @@ public class PantallaInstrucciones implements Screen
         if(Gdx.input.justTouched()){
             Vector3 coordenadas = new Vector3();
             coordenadas.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            camara.unproject(coordenadas);//Transforma las coordenadas
+            camara.unproject(coordenadas);
             float touchX = coordenadas.x;
             float touchY = coordenadas.y;
 
@@ -184,9 +161,7 @@ public class PantallaInstrucciones implements Screen
 
     @Override
     public void dispose() {
-        // Cuando la PantallaMenu sale de memoria.
-        // LIBERAR los recursos
-        texturaFondo.dispose(); // regresamos la memoria
+        texturaFondo.dispose();
         texturaBtnInicio.dispose();
 
         texturaFondoJuego.dispose();

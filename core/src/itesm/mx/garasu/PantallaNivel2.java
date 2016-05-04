@@ -26,19 +26,12 @@ public class PantallaNivel2 implements Screen
     private OrthographicCamera camara;
     private Viewport vista;
     private OrthographicCamera camaraHUD;
-
-    //MAPA
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer rendererMapa;
-
-    //Personaje
     private Personaje personaje;
-
     private Sprite spriteGisbar;
     private static final int TAM_CELDA = 16;
-
     private Sprite spritePregunta;
-
     private Sprite vida1SpriteF;
     private Sprite vida1SpriteH;
     private Sprite vida1SpriteE;
@@ -48,18 +41,11 @@ public class PantallaNivel2 implements Screen
     private Sprite vida3SpriteF;
     private Sprite vida3SpriteH;
     private Sprite vida3SpriteE;
-
     private int vidas = 6;
-
     private final Array <Enemigo> enemigos = new Array<Enemigo>();
-
     private Sprite spritePausa;
-
     private Sprite spritePerdio;
-
     private Sprite spriteGano;
-
-    //puntaje
     private Texto texto;
 
 
@@ -79,15 +65,13 @@ public class PantallaNivel2 implements Screen
 
     private Boton btnDesB;
     private Boton btnDesM;
-    //Estados
+
     private EstadosJuego estadoJuego;
 
-    // Dibujar
     private SpriteBatch batch;
 
     private int countG=0;
 
-    //Sonidos
     private Music musicaNivel2;
 
 
@@ -98,7 +82,6 @@ public class PantallaNivel2 implements Screen
 
     @Override
     public void show() {
-        // Se ejecuta cuando se muestra la pantalla
 
 
         camara = new OrthographicCamera(Principal.ANCHO_MUNDO, Principal.ALTO_MUNDO);
@@ -120,21 +103,15 @@ public class PantallaNivel2 implements Screen
         Gdx.input.setInputProcessor(new ProcesadorEntrada());
 
         estadoJuego= EstadosJuego.JUGANDO;
-
-        // Texto
         texto = new Texto();
     }
 
     private void crearObjetos() {
         AssetManager assetManager = principal.getAssetManager();
-         // Referencia al assetManager
-        // Carga el mapa en memoria
+
         mapa = assetManager.get("Nivel2_Mapa.tmx");
-        //mapa.getLayers().get(0).setVisible(false);    // Pueden ocultar una capa así
-        // Crear el objeto que dibujará el mapa
+
         rendererMapa = new OrthogonalTiledMapRenderer(mapa,batch);
-       // rendererMapa.setView(camara);
-        // Cargar frames
 
         musicaNivel2 = assetManager.get("Nivel2.wav");
         musicaNivel2.setLooping(true);
@@ -145,7 +122,6 @@ public class PantallaNivel2 implements Screen
 
         Texture texturaPersonaje = assetManager.get("tiraGarasu.png");
         Texture texturaEnemigo = assetManager.get("tiraEnemigo.png");
-        // Crear el personaje
         personaje = new Personaje(texturaPersonaje);
         Enemigo enemigo1 = new Enemigo(texturaEnemigo);
         Enemigo enemigo2 = new Enemigo(texturaEnemigo);
@@ -170,7 +146,6 @@ public class PantallaNivel2 implements Screen
         enemigos.add(enemigo9);
         enemigos.add(enemigo10);
         enemigos.add(enemigo11);
-        // Posición inicial del personaje
         enemigo1.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 1000, Principal.ALTO_MUNDO / 2 - 200);
         enemigo2.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 3000, Principal.ALTO_MUNDO / 2 - 200);
         enemigo3.getSprite().setPosition(Principal.ANCHO_MUNDO / 2 + 5000, Principal.ALTO_MUNDO / 2 - 200);
@@ -184,7 +159,6 @@ public class PantallaNivel2 implements Screen
         enemigo11.getSprite().setPosition(Principal.ANCHO_MUNDO / 2+5500, Principal.ALTO_MUNDO /2+300);
       personaje.getSprite().setPosition(Principal.ANCHO_MUNDO / 2, Principal.ALTO_MUNDO / 2);
 
-        // Crear los botones
         Texture texturaBtnIzquierda = assetManager.get("izquierda.png");
         btnIzquierda = new Boton(texturaBtnIzquierda);
         btnIzquierda.setPosicion(TAM_CELDA, 5 * 0);
@@ -270,7 +244,6 @@ public class PantallaNivel2 implements Screen
     @Override
     public void render(float delta) {
         AssetManager assetManager = principal.getAssetManager();
-        // Leer
         if(estadoJuego== EstadosJuego.JUGANDO) {
             moverPersonaje();
             for(Enemigo enemigo: enemigos){
@@ -281,18 +254,13 @@ public class PantallaNivel2 implements Screen
 
 
 
-        /*leerEntrada();*/
         assetManager.update();
-        // Actualizar objetos
-        // Borrar la pantalla
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Proyectamos la cámara sobre batch
         batch.setProjectionMatrix(camara.combined);
 
         rendererMapa.setView(camara);
         rendererMapa.render();
-        // Dibujamos
 
         batch.begin();
         personaje.render(batch);
@@ -405,13 +373,10 @@ public class PantallaNivel2 implements Screen
 
     private void actualizarCamara() {
        float posX = personaje.getX();
-        // Si está en la parte 'media'
-        if (posX>=Principal.ANCHO_MUNDO/2 /*&& posX<=Principal.ANCHO_MUNDO/2*/) {
-            // El personaje define el centro de la cámara
+        if (posX>=Principal.ANCHO_MUNDO/2 ) {
             camara.position.set((int)posX, camara.position.y, 0);
         }
-        if (posX>8960-640) {    // Si está en la última mitad
-            // La cámara se queda a media pantalla antes del fin del mundo  :)
+        if (posX>8960-640) {
             camara.position.set(8960-640, camara.position.y, 0);
             estadoJuego= EstadosJuego.FINAL;
         }
@@ -420,27 +385,19 @@ public class PantallaNivel2 implements Screen
     }
 
     private void moverPersonaje() {
-        // Prueba caída libre inicial o movimiento horizontal
         switch (personaje.getEstadoMovimiento()) {
-            case INICIANDO:     // Mueve el personaje en Y hasta que se encuentre sobre un bloque
-                // Los bloques en el mapa son de 16x16
-                // Calcula la celda donde estaría después de moverlo
+            case INICIANDO:
                 int celdaX = (int) (personaje.getX() / TAM_CELDA);
                 int celdaXDer = (int) (personaje.getX()+50);
                 int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
-                // Recuperamos la celda en esta posición
-                // La capa 0 es el fondo
+
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
                 TiledMapTileLayer.Cell celdaDer = capa.getCell(celdaXDer, celdaY);
 
-              //  Gdx.app.log("Celda:", ""+celda.getTile().getId());
-                // probar si la celda está ocupada
                 if (celda == null&&celdaDer==null) {
-                    // Celda vacía, entonces el personaje puede avanzar
                     personaje.caer();
-                }else {  // Las estrellas no lo detienen :)
-                    // Dejarlo sobre la celda que lo detiene
+                }else {
                     personaje.setPosicion((personaje.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
 
@@ -482,35 +439,27 @@ public class PantallaNivel2 implements Screen
                     for(Enemigo enemigo: enemigos){
                         probarChoqueEnemigo(enemigo,personaje);
                     }
-                    personaje.actualizarSalto();    // Actualizar posición en 'y'
+                    personaje.actualizarSalto();
                     break;
             }
 
 
-        // Prueba si debe caer por llegar a un espacio vacío
         if (personaje.getEstadoMovimiento() != Personaje.EstadoMovimiento.INICIANDO
                 && (personaje.getEstadoSalto() != Personaje.EstadoSalto.SUBIENDO)) {
-            // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (personaje.getX() / TAM_CELDA);
             int celdaXDer = (int) (personaje.getX() / TAM_CELDA+5);
-          //  Gdx.app.log("valor",""+celdaX);
-            //Gdx.app.log("valor",""+celdaXDer);
 
             int celdaY = (int) ((personaje.getY() + Personaje.VELOCIDAD_Y) / TAM_CELDA);
-            // Recuperamos la celda en esta posición
-            // La capa 0 es el fondo
+
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
             TiledMapTileLayer.Cell celdaAbajoDer = capa.getCell(celdaXDer, celdaY);
 
-            // probar si la celda está ocupada
             if ((celdaAbajo == null&&celdaAbajoDer==null)) {
-                // Celda vacía, entonces el personaje puede avanzar
                 personaje.caer();
                 personaje.setEstadoSalto(Personaje.EstadoSalto.CAIDA_LIBRE);
 
             } else {
-                // Dejarlo sobre la celda que lo detiene
                 personaje.setPosicion(personaje.getX(), (celdaY + 1) * TAM_CELDA);
                 personaje.setEstadoSalto(Personaje.EstadoSalto.EN_PISO);
 
@@ -525,25 +474,18 @@ public class PantallaNivel2 implements Screen
 
 
     private void moverEnemigo(Enemigo enemy) {
-        // Prueba caída libre inicial o movimiento horizontal
         switch (enemy.getEstadoMovimiento()) {
-            case INICIANDO:     // Mueve el personaje en Y hasta que se encuentre sobre un bloque
-                // Los bloques en el mapa son de 16x16
-                // Calcula la celda donde estaría después de moverlo
+            case INICIANDO:
                 int celdaX = (int) (enemy.getX() / TAM_CELDA);
                 int celdaY = (int) ((enemy.getY() + Enemigo.VELOCIDAD_Y) / TAM_CELDA);
-                // Recuperamos la celda en esta posición
-                // La capa 0 es el fondo
+
                 TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
                 TiledMapTileLayer.Cell celda = capa.getCell(celdaX, celdaY);
 
 
-                // probar si la celda está ocupada
                 if (celda == null) {
-                    // Celda vacía, entonces el personaje puede avanzar
                     enemy.caer();
-                }else {  // Las estrellas no lo detienen :)
-                    // Dejarlo sobre la celda que lo detiene
+                }else {
                     enemy.setPosicion((enemy.getX() + (float) 0.5), (celdaY + 1) * TAM_CELDA);
                     enemy.setEstadoMovimiento();
 
@@ -554,30 +496,23 @@ public class PantallaNivel2 implements Screen
         switch (enemy.getEstadoSalto()) {
             case SUBIENDO:
             case BAJANDO:
-                enemy.actualizarSalto();    // Actualizar posición en 'y'
+                enemy.actualizarSalto();
                 break;
         }
 
 
-        // Prueba si debe caer por llegar a un espacio vacío
         if (enemy.getEstadoMovimiento() != Enemigo.EstadoMovimiento.INICIANDO
                 && (enemy.getEstadoSalto() != Enemigo.EstadoSalto.SUBIENDO)) {
-            // Calcula la celda donde estaría después de moverlo
             int celdaX = (int) (enemy.getX() / TAM_CELDA);
             int celdaY = (int) ((enemy.getY() + Enemigo.VELOCIDAD_Y) / TAM_CELDA);
-            // Recuperamos la celda en esta posición
-            // La capa 0 es el fondo
             TiledMapTileLayer capa = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
             TiledMapTileLayer.Cell celdaAbajo = capa.getCell(celdaX, celdaY);
             TiledMapTileLayer.Cell celdaDerecha = capa.getCell(celdaX + 1, celdaY);
-            // probar si la celda está ocupada
             if ((celdaAbajo == null && celdaDerecha == null)) {
-                // Celda vacía, entonces el personaje puede avanzar
                 enemy.caer();
                 enemy.setEstadoSalto();
 
             } else {
-                // Dejarlo sobre la celda que lo detiene
                 enemy.setPosicion(enemy.getX(), (celdaY + 1) * TAM_CELDA);
                 enemy.actualizar();
 
@@ -613,19 +548,16 @@ public class PantallaNivel2 implements Screen
     private void probarChoqueParedes() {
 
 
-        float px = personaje.getX();    // Posición actual
-
-        // Posición después de actualizar
+        float px = personaje.getX();
         px = personaje.getEstadoMovimiento() == Personaje.EstadoMovimiento.MOV_DERECHA ? px + Personaje.VELOCIDAD_X :
                 px - Personaje.VELOCIDAD_X;
 
-        int celdaX = (int) (px / TAM_CELDA);   // Casilla del personaje en X
+        int celdaX = (int) (px / TAM_CELDA);
         if (personaje.getEstadoMovimiento() == Personaje.EstadoMovimiento.MOV_DERECHA) {
-            celdaX++;   // Casilla del lado derecho
+            celdaX++;
         }
 
-        int celdaY = (int) (personaje.getY() / TAM_CELDA); // Casilla del personaje en Y
-
+        int celdaY = (int) (personaje.getY() / TAM_CELDA);
         TiledMapTileLayer capaprincipal = (TiledMapTileLayer) mapa.getLayers().get("Plataformas");
         TiledMapTileLayer gemas = (TiledMapTileLayer) mapa.getLayers().get("Gemas");
 
@@ -649,9 +581,6 @@ public class PantallaNivel2 implements Screen
 
 
         if ( capaprincipal.getCell(celdaX,celdaY) != null || capaprincipal.getCell(celdaX,celdaY+1) != null ) {
-            // Colisionará, dejamos de moverlo
-
-
                 personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
             }else {
             personaje.actualizar();
@@ -673,36 +602,27 @@ public class PantallaNivel2 implements Screen
     @Override
     public void dispose() {
         AssetManager assetManager = principal.getAssetManager();
-        // Cuando la PantallaMenu sale de memoria.
-        // LIBERAR los recursos
-      // regresamos la memoria
+
         assetManager.unload("Nivel2_Mapa.tmx");
         assetManager.unload("pregunta2.png");
 
 
     }
-
-   /* Clase utilizada para manejar los eventos de touch en la pantalla
-    */
     public class ProcesadorEntrada extends InputAdapter
     {
         private final Vector3 coordenadas = new Vector3();
-        private float x, y;     // Las coordenadas en la pantalla
+        private float x, y;
 
 
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);
             if (estadoJuego== EstadosJuego.JUGANDO) {
-                // Preguntar si las coordenadas están sobre el botón derecho
                 if (btnDerecha.contiene(x, y) && personaje.getEstadoMovimiento() != Personaje.EstadoMovimiento.INICIANDO) {
-                    // Tocó el botón derecha, hacer que el personaje se mueva a la derecha
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.MOV_DERECHA);
                 } else if (btnIzquierda.contiene(x, y) && personaje.getEstadoMovimiento() != Personaje.EstadoMovimiento.INICIANDO) {
-                    // Tocó el botón izquierda, hacer que el personaje se mueva a la izquierda
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.MOV_IZQUIERDA);
                 } else if (btnSalto.contiene(x, y)) {
-                    // Tocó el botón saltar
                     personaje.saltar();
                 }else
                 if(btnPausa.contiene(x,y)){
@@ -745,29 +665,20 @@ public class PantallaNivel2 implements Screen
                     principal.setScreen(new PantallaNivel3(principal));
                 }
             }
-            return true;    // Indica que ya procesó el evento
+            return true;
         }
 
-        /*
-        Se ejecuta cuando el usuario QUITA el dedo de la pantalla.
-         */
         @Override
         public boolean touchUp(int screenX, int screenY, int pointer, int button) {
             transformarCoordenadas(screenX, screenY);
-            // Preguntar si las coordenadas son de algún botón para DETENER el movimiento
             if ( personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.INICIANDO && (btnDerecha.contiene(x, y) || btnIzquierda.contiene(x,y)) ) {
-                // Tocó el botón derecha, hacer que el personaje se mueva a la derecha
                 personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
             }
-            return true;    // Indica que ya procesó el evento
+            return true;
         }
-
-
-        // Se ejecuta cuando el usuario MUEVE el dedo sobre la pantalla
         @Override
         public boolean touchDragged(int screenX, int screenY, int pointer) {
             transformarCoordenadas(screenX, screenY);
-            // Acaba de salir de las fechas (y no es el botón de salto)
             if (x< Principal.ANCHO_MUNDO /2 && personaje.getEstadoMovimiento()!= Personaje.EstadoMovimiento.QUIETO) {
                 if (!btnIzquierda.contiene(x, y) && !btnDerecha.contiene(x, y) ) {
                     personaje.setEstadoMovimiento(Personaje.EstadoMovimiento.QUIETO);
@@ -778,10 +689,8 @@ public class PantallaNivel2 implements Screen
 
 
         private void transformarCoordenadas(int screenX, int screenY) {
-            // Transformar las coordenadas de la pantalla física a la cámara HUD
             coordenadas.set(screenX, screenY, 0);
             camaraHUD.unproject(coordenadas);
-            // Obtiene las coordenadas relativas a la pantalla virtual
             x = coordenadas.x;
             y = coordenadas.y;
         }
