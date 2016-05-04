@@ -632,6 +632,7 @@ public class PantallaNivel1 implements Screen
             }else if(estadoJuego==EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
                     musicaNivel1.stop();
+                    gemasC=0;
                     principal.setScreen(new PantallaNivel1(principal));
 
                 }

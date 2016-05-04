@@ -71,7 +71,7 @@ public class PantallaNivel2 implements Screen
     private SpriteBatch batch;
 
     private int countG=0;
-
+    private int gemasCL = PantallaNivel1.gemasC;
     private Music musicaNivel2;
 
 
@@ -645,6 +645,7 @@ public class PantallaNivel2 implements Screen
             }else if(estadoJuego== EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
                     musicaNivel2.stop();
+                    PantallaNivel1.gemasC = gemasCL;
                     principal.setScreen(new PantallaNivel2(principal));
 
                 }

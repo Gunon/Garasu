@@ -74,7 +74,7 @@ public class PantallaNivel3 implements Screen
     private Boton btnDesB;
     private Boton btnDesM;
     private EstadosJuego estadoJuego;
-
+    private int gemasCL = PantallaNivel1.gemasC;
     private SpriteBatch batch;
 
     private int countG=0;
@@ -185,7 +185,7 @@ public class PantallaNivel3 implements Screen
 
         Texture texturaBtnReanudar = assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
-        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
+        btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+300,Principal.ALTO_MUNDO/2-300);
         btnContinuar = new Boton(texturaBtnInicio);
         btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
 
@@ -650,6 +650,7 @@ public class PantallaNivel3 implements Screen
                 }
             }else if(estadoJuego== EstadosJuego.PERDIO){
                 if(btnReanudar.contiene(x,y)){
+                    PantallaNivel1.gemasC = gemasCL;
                     musicaNivel3.stop();
                     principal.setScreen(new PantallaNivel3(principal));
 
