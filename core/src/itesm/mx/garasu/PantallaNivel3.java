@@ -287,16 +287,7 @@ public class PantallaNivel3 implements Screen
                 enemigo.setEstadoMovimiento();
             }
         }
-        if(estadoJuego== EstadosJuego.PAUSADO){
-            spritePausa.draw(batch);
-            btnInicio.render(batch);
-            btnReanudar.render(batch);
-            for(Enemigo enemigo: enemigos){
-                enemigo.setEstadoMovimiento();
-                enemigo.first=true;
-            }
 
-        }
         if(estadoJuego== EstadosJuego.FINAL){
             spriteGisbar.draw(batch);
             spritePregunta.draw(batch);
@@ -323,6 +314,17 @@ public class PantallaNivel3 implements Screen
             btnSalto.render(batch);
             btnPausa.render(batch);
             btnAtaque.render(batch);
+        }
+
+        if(estadoJuego== EstadosJuego.PAUSADO){
+            spritePausa.draw(batch);
+            btnInicio.render(batch);
+            btnReanudar.render(batch);
+            for(Enemigo enemigo: enemigos){
+                enemigo.setEstadoMovimiento();
+                enemigo.first=true;
+            }
+
         }
         switch (vidas) {
             case 6:
