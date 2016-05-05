@@ -54,6 +54,7 @@ public class PantallaNivel2 implements Screen
     private Boton btnInicio;
 
     private Boton btnReanudar;
+    private Boton btnReanudarP;
     private Boton btnContinuar;
 
     private Boton btnIzquierda;
@@ -182,6 +183,8 @@ public class PantallaNivel2 implements Screen
         Texture texturaBtnReanudar = assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
+        btnReanudarP = new Boton(texturaBtnReanudar);
+        btnReanudarP.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
         btnContinuar = new Boton(texturaBtnReanudar);
         btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
         Texture texturaBtnPausa = assetManager.get("Btn_Pausa.png");
@@ -274,7 +277,7 @@ public class PantallaNivel2 implements Screen
         batch.begin();
         if(estadoJuego== EstadosJuego.PERDIO){
             spritePerdio.draw(batch);
-            btnReanudar.render(batch);
+            btnReanudarP.render(batch);
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento();
             }
@@ -643,7 +646,7 @@ public class PantallaNivel2 implements Screen
                     estadoJuego = EstadosJuego.JUGANDO;
                 }
             }else if(estadoJuego== EstadosJuego.PERDIO){
-                if(btnReanudar.contiene(x,y)){
+                if(btnReanudarP.contiene(x,y)){
                     musicaNivel2.stop();
                     PantallaNivel1.gemasC = gemasCL;
                     principal.setScreen(new PantallaNivel2(principal));

@@ -63,6 +63,7 @@ public class PantallaNivel1 implements Screen
     private Boton btnInicio;
 
     private Boton btnReanudar;
+    private Boton btnReanudarP;
     private Boton btnContinuar;
 
     private int countG=0;
@@ -164,6 +165,8 @@ public class PantallaNivel1 implements Screen
         btnReanudar = new Boton(texturaBtnReanudar);
 
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+200,Principal.ALTO_MUNDO/2-200);
+        btnReanudarP = new Boton(texturaBtnReanudar);
+        btnReanudarP.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
         btnContinuar = new Boton(texturaBtnReanudar);
         btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
 
@@ -259,7 +262,7 @@ public class PantallaNivel1 implements Screen
         batch.begin();
         if(estadoJuego==EstadosJuego.PERDIO){
             spritePerdio.draw(batch);
-            btnReanudar.render(batch);
+            btnReanudarP.render(batch);
 
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento();
@@ -630,7 +633,7 @@ public class PantallaNivel1 implements Screen
                     estadoJuego = EstadosJuego.JUGANDO;
                 }
             }else if(estadoJuego==EstadosJuego.PERDIO){
-                if(btnReanudar.contiene(x,y)){
+                if(btnReanudarP.contiene(x,y)){
                     musicaNivel1.stop();
                     gemasC=0;
                     principal.setScreen(new PantallaNivel1(principal));

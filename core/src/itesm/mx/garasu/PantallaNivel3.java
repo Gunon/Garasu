@@ -62,6 +62,7 @@ public class PantallaNivel3 implements Screen
     private Boton btnInicio;
 
     private Boton btnReanudar;
+    private Boton btnReanudarP;
     private Boton btnContinuar;
 
     private Boton btnIzquierda;
@@ -186,8 +187,10 @@ public class PantallaNivel3 implements Screen
         Texture texturaBtnReanudar = assetManager.get("Btn_continuar.png");
         btnReanudar = new Boton(texturaBtnReanudar);
         btnReanudar.setPosicion(Principal.ANCHO_MUNDO/2+300,Principal.ALTO_MUNDO/2-300);
+        btnReanudarP = new Boton(texturaBtnReanudar);
+        btnReanudarP.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
         btnContinuar = new Boton(texturaBtnInicio);
-        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2,Principal.ALTO_MUNDO/2-300);
+        btnContinuar.setPosicion(Principal.ANCHO_MUNDO/2- texturaBtnReanudar.getWidth()/2-400,Principal.ALTO_MUNDO/2-300);
 
         Texture texturaBtnPausa = assetManager.get("Btn_Pausa.png");
         btnPausa = new Boton(texturaBtnPausa);
@@ -279,7 +282,7 @@ public class PantallaNivel3 implements Screen
         batch.begin();
         if(estadoJuego== EstadosJuego.PERDIO){
             spritePerdio.draw(batch);
-            btnReanudar.render(batch);
+            btnReanudarP.render(batch);
             for(Enemigo enemigo: enemigos){
                 enemigo.setEstadoMovimiento();
             }
@@ -649,7 +652,7 @@ public class PantallaNivel3 implements Screen
                     estadoJuego = EstadosJuego.JUGANDO;
                 }
             }else if(estadoJuego== EstadosJuego.PERDIO){
-                if(btnReanudar.contiene(x,y)){
+                if(btnReanudarP.contiene(x,y)){
                     PantallaNivel1.gemasC = gemasCL;
                     musicaNivel3.stop();
                     principal.setScreen(new PantallaNivel3(principal));
@@ -668,6 +671,7 @@ public class PantallaNivel3 implements Screen
             }else if(estadoJuego== EstadosJuego.GANO){
                 if(btnContinuar.contiene(x,y)){
                     musicaNivel3.stop();
+                    PantallaNivel1.gemasC = 0;
                     principal.setScreen(new PantallaMenu(principal));
                 }
             }
